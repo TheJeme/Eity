@@ -1,4 +1,5 @@
 require 'Player'
+require 'ScoreManager'
 
 Arrow = {}
 listOfArrows = {}
@@ -8,13 +9,13 @@ function createArrow(type, direction, speed)
   arrow.type = type -- normal, reverse, bad --
   arrow.direction = direction -- left, right, down, up --
   if (direction == "up") then
-    arrow.tempPosition = 585
+    arrow.tempPosition = 590
   elseif (direction == "down") then
-    arrow.tempPosition = -485
+    arrow.tempPosition = -490
   elseif (direction == "left") then
-    arrow.tempPosition = 610
+    arrow.tempPosition = 613
   elseif (direction == "right") then
-    arrow.tempPosition = -1310
+    arrow.tempPosition = -1307
   end
   arrow.speed = speed
   arrow.rotation = 0
@@ -25,13 +26,15 @@ end
 function Arrow:load()
   gw = love.graphics.getWidth()
   gh = love.graphics.getHeight()
-  points = 0
+  hitsrc = love.audio.newSource("hit.wav", "static")
+  misssrc = love.audio.newSource("miss.wav", "static")
+  hitsrc:setVolume(0.5)
+  misssrc:setVolume(0.5)
 end
 
 function Arrow:update(dt)
   for i, v in ipairs(listOfArrows) do
     if (v.direction == "up") then
-      v.tempPosition = v.tempPosition - v.speed * dt
       v.tempPosition = v.tempPosition - v.speed * dt
       if(v.tempPosition < 110 + 200) and v.type == "reverse" then
         if(v.rotation < math.pi) then
@@ -40,15 +43,34 @@ function Arrow:update(dt)
           v.rotation = math.pi
         end
     end
-      if(v.tempPosition < 110) then
+      if(v.tempPosition < 115) then
         table.remove(listOfArrows, i)
-        if (Player.direction == "down") then
-          points = points + 1
+
+        if (v.type == "normal") then
+          if (Player.direction == "down") then
+            hitsrc:play()
+            ScoreManager.AddScore("perfect")
+          else
+            misssrc:play()
+            ScoreManager.ResetCombo()
+          end
+        elseif (v.type == "reverse") then
+          if (Player.direction == "up") then
+            hitsrc:play()
+            ScoreManager.AddScore("perfect")
+          else
+            misssrc:play()
+            ScoreManager.ResetCombo()
+          end
+        elseif (v.type == "bad") then
+          if (Player.direction == "down") then
+            misssrc:play()
+            ScoreManager.AddScore("bad")
+          end
         end
-    end
+      end
 
     elseif (v.direction == "down") then
-    v.tempPosition = v.tempPosition - v.speed * dt
     v.tempPosition = v.tempPosition - v.speed * dt
     if(v.tempPosition < -960 + 200) and v.type == "reverse" then
       if(v.rotation < math.pi) then
@@ -57,10 +79,30 @@ function Arrow:update(dt)
         v.rotation = math.pi
       end
     end
-    if(v.tempPosition < -960) then
+    if(v.tempPosition < -965) then
       table.remove(listOfArrows, i)
-      if (Player.direction == "up") then
-        points = points + 1
+
+      if (v.type == "normal") then
+        if (Player.direction == "up") then
+          hitsrc:play()
+          ScoreManager.AddScore("perfect")
+        else
+          misssrc:play()
+          ScoreManager.ResetCombo()
+        end
+      elseif (v.type == "reverse") then
+        if (Player.direction == "down") then
+          hitsrc:play()
+          ScoreManager.AddScore("perfect")
+        else
+          misssrc:play()
+          ScoreManager.ResetCombo()
+        end
+      elseif (v.type == "bad") then
+        if (Player.direction == "up") then
+            misssrc:play()
+            ScoreManager.AddScore("bad")
+        end
       end
     end
 
@@ -73,10 +115,29 @@ function Arrow:update(dt)
         v.rotation = math.pi
       end
     end
-    if(v.tempPosition < 135) then
+    if(v.tempPosition < 138) then
       table.remove(listOfArrows, i)
-      if (Player.direction == "right") then
-        points = points + 1
+      if (v.type == "normal") then
+        if (Player.direction == "right") then
+          hitsrc:play()
+          ScoreManager.AddScore("perfect")
+        else
+          misssrc:play()
+          ScoreManager.ResetCombo()
+        end
+      elseif (v.type == "reverse") then
+        if (Player.direction == "left") then
+            hitsrc:play()
+            ScoreManager.AddScore("perfect")
+        else
+          misssrc:play()
+          ScoreManager.ResetCombo()
+        end
+      elseif (v.type == "bad") then
+        if (Player.direction == "right") then
+            misssrc:play()
+            ScoreManager.AddScore("bad")
+        end
       end
     end
 
@@ -89,18 +150,35 @@ function Arrow:update(dt)
       v.rotation = math.pi
     end
   end
-  if(v.tempPosition < -1785) then
+  if(v.tempPosition < -1782) then
       table.remove(listOfArrows, i)
-      if (Player.direction == "left") then
-        points = points + 1
+      if (v.type == "normal") then
+        if (Player.direction == "left") then
+            hitsrc:play()
+            ScoreManager.AddScore("perfect")
+        else
+          misssrc:play()
+          ScoreManager.ResetCombo()
+        end
+      elseif (v.type == "reverse") then
+        if (Player.direction == "right") then
+            hitsrc:play()
+            ScoreManager.AddScore("perfect")
+        else
+          misssrc:play()
+          ScoreManager.ResetCombo()
+        end
+      elseif (v.type == "bad") then
+        if (Player.direction == "left") then
+          misssrc:play()
+          ScoreManager.AddScore("bad")
+        end
       end
     end
   end
 end
 
 function Arrow:draw()
-
-    love.graphics.print("Points " .. points, 0, 20)
 
   for i, v in ipairs(listOfArrows) do
     if (v.type == "normal") then

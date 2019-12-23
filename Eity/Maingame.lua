@@ -2,17 +2,41 @@ require 'UI'
 require 'Player'
 require 'Arrow'
 require 'Slider'
+require 'ScoreManager'
+require 'map_01'
+
+local gameTime
 
 Maingame = {}
 
 function Maingame:load()
+  gameTime = 0
   Arrow:load()
   Slider:load()
   UI:load()
   Player:load()
+  ScoreManager:load()
+
+  map_01:load()
+
+  src1 = love.audio.newSource("Eity.mp3", "static")
+  src1:setVolume(0.05)
+  src1:play()
 end
 
 function Maingame:update(dt)
+  gameTime = gameTime + dt
+
+  for i, v in ipairs(map_01) do
+    if((map_01[i][5] < gameTime and map_01[i][1] == "arrow")) then
+      createArrow(map_01[i][2], map_01[i][3], map_01[i][4])
+      map_01[i][1] = "spawned"
+    elseif (map_01[i][5] < gameTime and map_01[i][1] == "slider") then
+      createSlider(map_01[i][2], map_01[i][3], map_01[i][4], map_01[i][6])
+      map_01[i][1] = "spawned"
+    end
+  end
+
   Arrow:update(dt)
   Slider:update(dt)
   UI:update(dt)
@@ -23,48 +47,49 @@ function Maingame:draw()
   Slider:draw()
   UI:draw()
   Player:draw()
+  ScoreManager:draw()
 end
 
 function Maingame:keypressed(key, scancode, isrepeat)
   Player:keypressed(key, scancode, isrepeat)
 
   if key == "y" then
-    createArrow("normal", "down", 150)
+    createSlider("normal", "up", 300, 200)
   end
   if key == "u" then
-    createArrow("normal", "up", 400)
+    createSlider("normal", "down", 300, 200)
   end
   if key == "i" then
-    createArrow("normal", "left", 50)
+    createSlider("normal", "left", 300, 200)
   end
   if key == "o" then
-    createArrow("normal", "right", 250)
+    createSlider("normal", "right", 300, 200)
   end
 
   if key == "h" then
-    createArrow("reverse", "left", 200)
+    createSlider("reverse", "left", 300, 200)
   end
   if key == "j" then
-    createArrow("reverse", "up", 200)
+    createSlider("reverse", "down", 300, 200)
   end
   if key == "k" then
-    createArrow("reverse", "down", 200)
+    createSlider("reverse", "up", 300, 200)
   end
   if key == "l" then
-    createArrow("reverse", "right", 200)
+    createSlider("reverse", "right", 300, 200)
   end
 
   if key == "n" then
-    createArrow("bad", "left", 200)
+    createSlider("bad", "left", 300, 200)
   end
   if key == "m" then
-    createArrow("bad", "up", 200)
+    createSlider("bad", "down", 300, 200)
   end
   if key == "," then
-    createArrow("bad", "down", 200)
+    createSlider("bad", "up", 300, 200)
   end
   if key == "." then
-    createArrow("bad", "right", 200)
+    createSlider("bad", "right", 300, 200)
   end
 end
 

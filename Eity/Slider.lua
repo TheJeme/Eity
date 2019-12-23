@@ -7,17 +7,19 @@ function createSlider(type, direction, speed, length)
   slider.type = type -- normal, reverse, bad --
   slider.direction = direction -- left, right, down, up --
   if (direction == "up") then
-    slider.tempPosition = 585
+    slider.tempPosition = 590
   elseif (direction == "down") then
-    slider.tempPosition = -485
+    slider.tempPosition = -490
   elseif (direction == "left") then
-    slider.tempPosition = 610
+    slider.tempPosition = 613
   elseif (direction == "right") then
-    slider.tempPosition = -1310
+    slider.tempPosition = -1307
   end
   slider.speed = speed
   slider.rotation = 0
+  slider.maxlength = length
   slider.length = length
+  slider.scoreLength = length
 
   table.insert(listOfSliders, slider)
 end
@@ -39,14 +41,38 @@ function Slider:update(dt)
         v.rotation = math.pi
       end
     end
-      if(v.tempPosition < 110) then
-        v.tempPosition  = 110
+      if(v.tempPosition < 115) then
+        v.tempPosition  = 115
           if(v.length > 0) then
             v.length = v.length - v.speed * dt
+            if((v.type == "normal" and Player.direction == "down") or (v.type == "bad" and Player.direction == "down") or (v.type == "reverse" and Player.direction == "up")) then
+              v.scoreLength = v.scoreLength - v.speed * dt
+            end
           else
             table.remove(listOfSliders, i)
+            if((v.scoreLength <= 0 and v.type == "normal") or (v.scoreLength <= 0 and v.type == "reverse")) then
+              ScoreManager.AddScore("sliderStart")
+            elseif ((v.scoreLength < v.maxlength and v.type == "bad")) then
+              ScoreManager.AddScore("bad")
+            else
+              ScoreManager.ResetCombo()
+            end
+
+            if (v.type == "normal") then
+              if (Player.direction == "down") then
+                  ScoreManager.AddScore("sliderEnd")
+              else
+                ScoreManager.ResetCombo()
+              end
+            elseif (v.type == "reverse") then
+              if (Player.direction == "up") then
+                  ScoreManager.AddScore("sliderEnd")
+              else
+                ScoreManager.ResetCombo()
+              end
+            end
           end
-    end
+        end
 
     elseif (v.direction == "down") then
     v.tempPosition = v.tempPosition - v.speed * dt
@@ -57,14 +83,39 @@ function Slider:update(dt)
         v.rotation = math.pi
       end
     end
-    if(v.tempPosition < -960) then
-      v.tempPosition  = -960
+    if(v.tempPosition < -965) then
+      v.tempPosition  = -965
         if(v.length > 0) then
           v.length = v.length - v.speed * dt
+        if((v.type == "normal" and Player.direction == "up") or (v.type == "bad" and Player.direction == "up") or (v.type == "reverse" and Player.direction == "down")) then
+          v.scoreLength = v.scoreLength - v.speed * dt
+        end
         else
           table.remove(listOfSliders, i)
+
+          if((v.scoreLength <= 0 and v.type == "normal") or (v.scoreLength <= 0 and v.type == "reverse")) then
+            ScoreManager.AddScore("sliderStart")
+          elseif ((v.scoreLength < v.maxlength and v.type == "bad")) then
+            ScoreManager.AddScore("bad")
+          else
+            ScoreManager.ResetCombo()
+          end
+
+          if (v.type == "normal") then
+            if (Player.direction == "up") then
+                ScoreManager.AddScore("perfect")
+            else
+              ScoreManager.ResetCombo()
+            end
+          elseif (v.type == "reverse") then
+            if (Player.direction == "down") then
+                ScoreManager.AddScore("perfect")
+            else
+              ScoreManager.ResetCombo()
+            end
+          end
         end
-    end
+      end
 
     elseif (v.direction == "left") then
     v.tempPosition = v.tempPosition - v.speed * dt
@@ -75,14 +126,39 @@ function Slider:update(dt)
         v.rotation = math.pi
       end
     end
-    if(v.tempPosition < 135) then
-      v.tempPosition  = 135
+    if(v.tempPosition < 138) then
+      v.tempPosition  = 138
         if(v.length > 0) then
           v.length = v.length - v.speed * dt
+          if((v.type == "normal" and Player.direction == "right") or (v.type == "bad" and Player.direction == "right") or (v.type == "reverse" and Player.direction == "left")) then
+            v.scoreLength = v.scoreLength - v.speed * dt
+          end
         else
           table.remove(listOfSliders, i)
+
+          if((v.scoreLength <= 0 and v.type == "normal") or (v.scoreLength <= 0 and v.type == "reverse")) then
+            ScoreManager.AddScore("sliderStart")
+          elseif ((v.scoreLength < v.maxlength and v.type == "bad")) then
+            ScoreManager.AddScore("bad")
+          else
+            ScoreManager.ResetCombo()
+          end
+
+          if (v.type == "normal") then
+            if (Player.direction == "right") then
+                ScoreManager.AddScore("perfect")
+            else
+              ScoreManager.ResetCombo()
+            end
+          elseif (v.type == "reverse") then
+            if (Player.direction == "left") then
+                ScoreManager.AddScore("perfect")
+            else
+              ScoreManager.ResetCombo()
+            end
+          end
         end
-    end
+      end
 
   elseif (v.direction == "right") then
   v.tempPosition = v.tempPosition - v.speed * dt
@@ -93,12 +169,37 @@ function Slider:update(dt)
       v.rotation = math.pi
     end
   end
-  if(v.tempPosition < -1785) then
-    v.tempPosition  = -1785
+  if(v.tempPosition < -1782) then
+    v.tempPosition  = -1782
       if(v.length > 0) then
         v.length = v.length - v.speed * dt
+        if((v.type == "normal" and Player.direction == "left") or (v.type == "bad" and Player.direction == "left") or (v.type == "reverse" and Player.direction == "right")) then
+          v.scoreLength = v.scoreLength - v.speed * dt
+        end
       else
         table.remove(listOfSliders, i)
+
+        if((v.scoreLength <= 0 and v.type == "normal") or (v.scoreLength <= 0 and v.type == "reverse")) then
+          ScoreManager.AddScore("sliderStart")
+        elseif ((v.scoreLength < v.maxlength and v.type == "bad")) then
+          ScoreManager.AddScore("bad")
+        else
+          ScoreManager.ResetCombo()
+        end
+
+        if (v.type == "normal") then
+          if (Player.direction == "left") then
+              ScoreManager.AddScore("perfect")
+          else
+            ScoreManager.ResetCombo()
+          end
+        elseif (v.type == "reverse") then
+          if (Player.direction == "right") then
+              ScoreManager.AddScore("perfect")
+          else
+            ScoreManager.ResetCombo()
+          end
+        end
       end
     end
   end
@@ -203,7 +304,8 @@ function Slider:draw()
                               gw / 2 + 33 + v.tempPosition + v.length, gh / 2 - 20,
                               gw / 2 + 13 + v.tempPosition + v.length, gh / 2 - 40)
         love.graphics.pop()
-      elseif (v.direction == "right") then
+
+        elseif (v.direction == "right") then
         love.graphics.push()
         love.graphics.translate(gw / 2, gh / 2)
         love.graphics.rotate(v.rotation)
