@@ -13,6 +13,8 @@ end
 
 function love.draw()
   Maingame:draw()
+  love.graphics.setColor(1, 1, 1, 1)
+  love.graphics.print("FPS " .. love.timer.getFPS())
 end
 
 function love.keypressed(key, scancode, isrepeat)

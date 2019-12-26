@@ -5,7 +5,6 @@ function ScoreManager:load()
   ScoreManager.combo = 0
   ScoreManager.misses = 0
   ScoreManager.hits = 0
-
 end
 
 function ScoreManager.ResetCombo()

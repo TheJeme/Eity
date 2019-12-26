@@ -1,19 +1,20 @@
-require 'Arrow'
-require 'Slider'
-
 map_01 = { }
-
-function map_01:load()
+ 
+function map_01:load()      
+  
+  --(0 = None, 1 = Arrow, 2 = Slider), (1 = normal, 2 = slider, 3 = bad), 448 = up, 64 = down, 192 = left, 320 = right, seconds to spawn
+  -- Slider length
   map_01 = {
-    {"arrow", "normal", "left", 200, 1},
-    {"arrow", "normal", "left", 200, 1.3},
-    {"arrow", "normal", "left", 200, 1.6},
-    {"arrow", "normal", "right", 200, 2},
-    {"arrow", "normal", "up", 200, 3.5},
-    {"arrow", "normal", "left", 200, 3},
-    {"arrow", "reverse", "down", 200, 4},
-    {"arrow", "bad", "right", 200, 4.5},
-    {"slider", "normal", "left", 200, 5, 200}}
+    {2, 1, 320, 200, 402, 400},   
+    {1, 1, 64, 200, 2802},
+    {1, 1, 448, 200, 3702},
+    {1, 1, 448, 200, 4700},
+    {2, 1, 448, 200, 5202, 200},
+    {1, 1, 192, 200, 7400},
+    {1, 1, 448, 200, 8000},
+    {1, 1, 320, 200, 8600},
+    {1, 1, 64, 200, 9200},
+    {1, 1, 64, 200, 9800}}
 end
 
 
