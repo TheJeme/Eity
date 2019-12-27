@@ -11,6 +11,13 @@ function ScoreManager.ResetCombo()
   ScoreManager.combo = 0
 end
 
+function ScoreManager.Restart()
+  ScoreManager.score = 0
+  ScoreManager.combo = 0
+  ScoreManager.misses = 0
+  ScoreManager.hits = 0
+end
+
 function ScoreManager.AddScore(type)  -- "perfect", "good", "bad"
   if (type == "perfect") then
       ScoreManager.combo = ScoreManager.combo + 1

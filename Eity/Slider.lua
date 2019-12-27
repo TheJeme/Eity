@@ -27,6 +27,13 @@ end
 function Slider:load()
   gw = love.graphics.getWidth()
   gh = love.graphics.getHeight()
+  
+  hitsrc = love.audio.newSource("hit.wav", "static")
+  hitSlidersrc = love.audio.newSource("slider.wav", "static")
+  misssrc = love.audio.newSource("miss.wav", "static")
+  hitsrc:setVolume(0.5)
+  hitSlidersrc:setVolume(0.5)
+  misssrc:setVolume(0.5)
 end
 
 function Slider:update(dt)
@@ -47,25 +54,31 @@ function Slider:update(dt)
             v.length = v.length - v.speed * dt
             if((v.type == 1 and Player.direction == 2) or (v.type == 3 and Player.direction == 2) or (v.type == 2 and Player.direction == 4)) then
               v.scoreLength = v.scoreLength - v.speed * dt
+              hitSlidersrc:play()
             end
           else
             table.remove(listOfSliders, i)
             if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
               ScoreManager.AddScore("sliderStart")
             elseif ((v.scoreLength < v.maxlength and v.type == 3)) then
+              misssrc:play()
               ScoreManager.AddScore("bad")
             end
 
             if (v.type == 1) then
               if (Player.direction == 2) then
-                  ScoreManager.AddScore("sliderEnd")
+                hitsrc:play()
+                ScoreManager.AddScore("sliderEnd")
               else
+                misssrc:play()
                 ScoreManager.ResetCombo()
               end
             elseif (v.type == 2) then
               if (Player.direction == 4) then
-                  ScoreManager.AddScore("sliderEnd")
+                hitsrc:play()
+                ScoreManager.AddScore("sliderEnd")
               else
+                misssrc:play()
                 ScoreManager.ResetCombo()
               end
             end
@@ -87,6 +100,7 @@ function Slider:update(dt)
           v.length = v.length - v.speed * dt
         if((v.type == 1 and Player.direction == 4) or (v.type == 3 and Player.direction == 4) or (v.type == 2 and Player.direction == 2)) then
           v.scoreLength = v.scoreLength - v.speed * dt
+          hitSlidersrc:play()
         end
         else
           table.remove(listOfSliders, i)
@@ -94,19 +108,24 @@ function Slider:update(dt)
           if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
             ScoreManager.AddScore("sliderStart")
           elseif ((v.scoreLength < v.maxlength and v.type == 3)) then
+            misssrc:play()
             ScoreManager.AddScore("bad")
           end
 
           if (v.type == 1) then
             if (Player.direction == 4) then
-                ScoreManager.AddScore("sliderEnd")
+              hitsrc:play()
+              ScoreManager.AddScore("sliderEnd")
             else
+              misssrc:play()
               ScoreManager.ResetCombo()
             end
           elseif (v.type == 2) then
             if (Player.direction == 2) then
-                ScoreManager.AddScore("sliderEnd")
+              hitsrc:play()
+              ScoreManager.AddScore("sliderEnd")
             else
+              misssrc:play()
               ScoreManager.ResetCombo()
             end
           end
@@ -128,6 +147,7 @@ function Slider:update(dt)
           v.length = v.length - v.speed * dt
           if((v.type == 1 and Player.direction == 3) or (v.type == 3 and Player.direction == 3) or (v.type == 2 and Player.direction == 1)) then
             v.scoreLength = v.scoreLength - v.speed * dt
+            hitSlidersrc:play()
           end
         else
           table.remove(listOfSliders, i)
@@ -135,19 +155,24 @@ function Slider:update(dt)
           if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
             ScoreManager.AddScore("sliderStart")
           elseif ((v.scoreLength < v.maxlength and v.type == 3)) then
+            misssrc:play()
             ScoreManager.AddScore("bad")
           end
 
           if (v.type == 1) then
             if (Player.direction == 3) then
-                ScoreManager.AddScore("sliderEnd")
+              hitsrc:play()
+              ScoreManager.AddScore("sliderEnd")
             else
+              misssrc:play()
               ScoreManager.ResetCombo()
             end
           elseif (v.type == 2) then
             if (Player.direction == 1) then
-                ScoreManager.AddScore("sliderEnd")
+              hitsrc:play()
+              ScoreManager.AddScore("sliderEnd")
             else
+              misssrc:play()
               ScoreManager.ResetCombo()
             end
           end
@@ -169,6 +194,7 @@ function Slider:update(dt)
         v.length = v.length - v.speed * dt
         if((v.type == 1 and Player.direction == 1) or (v.type == 3 and Player.direction == 1) or (v.type == 2 and Player.direction == 3)) then
           v.scoreLength = v.scoreLength - v.speed * dt
+          hitSlidersrc:play()
         end
       else
         table.remove(listOfSliders, i)
@@ -176,19 +202,24 @@ function Slider:update(dt)
         if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
           ScoreManager.AddScore("sliderStart")
         elseif ((v.scoreLength < v.maxlength and v.type == 3)) then
+          misssrc:play()
           ScoreManager.AddScore("bad")
         end
 
         if (v.type == 1) then
           if (Player.direction == 1) then
-              ScoreManager.AddScore("sliderEnd")
+            hitsrc:play()
+            ScoreManager.AddScore("sliderEnd")
           else
+            misssrc:play()
             ScoreManager.ResetCombo()
           end
         elseif (v.type == 2) then
           if (Player.direction == 3) then
-              ScoreManager.AddScore("sliderEnd")
+            hitsrc:play()
+            ScoreManager.AddScore("sliderEnd")
           else
+            misssrc:play()
             ScoreManager.ResetCombo()
           end
         end

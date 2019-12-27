@@ -1,5 +1,3 @@
-require 'Player'
-
 UI = {}
 
 function UI:load()
