@@ -73,6 +73,20 @@ function Maingame:keypressed(key, scancode, isrepeat)
     GameManager.Pause()
   end
   
+  if key == "y" then
+    createArrow(2, 1, 400)
+  end
+  if key == "u" then
+    createArrow(2, 2, 400)
+  end
+  if key == "i" then
+    createArrow(2, 3, 400)
+  end
+  if key == "o" then
+    createArrow(2, 4, 400)
+  end
+  
+  
   if not GameManager.pause then
     Player:keypressed(key, scancode, isrepeat)
   end

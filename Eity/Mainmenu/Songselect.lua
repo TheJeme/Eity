@@ -4,16 +4,22 @@ local smallFont
 local bigFont
 local isMouseOnPlay
 local isMouseOnBack
-local PlayButtonColor
-local BackButtonColor
+local playButtonColor
+local backButtonColor
+local randomButtonColor
+local modsButtonColor
+local modesButtonColor
 
 function Songselect:load()
   bigFont = love.graphics.newFont("Assets/roboto.ttf", 84)
   smallFont = love.graphics.newFont("Assets/roboto.ttf", 24)
   SongBG = love.graphics.newImage("Shelter/BG2.jpg")
   scaleX, scaleY = GameManager:getImageScaleForNewDimensions( SongBG, 1920, 1080 )
-  PlayButtonColor = {0, 184 / 255, 148 / 255, 1}
-  BackButtonColor = {0, 184 / 255, 148 / 255, 1}
+  playButtonColor = {0, 184 / 255, 148 / 255, 1}
+  backButtonColor = {0, 184 / 255, 148 / 255, 1}
+  randomButtonColor = {0, 184 / 255, 148 / 255, 1}
+  modsButtonColor = {0, 184 / 255, 148 / 255, 1}
+  modesButtonColor = {0, 184 / 255, 148 / 255, 1}
 end
 
 function Songselect:update(dt)
@@ -22,15 +28,33 @@ function Songselect:update(dt)
                           
   isMouseOnBack = mx > 50 and mx < 200 and         
                           my > gh * 0.94 and my < gh * 0.94 + 50
+                          
+  isMouseOnRandom = mx > gw - 400 and mx < gw - 400 + 150 and         
+                          my > gh * 0.94 and my < gh * 0.94 + 50
+                          
+  isMouseOnMods = mx > gw - 600 and mx < gw - 600 + 150 and         
+                          my > gh * 0.94 and my < gh * 0.94 + 50
+                          
+  isMouseOnModes = mx > gw - 800 and mx < gw - 800 + 150 and         
+                          my > gh * 0.94 and my < gh * 0.94 + 50
           
-  PlayButtonColor = {0, 184 / 255, 148 / 255, 1}
-  BackButtonColor = {0, 184 / 255, 148 / 255, 1}
+  playButtonColor = {0, 184 / 255, 148 / 255, 1}
+  backButtonColor = {0, 184 / 255, 148 / 255, 1}
+  randomButtonColor = {0, 184 / 255, 148 / 255, 1}
+  modsButtonColor = {0, 184 / 255, 148 / 255, 1}
+  modesButtonColor = {0, 184 / 255, 148 / 255, 1}
           
-  if isMouseOnPlay or isMouseOnBack then
+  if isMouseOnPlay or isMouseOnBack or isMouseOnRandom or isMouseOnMods or isMouseOnModes then
     if isMouseOnPlay then
-      PlayButtonColor = {9 / 255, 132 / 255, 227 / 255, 1}
+      playButtonColor = {9 / 255, 132 / 255, 227 / 255, 1}
     elseif isMouseOnBack then
-      BackButtonColor = {9 / 255, 132 / 255, 227 / 255, 1}
+      backButtonColor = {9 / 255, 132 / 255, 227 / 255, 1}
+    elseif isMouseOnRandom then
+      randomButtonColor = {9 / 255, 132 / 255, 227 / 255, 1}
+    elseif isMouseOnMods then
+      modsButtonColor = {9 / 255, 132 / 255, 227 / 255, 1}
+    elseif isMouseOnModes then
+      modesButtonColor = {9 / 255, 132 / 255, 227 / 255, 1}
     end
     
     if not hoverButtonOver then
@@ -65,6 +89,12 @@ function Songselect:mousepressed(x, y,button)
     elseif isMouseOnBack and button == 1 then
       state = "Startmenu"
       SoundManager.ButtonHit:play()
+    elseif isMouseOnRandom and button == 1 then
+      SoundManager.ButtonHit:play()
+    elseif isMouseOnMods and button == 1 then
+      SoundManager.ButtonHit:play()
+    elseif isMouseOnModes and button == 1 then
+      SoundManager.ButtonHit:play()
     end
   end
 end
@@ -75,35 +105,35 @@ function BottomBar()
   
   love.graphics.setColor(0, 0, 0, 0.6)
   love.graphics.rectangle('fill', 50, gh * 0.94, 150, 50, 10)
-  love.graphics.setColor(BackButtonColor)
+  love.graphics.setColor(backButtonColor)
   love.graphics.rectangle('line', 50, gh * 0.94, 150, 50, 10)
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.printf("Back", -75, gh * 0.95, 400, "center")
   
   love.graphics.setColor(0, 0, 0, 0.6)
   love.graphics.rectangle('fill', gw - 800, gh * 0.94, 150, 50, 10)
-  love.graphics.setColor(0, 184 / 255, 148 / 255, 1)
+  love.graphics.setColor(modesButtonColor)
   love.graphics.rectangle('line', gw - 800, gh * 0.94, 150, 50, 10)
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.printf("Modes", gw - 925, gh * 0.95, 400, "center")
   
   love.graphics.setColor(0, 0, 0, 0.6)
   love.graphics.rectangle('fill', gw - 600, gh * 0.94, 150, 50, 10)
-  love.graphics.setColor(0, 184 / 255, 148 / 255, 1)
+  love.graphics.setColor(modsButtonColor)
   love.graphics.rectangle('line', gw - 600, gh * 0.94, 150, 50, 10)
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Mods", gw - 725, gh * 0.95, 400, "center")
+  love.graphics.printf("Mods", gw - 725, gh * 0.95, 400, "center")  
   
   love.graphics.setColor(0, 0, 0, 0.6)
   love.graphics.rectangle('fill', gw - 400, gh * 0.94, 150, 50, 10)
-  love.graphics.setColor(0, 184 / 255, 148 / 255, 1)
+  love.graphics.setColor(randomButtonColor)
   love.graphics.rectangle('line', gw - 400, gh * 0.94, 150, 50, 10)
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.printf("Random", gw - 525, gh * 0.95, 400, "center")
   
   love.graphics.setColor(0, 0, 0, 0.6)
   love.graphics.rectangle('fill', gw - 200, gh * 0.94, 150, 50, 10)
-  love.graphics.setColor(PlayButtonColor)
+  love.graphics.setColor(playButtonColor)
   love.graphics.rectangle('line', gw - 200, gh * 0.94, 150, 50, 10)
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.printf("Play", gw - 325, gh * 0.95, 400, "center")
@@ -112,11 +142,11 @@ end
 function Scores()
   love.graphics.setFont(bigFont)
   love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', 20, gh / 3 - 200, gw * 0.2, gh / 3 + 300, 15)
+  love.graphics.rectangle('fill', 20, gh / 3 - 200, 450, gh / 3 + 300, 15)
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.rectangle('line', 20, gh / 3 - 200, gw * 0.2, gh / 3 + 300, 15)
+  love.graphics.rectangle('line', 20, gh / 3 - 200, 450, gh / 3 + 300, 15)
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Scores", gw * 0.005, gh / 3 - 200, 400, "center")
+  love.graphics.printf("Scores", 20, gh / 3 - 200, 20 + 450, "center")
 end
 
 function Background()

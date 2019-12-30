@@ -5,3 +5,9 @@ flashlight
 Easy = Only blue arrows
 Double Speed
 Half Speed
+
+
+Next gamemode:
+image (next.png)
+A + D + Shift // <- + -> + Shift
+spins around and collect everything
