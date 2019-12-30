@@ -28,9 +28,9 @@ function Slider:load()
   hitsrc = love.audio.newSource("Assets/hit.wav", "static")
   hitSlidersrc = love.audio.newSource("Assets/slider.wav", "static")
   misssrc = love.audio.newSource("Assets/miss.wav", "static")
-  hitsrc:setVolume(0.5)
-  hitSlidersrc:setVolume(0.5)
-  misssrc:setVolume(0.5)
+  hitsrc:setVolume(0.05)
+  hitSlidersrc:setVolume(0.05)
+  misssrc:setVolume(0.05)
 end
 
 function Slider:update(dt)

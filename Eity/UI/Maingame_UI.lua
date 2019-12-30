@@ -1,9 +1,11 @@
 Maingame_UI = {}
 
 local bigFont
+local smallFont
 
 function Maingame_UI:load()
   bigFont = love.graphics.newFont("Assets/roboto.ttf", 92)
+  smallFont = love.graphics.newFont("Assets/roboto.ttf", 48)
 end
 
 function Maingame_UI:update(dt)
@@ -30,10 +32,13 @@ function Maingame_UI:mousepressed(x, y,button)
                           
                           
    if isMouseOnContinue and GameManager.pause then
+     SoundManager.ButtonHit:play()
      GameManager.Pause()
    elseif isMouseOnRestart and GameManager.pause then
+     SoundManager.ButtonHit:play()
      GameManager.Restart()
    elseif isMouseOnQuit and GameManager.pause then
+     SoundManager.ButtonHit:play()
      GamestateManager.GameState = "Mainmenu"
    end
 end

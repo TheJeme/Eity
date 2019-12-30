@@ -12,7 +12,7 @@ function createArrow(type, direction, speed)
   elseif (direction == 3) then
     arrow.tempPosition = -1307
   elseif (direction == 4) then
-      arrow.tempPosition = 590
+    arrow.tempPosition = 590
   end
   arrow.speed = speed
   arrow.rotation = 0
@@ -23,8 +23,8 @@ end
 function Arrow:load()
   hitsrc = love.audio.newSource("Assets/hit.wav", "static")
   misssrc = love.audio.newSource("Assets/miss.wav", "static")
-  hitsrc:setVolume(0.5)
-  misssrc:setVolume(0.5)
+  hitsrc:setVolume(0.05)
+  misssrc:setVolume(0.05)
 end
 
 function Arrow:update(dt)

@@ -2,10 +2,16 @@ require 'Maingame/Maingame'
 require 'Mainmenu/Mainmenu'
 require 'Managers/GamestateManager'
 
+
 function love.load()
   love.window.setMode(1920,1080,{fullscreen=true, fullscreentype="exclusive"})
+  love.window.setVSync(0)
   gw = love.graphics.getWidth()
   gh = love.graphics.getHeight()
+  VIRTUAL_WIDTH = 1920
+  VIRTUAL_HEIGHT = 1080
+  sx = VIRTUAL_WIDTH / love.graphics.getWidth()
+  sy = VIRTUAL_HEIGHT / love.graphics.getHeight()
   mx, my = love.mouse.getPosition()
   defaultFont = love.graphics.getFont()
   GamestateManager:load()
@@ -25,6 +31,7 @@ function love.update(dt)
 end
 
 function love.draw()
+  love.graphics.scale(sx, sy)
   if(GamestateManager.GameState == "Mainmenu") then
     Mainmenu:draw()
   elseif(GamestateManager.GameState == "Maingame") then

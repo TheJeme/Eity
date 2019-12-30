@@ -1,8 +1,13 @@
+require 'Mainmenu/Mainmenu_Particles'
+
 Mainmenu_UI = {}
 
+local scaleX, scaleY
 local bigFont
+local smallFont
 
 function Mainmenu_UI:load()
+  Mainmenu_Particles:load()
   bigFont = love.graphics.newFont("Assets/roboto.ttf", 124)
   smallFont = love.graphics.newFont("Assets/roboto.ttf", 48)
   mainBG = love.graphics.newImage("Assets/MainBG3.jpg")
@@ -12,10 +17,15 @@ function Mainmenu_UI:load()
 end
 
 function Mainmenu_UI:update(dt)
+    Mainmenu_Particles:update(dt)
     mx, my = love.mouse.getPosition()
 end
 
 function Mainmenu_UI:draw()
+  
+  love.graphics.setColor(1, 1, 1, 1)
+  Mainmenu_Particles:draw()
+  
   DrawMainButtons()
   if PressedQuit then
     DrawAreYouSureQuit()
@@ -55,11 +65,6 @@ end
 
 
 function DrawMainButtons()
-  love.graphics.push()
-  love.graphics.draw(mainBG, 0, 0, 0, 1, 1)
-  love.graphics.setColor(0.3, 0.3, 0.3, 0.5)
-  love.graphics.rectangle('fill', 0, 0, 1920, 1080)
-  love.graphics.pop()
     
   love.graphics.push()
   love.graphics.setLineWidth(60)

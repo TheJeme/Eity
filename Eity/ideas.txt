@@ -1,0 +1,7 @@
+mods:
+===
+hidden
+flashlight
+Easy = Only blue arrows
+Double Speed
+Half Speed

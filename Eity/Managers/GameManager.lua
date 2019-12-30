@@ -11,6 +11,7 @@ end
 function GameManager:load()
   GameManager.pause = false
   GameManager.gametime = 0
+  nextNote = 1
 end
 
 function GameManager.Pause()
@@ -22,8 +23,8 @@ function GameManager.Restart()
   ScoreManager.Restart()
   GameManager.pause = false
   GameManager.gametime = 0
+  nextNote = 1
   for i, v in ipairs(map_01) do
-    map_01[i][1] = 1
     listOfArrows = {}
     listOfSliders = {}
   end
