@@ -11,7 +11,7 @@ function Mainmenu_UI:load()
   bigFont = love.graphics.newFont("Assets/roboto.ttf", 124)
   smallFont = love.graphics.newFont("Assets/roboto.ttf", 48)
   mainBG = love.graphics.newImage("Assets/MainBG3.jpg")
-  scaleX, scaleY = GameManager:getImageScaleForNewDimensions( mainBG, 1920, 1080 )
+  scaleX, scaleY = GameManager:getImageScaleForNewDimensions( mainBG, gw, gh )
   
   PressedQuit = false
 end

@@ -73,6 +73,10 @@ function Maingame:keypressed(key, scancode, isrepeat)
     GameManager.Pause()
   end
   
+  if key == "r" then
+    GameManager.Restart()
+  end
+  
   if key == "y" then
     createArrow(2, 1, 400)
   end

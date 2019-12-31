@@ -51,8 +51,12 @@ function Slider:update(dt)
             end
           else
             table.remove(listOfSliders, i)
+            ScoreManager.destroyednotes = ScoreManager.destroyednotes + 2
+            
             if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
               ScoreManager.AddScore("sliderStart")
+            elseif((v.scoreLength >= 0 and v.type == 1) or (v.scoreLength >= 0 and v.type == 2)) then
+              ScoreManager.AddScore("miss")
             elseif ((v.scoreLength < v.maxlength and v.type == 3)) then
               SoundManager.misssrc:play()
               ScoreManager.AddScore("bad")
@@ -64,7 +68,7 @@ function Slider:update(dt)
                 ScoreManager.AddScore("sliderEnd")
               else
                 SoundManager.misssrc:play()
-                ScoreManager.ResetCombo()
+                ScoreManager.AddScore("miss")
               end
             elseif (v.type == 2) then
               if (Player.direction == 4) then
@@ -72,7 +76,7 @@ function Slider:update(dt)
                 ScoreManager.AddScore("sliderEnd")
               else
                 SoundManager.misssrc:play()
-                ScoreManager.ResetCombo()
+                ScoreManager.AddScore("miss")
               end
             end
           end
@@ -97,9 +101,12 @@ function Slider:update(dt)
         end
         else
           table.remove(listOfSliders, i)
-
+          ScoreManager.destroyednotes = ScoreManager.destroyednotes + 2
+          
           if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
             ScoreManager.AddScore("sliderStart")
+          elseif((v.scoreLength >= 0 and v.type == 1) or (v.scoreLength >= 0 and v.type == 2)) then
+            ScoreManager.AddScore("miss")
           elseif ((v.scoreLength < v.maxlength and v.type == 3)) then
             SoundManager.misssrc:play()
             ScoreManager.AddScore("bad")
@@ -111,7 +118,7 @@ function Slider:update(dt)
               ScoreManager.AddScore("sliderEnd")
             else
               SoundManager.misssrc:play()
-              ScoreManager.ResetCombo()
+              ScoreManager.AddScore("miss")
             end
           elseif (v.type == 2) then
             if (Player.direction == 2) then
@@ -119,7 +126,7 @@ function Slider:update(dt)
               ScoreManager.AddScore("sliderEnd")
             else
               SoundManager.misssrc:play()
-              ScoreManager.ResetCombo()
+              ScoreManager.AddScore("miss")
             end
           end
         end
@@ -144,9 +151,12 @@ function Slider:update(dt)
           end
         else
           table.remove(listOfSliders, i)
-
+          ScoreManager.destroyednotes = ScoreManager.destroyednotes + 2
+          
           if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
             ScoreManager.AddScore("sliderStart")
+          elseif((v.scoreLength >= 0 and v.type == 1) or (v.scoreLength >= 0 and v.type == 2)) then
+            ScoreManager.AddScore("miss")
           elseif ((v.scoreLength < v.maxlength and v.type == 3)) then
             SoundManager.misssrc:play()
             ScoreManager.AddScore("bad")
@@ -158,7 +168,7 @@ function Slider:update(dt)
               ScoreManager.AddScore("sliderEnd")
             else
               SoundManager.misssrc:play()
-              ScoreManager.ResetCombo()
+              ScoreManager.AddScore("miss")
             end
           elseif (v.type == 2) then
             if (Player.direction == 1) then
@@ -166,7 +176,7 @@ function Slider:update(dt)
               ScoreManager.AddScore("sliderEnd")
             else
               SoundManager.misssrc:play()
-              ScoreManager.ResetCombo()
+              ScoreManager.AddScore("miss")
             end
           end
         end
@@ -191,9 +201,12 @@ function Slider:update(dt)
         end
       else
         table.remove(listOfSliders, i)
-
+        ScoreManager.destroyednotes = ScoreManager.destroyednotes + 2
+        
         if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
           ScoreManager.AddScore("sliderStart")
+        elseif((v.scoreLength >= 0 and v.type == 1) or (v.scoreLength >= 0 and v.type == 2)) then
+          ScoreManager.AddScore("miss")
         elseif ((v.scoreLength < v.maxlength and v.type == 3)) then
           SoundManager.misssrc:play()
           ScoreManager.AddScore("bad")
@@ -205,7 +218,7 @@ function Slider:update(dt)
             ScoreManager.AddScore("sliderEnd")
           else
             SoundManager.misssrc:play()
-            ScoreManager.ResetCombo()
+            ScoreManager.AddScore("miss")
           end
         elseif (v.type == 2) then
           if (Player.direction == 3) then
@@ -213,7 +226,7 @@ function Slider:update(dt)
             ScoreManager.AddScore("sliderEnd")
           else
             SoundManager.misssrc:play()
-            ScoreManager.ResetCombo()
+            ScoreManager.AddScore("miss")
           end
         end
       end

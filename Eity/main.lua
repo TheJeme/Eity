@@ -7,7 +7,7 @@ local SCreen = require 'cscreen'
 
 function love.load()
   love.window.setMode(1920,1080,{fullscreen=true, fullscreentype="exclusive"})
-  love.window.setMode(1600,900,{fullscreen=true, fullscreentype="exclusive"})
+  --love.window.setMode(1600,900,{fullscreen=true, fullscreentype="exclusive"})
   love.window.setVSync(0)
   isEnabledFPS = true
   gw = love.graphics.getWidth()

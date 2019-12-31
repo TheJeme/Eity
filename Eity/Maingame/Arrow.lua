@@ -37,14 +37,14 @@ function Arrow:update(dt)
     end
       if(v.tempPosition < gh * 0.615) then
         table.remove(listOfArrows, i)
-
+        ScoreManager.destroyednotes = ScoreManager.destroyednotes + 1
         if (v.type == 1) then
           if (Player.direction == 2) then
             SoundManager.hitsrc:play()
             ScoreManager.AddScore("perfect")
           else
             SoundManager.misssrc:play()
-            ScoreManager.ResetCombo()
+            ScoreManager.AddScore("miss")
           end
         elseif (v.type == 2) then
           if (Player.direction == 4) then
@@ -52,7 +52,7 @@ function Arrow:update(dt)
             ScoreManager.AddScore("perfect")
           else
             SoundManager.misssrc:play()
-            ScoreManager.ResetCombo()
+            ScoreManager.AddScore("miss")
           end
         elseif (v.type == 3) then
           if (Player.direction == 2) then
@@ -73,14 +73,15 @@ function Arrow:update(dt)
     end
     if(v.tempPosition > gh * 0.385) then
       table.remove(listOfArrows, i)
-
+      ScoreManager.destroyednotes = ScoreManager.destroyednotes + 1
+      
       if (v.type == 1) then
         if (Player.direction == 4) then
           SoundManager.hitsrc:play()
           ScoreManager.AddScore("perfect")
         else
           SoundManager.misssrc:play()
-          ScoreManager.ResetCombo()
+          ScoreManager.AddScore("miss")
         end
       elseif (v.type == 2) then
         if (Player.direction == 2) then
@@ -88,7 +89,7 @@ function Arrow:update(dt)
           ScoreManager.AddScore("perfect")
         else
           SoundManager.misssrc:play()
-          ScoreManager.ResetCombo()
+          ScoreManager.AddScore("miss")
         end
       elseif (v.type == 3) then
         if (Player.direction == 4) then
@@ -109,13 +110,15 @@ function Arrow:update(dt)
     end
     if(v.tempPosition < gw * 0.575) then
       table.remove(listOfArrows, i)
+      ScoreManager.destroyednotes = ScoreManager.destroyednotes + 1
+              
       if (v.type == 1) then
         if (Player.direction == 3) then
           SoundManager.hitsrc:play()
           ScoreManager.AddScore("perfect")
         else
           SoundManager.misssrc:play()
-          ScoreManager.ResetCombo()
+          ScoreManager.AddScore("miss")
         end
       elseif (v.type == 2) then
         if (Player.direction == 1) then
@@ -123,7 +126,7 @@ function Arrow:update(dt)
           ScoreManager.AddScore("perfect")
         else
           SoundManager.misssrc:play()
-          ScoreManager.ResetCombo()
+          ScoreManager.AddScore("miss")
         end
       elseif (v.type == 3) then
         if (Player.direction == 3) then
@@ -144,13 +147,15 @@ function Arrow:update(dt)
   end
   if(v.tempPosition > gw * 0.425) then
       table.remove(listOfArrows, i)
+      ScoreManager.destroyednotes = ScoreManager.destroyednotes + 1
+      
       if (v.type == 1) then
         if (Player.direction == 1) then
           SoundManager.hitsrc:play()
           ScoreManager.AddScore("perfect")
         else
           SoundManager.misssrc:play()
-          ScoreManager.ResetCombo()
+          ScoreManager.AddScore("miss")
         end
       elseif (v.type == 2) then
         if (Player.direction == 3) then
@@ -158,7 +163,7 @@ function Arrow:update(dt)
           ScoreManager.AddScore("perfect")
         else
           SoundManager.misssrc:play()
-          ScoreManager.ResetCombo()
+          ScoreManager.AddScore("miss")
         end
       elseif (v.type == 3) then
         if (Player.direction == 1) then
