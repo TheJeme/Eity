@@ -1,6 +1,10 @@
 require 'Maingame/Maingame'
 require 'Mainmenu/Mainmenu'
 require 'Managers/GamestateManager'
+require 'Managers/GameManager'
+
+local discordRPC = require("discordRPC")
+local appId = require("applicationId")
 
 local SCreen = require 'cscreen'
 
@@ -18,11 +22,45 @@ function love.load()
   GamestateManager:load()
   Mainmenu:load()
   Maingame:load()
+  GameManager:load()
   love.graphics.setBackgroundColor(0.1, 0.1, 0.1, 1)
+  
+  discordRPC.initialize(appId, true)
+  now = os.time(os.date("*t"))
+  detailsNow = "In Mainmenu"
+  stateNow = ""
+  
+  nextPresenceUpdate = 0
+end
+
+function discordApplyPresence()
+  if GamestateManager.GameState == "Mainmenu" then
+    detailsNow = "In Mainmenu"
+    stateNow = ""
+  elseif GamestateManager.GameState == "Maingame" then
+    detailsNow = "Shelter"
+    stateNow = "By Porter Robinson & Madeon"
+  end
+  
+  presence = {
+    largeImageKey = "eity_icon",
+    largeImageText = "Eity v0.5.3",
+    details = detailsNow,
+    state = stateNow,
+    startTimestamp = now,
+  }
+  
+  return presence
 end
 
 function love.update(dt)
   mx, my = love.mouse.getPosition()
+  
+  if nextPresenceUpdate < love.timer.getTime() then
+      discordRPC.updatePresence(discordApplyPresence())
+      nextPresenceUpdate = love.timer.getTime() + 2.0
+  end
+  discordRPC.runCallbacks()
   
   if(GamestateManager.GameState == "Mainmenu") then
     Mainmenu:update(dt)
@@ -46,6 +84,10 @@ function love.draw()
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.print("FPS " .. love.timer.getFPS())
   end
+end
+
+function love.quit()
+    discordRPC.shutdown()
 end
 
 function love.mousepressed(x, y,button)

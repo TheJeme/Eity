@@ -1,10 +1,7 @@
 require 'UI/Maingame_UI'
-require 'Maingame/Player'
 require 'Maingame/Arrow'
 require 'Maingame/Slider'
-require 'Managers/ScoreManager'
-require 'Managers/SoundManager'
-require 'Managers/GameManager'
+require 'Maingame/Player'
 require 'map_01'
 
 Maingame = {}
@@ -13,16 +10,12 @@ function Maingame:load()
   Arrow:load()
   Slider:load()
   Maingame_UI:load()
-  Player:load()
-  ScoreManager:load()
-  GameManager:load()
-  SoundManager:load()
   map_01:load()
   
   nextNote = 1
 
   img = love.graphics.newImage("Shelter/BG1.jpg")
-  scaleX, scaleY = GameManager:getImageScaleForNewDimensions( img, 1920, 1080 )
+  scaleX, scaleY = GameManager:getImageScaleForNewDimensions( img, gw, gh )
 end
 
 function Maingame:update(dt)
@@ -51,13 +44,12 @@ end
 function Maingame:draw()
   love.graphics.push()
   love.graphics.draw(img, 0, 0, 0, scaleX, scaleY)
-  love.graphics.setColor(0.3, 0.3, 0.3, 0.5)
-  love.graphics.rectangle('fill', 0, 0, 1920, 1080)
+  love.graphics.setColor(0.3, 0.3, 0.3, GameManager.backgroundDim)
+  love.graphics.rectangle('fill', 0, 0, gw, gh)
   love.graphics.pop()
   Arrow:draw()
   Slider:draw()
   Maingame_UI:draw()
-  Player:draw()
   ScoreManager:draw()
   love.graphics.setFont(defaultFont)
   love.graphics.print(GameManager.gametime, 0, 60)
@@ -78,16 +70,16 @@ function Maingame:keypressed(key, scancode, isrepeat)
   end
   
   if key == "y" then
-    createArrow(2, 1, 400)
+    createArrow(2, 1, 10)
   end
   if key == "u" then
-    createArrow(2, 2, 400)
+    createArrow(2, 2, 10)
   end
   if key == "i" then
-    createArrow(2, 3, 400)
+    createArrow(2, 3, 10)
   end
   if key == "o" then
-    createArrow(2, 4, 400)
+    createArrow(2, 4, 10)
   end
   
   

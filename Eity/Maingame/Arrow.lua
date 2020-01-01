@@ -180,10 +180,8 @@ function Arrow:draw()
   for i, v in ipairs(listOfArrows) do
     if (v.type == 1) then
       love.graphics.setColor(34 / 255, 150 / 255, 227 / 255, 1)
-
     elseif (v.type == 2) then
-        love.graphics.setColor(219 / 255, 130 / 255, 52 / 255, 1)
-
+        love.graphics.setColor(219 / 255, 130 / 255, 52 / 255, 1) 
     elseif (v.type == 3) then
         love.graphics.setColor(219 / 255, 52 / 255, 52 / 255, 1)
     end

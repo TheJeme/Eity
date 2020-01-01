@@ -8,7 +8,7 @@ local bigFont
 function Options_UI:load()
   bigFont = love.graphics.newFont("Assets/roboto.ttf", 124)
   smallFont = love.graphics.newFont("Assets/roboto.ttf", 24)
-  backgroundDimSlider = newSlider(gw * 0.56, gh / 2 - 200, gw * 0.15, 0.5, 0, 1)
+  backgroundDimSlider = newSlider(gw * 0.56, gh / 2 - 200, gw * 0.15, 0.5, 0, 1, function (v) GameManager.setBackgroundDim(v) end)
   
   mainVolumeSlider = newSlider(gw * 0.56, gh / 2 + 100, gw * 0.15, 1, 0, 2, function (v) love.audio.setVolume(v) end)
   musicVolumeSlider = newSlider(gw * 0.56, gh / 2 + 175, gw * 0.15, 0.05, 0, 0.1, function (v) SoundManager:SetMusicVolume(v) end)
@@ -34,13 +34,13 @@ function DrawOptionsButtons()
   love.graphics.setFont(smallFont)
   love.graphics.setLineWidth(6) 
   
-  love.graphics.setColor(9 / 255, 132 / 255, 227 / 255, 1)
+  love.graphics.setColor(Colors.getBlueColor())
   love.graphics.rectangle('fill', gw * 0.54, gh / 2 + 300, gw * 0.1, 50, 15)
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.rectangle('line', gw * 0.54, gh / 2 + 300, gw * 0.1, 50, 15)
   love.graphics.printf("Back", gw * 0.54, gh / 2 + 313, gw * 0.1, "center")
   
-  love.graphics.setColor(108 / 255, 92 / 255, 231 / 255, 1)
+  love.graphics.setColor(Colors.getPurpleColor())
   love.graphics.rectangle('fill', gw * 0.38, gh / 2 - 375, gw * 0.1, 50, 15)
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.rectangle('line', gw * 0.38, gh / 2 - 375, gw * 0.1, 50, 15)
@@ -52,10 +52,12 @@ function DrawOptionsButtons()
   love.graphics.rectangle('line', gw * 0.35, gh / 2 - 300, gw * 0.3, 50, 15)
   love.graphics.printf("Show FPS", gw * 0.36, gh / 2 - 288, gw * 0.3, "left")
   love.graphics.circle('line', gw * 0.63, gh / 2 - 275, 16, 4)
-  love.graphics.setColor(0, 184 / 255, 148 / 255, 1)
+  love.graphics.setColor(Colors.getGreenColor())
+  
   if isEnabledFPS then
     love.graphics.circle('fill', gw * 0.63, gh / 2 - 275, 8, 4)
   end
+  
   
   love.graphics.setColor(0, 0, 0, 0.4)
   love.graphics.rectangle('fill', gw * 0.35, gh / 2 - 225, gw * 0.3, 50, 15)
@@ -64,13 +66,13 @@ function DrawOptionsButtons()
   love.graphics.printf("Background dim", gw * 0.36, gh / 2 - 213, gw * 0.3, "left")
   
   
-  love.graphics.setColor(0, 184 / 255, 148 / 255, 1)
+  love.graphics.setColor(Colors.getGreenColor())
   love.graphics.rectangle('fill', gw * 0.35, gh / 2 - 150, gw * 0.3, 50, 15)
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.rectangle('line', gw * 0.35, gh / 2 - 150, gw * 0.3, 50, 15)
   love.graphics.printf("Keyboard bindings", 0, gh / 2 - 138, gw, "center")
   
-  love.graphics.setColor(108 / 255, 92 / 255, 231 / 255, 1)
+  love.graphics.setColor(Colors.getPurpleColor())
   love.graphics.rectangle('fill', gw * 0.38, gh / 2, gw * 0.1, 50, 15)
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.rectangle('line', gw * 0.38, gh / 2, gw * 0.1, 50, 15)

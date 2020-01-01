@@ -17,7 +17,7 @@ function Options:update(dt)
   isMouseOnEnableFPS = mx > gw * 0.63 - 16 and mx < gw * 0.63 + 16 and
                           my > gh / 2 - 275 - 16 and my < gh / 2 - 275 + 16   
                           
-  isMouseOnEnableChangeBinds = mx > gw * 0.35 and mx < gw * 0.35 + gw * 0.3 and        --gw * 0.35, gh / 2 - 150, gw * 0.3, 50
+  isMouseOnEnableChangeBinds = mx > gw * 0.35 and mx < gw * 0.35 + gw * 0.3 and
                           my > gh / 2 - 150 and my < gh / 2 - 150 + 50        
                                                 
   if isMouseOnBack or isMouseOnEnableChangeBinds then

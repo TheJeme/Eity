@@ -1,5 +1,7 @@
 require 'Managers/SoundManager'
 require 'Managers/ScoreManager'
+require 'Managers/ModManager'
+require 'Colors'
 
 GameManager = {}
 
@@ -8,9 +10,17 @@ function GameManager:getImageScaleForNewDimensions( image, newWidth, newHeight )
   return ( newWidth / currentWidth ), ( newHeight / currentHeight )
 end
 
+function GameManager.setBackgroundDim(v)
+  GameManager.backgroundDim = v
+end
+
 function GameManager:load()
+  ModManager:load()
+  ScoreManager:load()
+  SoundManager:load()
   GameManager.pause = false
   GameManager.gametime = 0
+  GameManager.backgroundDim = 0.5
   nextNote = 1
 end
 

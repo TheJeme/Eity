@@ -9,33 +9,33 @@ function Player:draw()
   love.graphics.setColor(1, 1, 1, 1)
   
   if Player.direction == 4 then
-    love.graphics.polygon('fill', gw / 2, gh / 2 - 26,
-                          gw / 2 + 40, gh / 2 + 13,
-                          gw / 2 + 20, gh / 2 + 33,
-                          gw / 2, gh / 2 + 13,
-                          gw / 2 - 20, gh / 2 + 33,
-                          gw / 2 - 40, gh / 2 + 13)
+    love.graphics.polygon('fill', gw / 2, gh / 2 - 34,
+                          gw / 2 + 40, gh / 2 + 5,
+                          gw / 2 + 20, gh / 2 + 25,
+                          gw / 2, gh / 2 + 5,
+                          gw / 2 - 20, gh / 2 + 25,
+                          gw / 2 - 40, gh / 2 + 5)
   elseif Player.direction == 2 then
-    love.graphics.polygon('fill', gw / 2, gh / 2 - 26 * -1,
-                          gw / 2 + 40, gh / 2 + 13 * -1,
-                          gw / 2 + 20, gh / 2 + 33 * -1,
-                          gw / 2, gh / 2 + 13 * -1,
-                          gw / 2 - 20, gh / 2 + 33 * -1,
-                          gw / 2 - 40, gh / 2 + 13 * -1)
+    love.graphics.polygon('fill', gw / 2, gh / 2 - 34 * -1,
+                          gw / 2 + 40, gh / 2 + 5 * -1,
+                          gw / 2 + 20, gh / 2 + 25 * -1,
+                          gw / 2, gh / 2 + 5 * -1,
+                          gw / 2 - 20, gh / 2 + 25 * -1,
+                          gw / 2 - 40, gh / 2 + 5 * -1)
   elseif Player.direction == 1 then
-    love.graphics.polygon('fill', gw / 2 - 26, gh / 2,
-                          gw / 2 + 13, gh / 2 + 40,
-                          gw / 2 + 33, gh / 2 + 20,
-                          gw / 2 + 13, gh / 2,
-                          gw / 2 + 33, gh / 2 - 20,
-                          gw / 2 + 13, gh / 2 - 40)
+    love.graphics.polygon('fill', gw / 2 - 34, gh / 2,
+                          gw / 2 + 5, gh / 2 + 40,
+                          gw / 2 + 25, gh / 2 + 20,
+                          gw / 2 + 5, gh / 2,
+                          gw / 2 + 25, gh / 2 - 20,
+                          gw / 2 + 5, gh / 2 - 40)
   elseif Player.direction == 3 then
-    love.graphics.polygon('fill', gw / 2 - 26 * -1, gh / 2,
-                          gw / 2 + 13 * -1, gh / 2 + 40,
-                          gw / 2 + 33 * -1, gh / 2 + 20,
-                          gw / 2 + 13 * -1, gh / 2,
-                          gw / 2 + 33 * -1, gh / 2 - 20,
-                          gw / 2 + 13 * -1, gh / 2 - 40)
+    love.graphics.polygon('fill', gw / 2 - 34 * -1, gh / 2,
+                          gw / 2 + 5 * -1, gh / 2 + 40,
+                          gw / 2 + 25 * -1, gh / 2 + 20,
+                          gw / 2 + 5 * -1, gh / 2,
+                          gw / 2 + 25 * -1, gh / 2 - 20,
+                          gw / 2 + 5 * -1, gh / 2 - 40)
   end
 end
 function Player:keypressed(key, scancode, isrepeat)

@@ -49,7 +49,7 @@ function Mainmenu:draw()
     love.graphics.push()
     love.graphics.draw(mainBG, 0, 0, 0, 1, 1)
     love.graphics.setColor(0.3, 0.3, 0.3, 0.5)
-    love.graphics.rectangle('fill', 0, 0, 1920, 1080)
+    love.graphics.rectangle('fill', 0, 0, gw, gh)
     love.graphics.pop()
   end
   if state == "Startmenu" then
@@ -63,7 +63,11 @@ end
 
 function Mainmenu:keypressed(key, scancode, isrepeat)
   
-  if key == "escape" and state == "Startmenu" then
+  if key == "escape" and state == "Songselect" and isModes then
+    isModes = false
+  elseif key == "escape" and state == "Songselect" and isMods then
+    isMods = false
+  elseif key == "escape" and state == "Startmenu" then
     PressedQuit = true
   elseif key == "escape" and state == "Options" or state == "Songselect" and key == "escape" then
     state = "Startmenu"
