@@ -23,8 +23,10 @@ function GameManager:load()
   ScoreManager:load()
   SoundManager:load()
   GameManager.pause = false
+  GameManager.isFailed = false
   GameManager.gametime = 0
   GameManager.backgroundDim = 0.5
+  GameManager.health = 50
   nextNote = 1
 end
 
@@ -36,7 +38,10 @@ function GameManager.Restart()
   SoundManager:Restart()
   ScoreManager.Restart()
   GameManager.pause = false
+  GameManager.isFailed = false
   GameManager.gametime = 0
+  GameManager.health = 50
+  xbar = 20
   nextNote = 1
   for i, v in ipairs(map_01) do
     listOfArrows = {}

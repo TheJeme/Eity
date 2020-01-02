@@ -48,6 +48,9 @@ function Maingame:update(dt)
     Slider:update(dt)
     Maingame_UI:update(dt)
     
+    if ModManager.isNoFail then
+      GameManager.health = 100
+    end
     if ModManager.isHidden then
     Hidden.ApplyMod(dt)
     elseif ModManager.isFlashlight then
@@ -65,7 +68,6 @@ function Maingame:draw()
   Arrow:draw()
   Slider:draw()
   Maingame_UI:draw()
-  ScoreManager:draw()
   love.graphics.setFont(defaultFont)
   love.graphics.print(GameManager.gametime, 0, 60)
 end
@@ -78,6 +80,10 @@ function Maingame:keypressed(key, scancode, isrepeat)
   
   if key == "escape" then
     GameManager.Pause()
+  end
+  
+  if key == "r" then
+    GameManager.Restart()
   end
   
   

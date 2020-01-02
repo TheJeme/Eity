@@ -43,7 +43,7 @@ function discordApplyPresence()
   
   presence = {
     largeImageKey = "eity_icon",
-    largeImageText = "Eity v0.5.3",
+    largeImageText = "Eity v0.5.8",
     details = detailsNow,
     state = stateNow,
     startTimestamp = now,

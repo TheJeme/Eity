@@ -30,23 +30,29 @@ function ScoreManager.AddScore(type)
   if (type == "perfect") then
       ScoreManager.combo = ScoreManager.combo + 1
       ScoreManager.hits = ScoreManager.hits + 1
+      NoFail.AddHealth(5)
       ScoreManager.score = ScoreManager.score + 300 * ScoreManager.combo * ScoreManager.modMultiplier
   elseif (type == "sliderStart") then
         ScoreManager.combo = ScoreManager.combo + 1
+        NoFail.AddHealth(2)
         ScoreManager.score = ScoreManager.score + 100 * ScoreManager.combo * ScoreManager.modMultiplier
   elseif (type == "sliderEnd") then
         ScoreManager.combo = ScoreManager.combo + 1
         ScoreManager.hits = ScoreManager.hits + 1
+        NoFail.AddHealth(2)
         ScoreManager.score = ScoreManager.score + 100 * ScoreManager.combo * ScoreManager.modMultiplier
   elseif (type == "good") then
         ScoreManager.combo = ScoreManager.combo + 1
         ScoreManager.hits = ScoreManager.hits + 1
+        NoFail.AddHealth(5)
         ScoreManager.score = ScoreManager.score + 100 * ScoreManager.combo * ScoreManager.modMultiplier
   elseif (type == "miss") then
         ScoreManager.combo = 0
+        NoFail.AddHealth(-20)
         ScoreManager.misses = ScoreManager.misses + 1
   elseif (type == "bad") then
         ScoreManager.combo = 0
+        NoFail.AddHealth(-25)
         ScoreManager.misses = ScoreManager.misses + 1
         ScoreManager.score = ScoreManager.score - 100
         if (ScoreManager.score < 0) then
@@ -80,6 +86,7 @@ end
 
 function ScoreManager:draw()
   love.graphics.setFont(bigFont)
+  love.graphics.setColor(1, 1, 1, 1)
   love.graphics.printf(ScoreManager.combo .. "x", 0, gh - 50, 100, "left")
   love.graphics.printf(string.format("%08d", ScoreManager.score), 0, 0, gw, "right")
   love.graphics.setFont(smallFont)

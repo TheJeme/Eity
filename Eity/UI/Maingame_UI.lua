@@ -4,20 +4,32 @@ Maingame_UI = {}
 
 local bigFont
 local smallFont
+local xScale
 
 function Maingame_UI:load()
   bigFont = love.graphics.newFont("Assets/roboto.ttf", 92)
   smallFont = love.graphics.newFont("Assets/roboto.ttf", 48)
-  
+  xbar = 0
   Player:load()
 end
 
 function Maingame_UI:update(dt)
-
+  if GameManager.health > 0 then
+    xScale = gw * 0.35 * GameManager.health / 100
+  else
+    xScale = 20
+  end
+  if xbar <= xScale then
+    xbar = xbar + (dt * 140)
+  elseif xbar >= xScale then
+    xbar = xbar - (dt * 140)
+  end
 end
 
 function Maingame_UI:draw()
-  MainGame()
+  MaingameOverlay()
+  Healthbar()
+  ScoreManager:draw()
   Player:draw()
   if GameManager.pause then
     PauseScreen()
@@ -46,6 +58,19 @@ function Maingame_UI:mousepressed(x, y,button)
      SoundManager.ButtonHit:play()
      GamestateManager.GameState = "Mainmenu"
    end
+end
+
+
+
+function Healthbar()
+  love.graphics.setColor(0.6, 0.6, 0.6, 1)
+  love.graphics.rectangle("fill", 10, 10, gw * 0.35, 30)
+  love.graphics.setColor(0.3, 0.3, 0.3, 1)
+  love.graphics.rectangle("fill", 15, 15, gw * 0.35 - 10, 20)
+  love.graphics.setColor(0.95, 0.95, 0.95, 1)
+  love.graphics.rectangle("fill", 20, 20, xbar - 20, 10)
+  love.graphics.setColor(0.3, 0.3, 0.3, 1)
+
 end
 
 function PauseScreen()
@@ -93,7 +118,7 @@ function PauseScreen()
   love.graphics.printf("Quit", gw / 2 - 200, gh / 2 + 175, 500, "center")
 end
 
-function MainGame()
+function MaingameOverlay()
   love.graphics.setLineWidth(700)
   love.graphics.setColor(0.1, 0.1, 0.1, 1)
   love.graphics.circle("line", gw / 2, gh / 2, gh * 1.05, 4)
