@@ -1,3 +1,9 @@
+require 'Mods/Auto'
+require 'Mods/HalfSpeed'
+require 'Mods/DoubleSpeed'
+require 'Mods/Hidden'
+require 'Mods/Flashlight'
+
 ModManager = {}
 
 function ModManager:load()
@@ -7,8 +13,16 @@ function ModManager:load()
   ModManager.isFlashlight = false
   ModManager.isNoFail = false
   ModManager.isAuto = false
+  
+  ModManager.speed = 1.0
 end
 
+function ModManager.SetSpeed(speed)
+  ModManager.speed = speed
+end
 
+function ModManager.getSpeed()
+  return ModManager.speed
+end
 
 return ModManager

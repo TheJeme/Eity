@@ -84,9 +84,9 @@ function ScoreManager:draw()
   love.graphics.printf(string.format("%08d", ScoreManager.score), 0, 0, gw, "right")
   love.graphics.setFont(smallFont)
   if ScoreManager.destroyednotes == 0 or (ScoreManager.destroyednotes - ScoreManager.misses) / ScoreManager.destroyednotes * 100 == 100 then
-      love.graphics.printf("100%", -20, 50, gw, "right")
+      love.graphics.printf("100%", 0, 50, gw, "right")
   else
-    love.graphics.printf(string.format("%0.2f", (ScoreManager.destroyednotes - ScoreManager.misses) / ScoreManager.destroyednotes * 100) .. "%", -20, 50, gw, "right")
+    love.graphics.printf(string.format("%0.2f", (ScoreManager.destroyednotes - ScoreManager.misses) / ScoreManager.destroyednotes * 100) .. "%", 0, 50, gw, "right")
   end
 end
 

@@ -39,17 +39,19 @@ function Player:draw()
   end
 end
 function Player:keypressed(key, scancode, isrepeat)
-  if key == "w" or key == "up" then
-    Player.direction = 4
-  end
-  if key == "s" or key == "down" then
-    Player.direction = 2
-  end
-  if key == "a" or key == "left" then
-    Player.direction = 1
-  end
-  if key == "d" or key == "right" then
-    Player.direction = 3
+  if not ModManager.isAuto then
+    if key == "w" or key == "up" then
+      Player.direction = 4
+    end
+    if key == "s" or key == "down" then
+      Player.direction = 2
+    end
+    if key == "a" or key == "left" then
+      Player.direction = 1
+    end
+    if key == "d" or key == "right" then
+      Player.direction = 3
+    end
   end
 end
 

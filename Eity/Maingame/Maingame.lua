@@ -19,17 +19,26 @@ function Maingame:load()
 end
 
 function Maingame:update(dt)
+  
+  if ModManager.isDoubleSpeed then
+    ModManager.SetSpeed(DoubleSpeed.ApplyMod())
+  elseif ModManager.isHalfSpeed then
+    ModManager.SetSpeed(HalfSpeed.ApplyMod())
+  else
+    ModManager.SetSpeed(1)
+  end
+  
   if GameManager.pause then SoundManager.maingamesrc:pause() end
   if not GameManager.pause then
+    SoundManager.maingamesrc:setPitch(ModManager.getSpeed())
     SoundManager.maingamesrc:play()
-    GameManager.gametime = GameManager.gametime + dt
-
+    GameManager.gametime = GameManager.gametime + dt * ModManager.getSpeed()
     for i, v in ipairs(map_01) do
       if (#map_01 >= nextNote and (map_01[nextNote][5] - 400) * 0.001 < GameManager.gametime) then
         if (map_01[nextNote][4] == 0) then
-          createArrow(map_01[nextNote][1], math.ceil(map_01[nextNote][2] * 4 / 512), map_01[nextNote][3])          
+          createArrow(map_01[nextNote][1], math.ceil(map_01[nextNote][2] * 4 / 512), map_01[nextNote][3] * ModManager.getSpeed())          
         elseif (map_01[nextNote][4] ~= 0) then
-          createSlider(map_01[nextNote][1], math.ceil(map_01[nextNote][2] * 4 / 512), map_01[nextNote][3], map_01[nextNote][4])
+          createSlider(map_01[nextNote][1], math.ceil(map_01[nextNote][2] * 4 / 512), map_01[nextNote][3] * ModManager.getSpeed(), map_01[nextNote][4])
         end
         nextNote = nextNote + 1
       end
@@ -38,6 +47,12 @@ function Maingame:update(dt)
     Arrow:update(dt)
     Slider:update(dt)
     Maingame_UI:update(dt)
+    
+    if ModManager.isHidden then
+    Hidden.ApplyMod(dt)
+    elseif ModManager.isFlashlight then
+      Flashlight.ApplyMod(dt)
+    end
   end
 end
 
@@ -63,23 +78,6 @@ function Maingame:keypressed(key, scancode, isrepeat)
   
   if key == "escape" then
     GameManager.Pause()
-  end
-  
-  if key == "r" then
-    GameManager.Restart()
-  end
-  
-  if key == "y" then
-    createArrow(2, 1, 10)
-  end
-  if key == "u" then
-    createArrow(2, 2, 10)
-  end
-  if key == "i" then
-    createArrow(2, 3, 10)
-  end
-  if key == "o" then
-    createArrow(2, 4, 10)
   end
   
   

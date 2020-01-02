@@ -24,6 +24,7 @@ local modsAutoButtonColor
 function Songselect:load()
   bigFont = love.graphics.newFont("Assets/roboto.ttf", 84)
   smallFont = love.graphics.newFont("Assets/roboto.ttf", 24)
+  smallestFont = love.graphics.newFont("Assets/roboto.ttf", 18)
   SongBG = love.graphics.newImage("Shelter/BG2.jpg")
   scaleX, scaleY = GameManager:getImageScaleForNewDimensions( SongBG, gw, gh )
   playButtonColor = Colors.getGreenColor()
@@ -62,23 +63,23 @@ function Songselect:update(dt)
                             my > gh * 0.94 and my < gh * 0.94 + 50
  
   
-    playButtonColor = {0, 184 / 255, 148 / 255, 1}
-    backButtonColor = {0, 184 / 255, 148 / 255, 1}
-    randomButtonColor = {0, 184 / 255, 148 / 255, 1}
-    modsButtonColor = {0, 184 / 255, 148 / 255, 1}
-    modesButtonColor = {0, 184 / 255, 148 / 255, 1}
+    playButtonColor = Colors.getGreenColor()
+    backButtonColor = Colors.getGreenColor()
+    randomButtonColor = Colors.getGreenColor()
+    modsButtonColor = Colors.getGreenColor()
+    modesButtonColor = Colors.getGreenColor()
             
     if isMouseOnPlay or isMouseOnBack or isMouseOnRandom or isMouseOnMods or isMouseOnModes then
       if isMouseOnPlay then
-        playButtonColor = {9 / 255, 132 / 255, 227 / 255, 1}
+        playButtonColor = Colors.getBlueColor()
       elseif isMouseOnBack then
-        backButtonColor = {9 / 255, 132 / 255, 227 / 255, 1}
+        backButtonColor = Colors.getBlueColor()
       elseif isMouseOnRandom then
-        randomButtonColor = {9 / 255, 132 / 255, 227 / 255, 1}
+        randomButtonColor = Colors.getBlueColor()
       elseif isMouseOnMods then
-        modsButtonColor = {9 / 255, 132 / 255, 227 / 255, 1}
+        modsButtonColor = Colors.getBlueColor()
       elseif isMouseOnModes then
-        modesButtonColor = {9 / 255, 132 / 255, 227 / 255, 1}
+        modesButtonColor = Colors.getBlueColor()
       end  
     
       if not hoverButtonOver then
@@ -113,18 +114,18 @@ function Songselect:update(dt)
                             my > gh * 0.6 and my < gh * 0.6 + 50              
                                                         
 
-    modeRhombusButtonColor = {0, 184 / 255, 148 / 255, 1}
-    modeCatchButtonColor = {0, 184 / 255, 148 / 255, 1}
-    modeRushButtonColor = {0, 184 / 255, 148 / 255, 1}
+    modeRhombusButtonColor = Colors.getGreenColor()
+    modeCatchButtonColor = Colors.getGreenColor()
+    modeRushButtonColor = Colors.getGreenColor()
     
     if isModes then
       if isMouseOnModeRhombus or isMouseOnModeCatch or isMouseOnModeRush then
         if isMouseOnModeRhombus then
-          modeRhombusButtonColor = {9 / 255, 132 / 255, 227 / 255, 1}
+          modeRhombusButtonColor = Colors.getBlueColor()
         elseif isMouseOnModeCatch then
-          modeCatchButtonColor = {9 / 255, 132 / 255, 227 / 255, 1}
+          modeCatchButtonColor = Colors.getBlueColor()
         elseif isMouseOnModeRush then
-          modeRushButtonColor = {9 / 255, 132 / 255, 227 / 255, 1}
+          modeRushButtonColor = Colors.getBlueColor()
         end  
             
         if not hoverButtonOver then
@@ -157,12 +158,18 @@ function Songselect:draw()
   if not isModes and not isMods then
     Scores()
     BottomBar()
-    love.graphics.setFont(smallFont)
     love.graphics.setColor(0, 0, 0, 0.6)
     love.graphics.rectangle('fill', gw - 520, gh * 0.5, 500, 100, 10)
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.rectangle('line', gw - 520, gh * 0.5, 500, 100, 10)
-    love.graphics.printf("Shelter", gw - 710, gh * 0.5 + 25, 500, "center")
+    love.graphics.setFont(smallFont)
+    love.graphics.printf("Shelter", gw - 500, gh * 0.5 + 15, 500, "left")
+    love.graphics.setFont(smallestFont)
+    love.graphics.printf("Porter Robinson & Madeon", gw - 490, gh * 0.5 + 45, 500, "left")
+    love.graphics.printf("Easy", gw - 490, gh * 0.5 + 70, 500, "left")
+    
+    
+    
     love.graphics.print("Selected Mode: " .. GamestateManager.GameModeState, 0, 20)
   elseif isModes then
     Modes()
@@ -350,14 +357,14 @@ function Mods()
   love.graphics.setColor(modsHalfSpeedButtonColor)
   love.graphics.rectangle('line', gw * 0.4, gh * 0.4, 150, 50, 10)
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("0.5x speed", gw * 0.4, gh * 0.4 + 10, 150, "center")
+  love.graphics.printf("0.75x speed", gw * 0.4, gh * 0.4 + 10, 150, "center")
   
   love.graphics.setColor(0, 0, 0, 0.6)
   love.graphics.rectangle('fill', gw * 0.52, gh * 0.4, 150, 50, 10)
   love.graphics.setColor(modsDoubleSpeedButtonColor)
   love.graphics.rectangle('line', gw * 0.52, gh * 0.4, 150, 50, 10)
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("1.5x speed", gw * 0.52, gh * 0.4 + 10, 150, "center")
+  love.graphics.printf("1.25x speed", gw * 0.52, gh * 0.4 + 10, 150, "center")
   
   love.graphics.setColor(0, 0, 0, 0.6)
   love.graphics.rectangle('fill', gw * 0.4, gh * 0.5, 150, 50, 10)

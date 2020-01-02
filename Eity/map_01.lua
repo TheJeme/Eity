@@ -2,7 +2,7 @@ map_01 = { }
  
 function map_01:load()      
   
-  --, (0 = Spawned, 1 = Not Spawned) (0 = none, 1 = normal, 2 = slider, 3 = bad), 448 = up, 64 = down, 192 = left, 320 = right, milliseconds to spawn
+  -- (0 = none, 1 = normal, 2 = slider, 3 = bad), 448 = up, 64 = down, 192 = left, 320 = right, milliseconds to spawn
   -- Slider length
   map_01 = {
     {1, 320, 400, 600, 402},   

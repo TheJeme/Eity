@@ -16,6 +16,11 @@ function createArrow(type, direction, speed)
   end
   arrow.speed = speed
   arrow.rotation = 0
+  if ModManager.isFlashlight then
+    arrow.alpha = 0
+  else
+    arrow.alpha = 1
+  end
 
   table.insert(listOfArrows, arrow)
 end
@@ -179,11 +184,11 @@ function Arrow:draw()
 
   for i, v in ipairs(listOfArrows) do
     if (v.type == 1) then
-      love.graphics.setColor(34 / 255, 150 / 255, 227 / 255, 1)
+      love.graphics.setColor(34 / 255, 150 / 255, 227 / 255, v.alpha)
     elseif (v.type == 2) then
-        love.graphics.setColor(219 / 255, 130 / 255, 52 / 255, 1) 
+        love.graphics.setColor(219 / 255, 130 / 255, 52 / 255, v.alpha) 
     elseif (v.type == 3) then
-        love.graphics.setColor(219 / 255, 52 / 255, 52 / 255, 1)
+        love.graphics.setColor(219 / 255, 52 / 255, 52 / 255, v.alpha)
     end
 
   if (v.direction == 4) then
@@ -199,7 +204,7 @@ function Arrow:draw()
                           gw / 2 - 40, 35 + v.tempPosition)
                           
     love.graphics.setLineWidth(5)
-    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setColor(1, 1, 1, v.alpha)
     love.graphics.line(gw / 2, -4 + v.tempPosition,
                           gw / 2 + 40, 35 + v.tempPosition,
                           gw / 2 + 20, 55 + v.tempPosition,
@@ -221,7 +226,7 @@ function Arrow:draw()
                           gw / 2 - 20, -55 + v.tempPosition,
                           gw / 2 - 40, -35 + v.tempPosition)
     love.graphics.setLineWidth(5)
-    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setColor(1, 1, 1, v.alpha)
     love.graphics.line(gw / 2, 4 + v.tempPosition,
                           gw / 2 + 40, -35 + v.tempPosition,
                           gw / 2 + 20, -55 + v.tempPosition,
@@ -243,7 +248,7 @@ function Arrow:draw()
                           33 + v.tempPosition, gh / 2 - 20,
                           13 + v.tempPosition, gh / 2 - 40)
     love.graphics.setLineWidth(5)
-    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setColor(1, 1, 1, v.alpha)
     love.graphics.line(-26 + v.tempPosition, gh / 2,
                           13 + v.tempPosition, gh / 2 + 40,
                           33 + v.tempPosition, gh / 2 + 20,
@@ -266,7 +271,7 @@ function Arrow:draw()
                           -33 + v.tempPosition, gh / 2 - 20,
                           -13 + v.tempPosition, gh / 2 - 40)
     love.graphics.setLineWidth(5)
-    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setColor(1, 1, 1, v.alpha)
     love.graphics.line(26 + v.tempPosition, gh / 2,
                           -13 + v.tempPosition, gh / 2 + 40,
                           -33 + v.tempPosition, gh / 2 + 20,

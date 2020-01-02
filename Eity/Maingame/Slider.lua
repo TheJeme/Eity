@@ -21,6 +21,11 @@ function createSlider(type, direction, speed, length)
   slider.maxlength = length
   slider.length = length
   slider.scoreLength = length
+  if ModManager.isFlashlight then
+    slider.alpha = 0
+  else
+    slider.alpha = 1
+  end
 
   table.insert(listOfSliders, slider)
 end
@@ -242,17 +247,17 @@ function Slider:draw()
     love.graphics.rotate(v.rotation)
     love.graphics.translate(gw / 2 * -1, gh / 2 * -1)
 
-    love.graphics.setColor(0.25, 0.25, 0.25, 1)
+    love.graphics.setColor(0.25, 0.25, 0.25, v.alpha)
     love.graphics.rectangle('fill', gw / 2 - 40, 35 + v.tempPosition, 80, v.length)
 
     if (v.type == 1) then
-      love.graphics.setColor(34 / 255, 150 / 255, 227 / 255, 1)
+      love.graphics.setColor(34 / 255, 150 / 255, 227 / 255, v.alpha)
 
     elseif (v.type == 2) then
-        love.graphics.setColor(219 / 255, 130 / 255, 52 / 255, 1)
+        love.graphics.setColor(219 / 255, 130 / 255, 52 / 255, v.alpha)
 
     elseif (v.type == 3) then
-        love.graphics.setColor(219 / 255, 52 / 255, 52 / 255, 1)
+        love.graphics.setColor(219 / 255, 52 / 255, 52 / 255, v.alpha)
     end
     love.graphics.polygon('fill', gw / 2, -4 + v.tempPosition,
                           gw / 2 + 40, 35 + v.tempPosition,
@@ -270,7 +275,7 @@ function Slider:draw()
 
 
     love.graphics.setLineWidth(5)
-    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setColor(1, 1, 1, v.alpha)
 
     love.graphics.line(gw / 2, -4 + v.tempPosition,
                           gw / 2 + 40, 35 + v.tempPosition,
@@ -289,17 +294,17 @@ function Slider:draw()
         love.graphics.rotate(v.rotation)
         love.graphics.translate(gw / 2 * -1, gh / 2 * -1)
 
-        love.graphics.setColor(0.25, 0.25, 0.25, 1)
+        love.graphics.setColor(0.25, 0.25, 0.25, v.alpha)
         love.graphics.rectangle('fill', gw / 2 - 40, -35 + v.tempPosition - v.length, 80, v.length)
 
         if (v.type == 1) then
-          love.graphics.setColor(34 / 255, 150 / 255, 227 / 255, 1)
+          love.graphics.setColor(34 / 255, 150 / 255, 227 / 255, v.alpha)
 
         elseif (v.type == 2) then
-            love.graphics.setColor(219 / 255, 130 / 255, 52 / 255, 1)
+            love.graphics.setColor(219 / 255, 130 / 255, 52 / 255, v.alpha)
 
         elseif (v.type == 3) then
-            love.graphics.setColor(219 / 255, 52 / 255, 52 / 255, 1)
+            love.graphics.setColor(219 / 255, 52 / 255, 52 / 255, v.alpha)
         end
         love.graphics.polygon('fill', gw / 2, 4 + v.tempPosition,
                               gw / 2 + 40, -35 + v.tempPosition,
@@ -317,7 +322,7 @@ function Slider:draw()
 
 
       love.graphics.setLineWidth(5)
-      love.graphics.setColor(1, 1, 1, 1)
+      love.graphics.setColor(1, 1, 1, v.alpha)
 
       love.graphics.line(gw / 2, 4 + v.tempPosition,
                             gw / 2 + 40, -35 + v.tempPosition,
@@ -336,17 +341,17 @@ function Slider:draw()
         love.graphics.rotate(v.rotation)
         love.graphics.translate(gw / 2 * -1, gh / 2 * -1)
 
-        love.graphics.setColor(0.25, 0.25, 0.25, 1)
+        love.graphics.setColor(0.25, 0.25, 0.25, v.alpha)
         love.graphics.rectangle('fill', 13 + v.tempPosition, gh / 2 - 40, v.length, 80)
 
         if (v.type == 1) then
-          love.graphics.setColor(34 / 255, 150 / 255, 227 / 255, 1)
+          love.graphics.setColor(34 / 255, 150 / 255, 227 / 255, v.alpha)
 
         elseif (v.type == 2) then
-            love.graphics.setColor(219 / 255, 130 / 255, 52 / 255, 1)
+            love.graphics.setColor(219 / 255, 130 / 255, 52 / 255, v.alpha)
 
         elseif (v.type == 3) then
-            love.graphics.setColor(219 / 255, 52 / 255, 52 / 255, 1)
+            love.graphics.setColor(219 / 255, 52 / 255, 52 / 255, v.alpha)
         end
 
         love.graphics.polygon('fill', -26 + v.tempPosition , gh / 2,
@@ -363,7 +368,7 @@ function Slider:draw()
                               33 + v.tempPosition + v.length, gh / 2 - 20,
                               13 + v.tempPosition + v.length, gh / 2 - 40)
         love.graphics.setLineWidth(5)
-        love.graphics.setColor(1, 1, 1, 1)
+        love.graphics.setColor(1, 1, 1, v.alpha)
 
         love.graphics.line(-26 + v.tempPosition , gh / 2,
                               13 + v.tempPosition, gh / 2 + 40,
@@ -382,17 +387,17 @@ function Slider:draw()
         love.graphics.rotate(v.rotation)
         love.graphics.translate(gw / 2 * -1, gh / 2 * -1)
 
-        love.graphics.setColor(0.25, 0.25, 0.25, 1)
+        love.graphics.setColor(0.25, 0.25, 0.25, v.alpha)
         love.graphics.rectangle('fill', (13 - v.tempPosition + v.length) * -1, gh / 2 - 40, v.length, 80)
 
         if (v.type == 1) then
-          love.graphics.setColor(34 / 255, 150 / 255, 227 / 255, 1)
+          love.graphics.setColor(34 / 255, 150 / 255, 227 / 255, v.alpha)
 
         elseif (v.type == 2) then
-            love.graphics.setColor(219 / 255, 130 / 255, 52 / 255, 1)
+            love.graphics.setColor(219 / 255, 130 / 255, 52 / 255, v.alpha)
 
         elseif (v.type == 3) then
-            love.graphics.setColor(219 / 255, 52 / 255, 52 / 255, 1)
+            love.graphics.setColor(219 / 255, 52 / 255, 52 / 255, v.alpha)
         end
 
 
@@ -411,7 +416,7 @@ function Slider:draw()
                               -13 + v.tempPosition - v.length, gh / 2 - 40)
 
       love.graphics.setLineWidth(5)
-      love.graphics.setColor(1, 1, 1, 1)
+      love.graphics.setColor(1, 1, 1, v.alpha)
 
       love.graphics.line(26 + v.tempPosition, gh / 2,
                             -13 + v.tempPosition, gh / 2 + 40,
