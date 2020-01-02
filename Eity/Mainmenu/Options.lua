@@ -12,13 +12,16 @@ end
 function Options:update(dt)
   Options_UI:update(dt)
   isMouseOnBack = mx > gw * 0.54 and mx < gw * 0.64 and
-                          my > gh / 2 + 300 and my < gh / 2 + 300 + 50
-                          
-  isMouseOnEnableFPS = mx > gw * 0.63 - 16 and mx < gw * 0.63 + 16 and
+                          my > gh / 2 + 375 and my < gh / 2 + 375 + 50
+                      
+  isMouseOnEnableVSync = mx > gw * 0.63 - 16 and mx < gw * 0.63 + 16 and
                           my > gh / 2 - 275 - 16 and my < gh / 2 - 275 + 16   
                           
+  isMouseOnEnableFPS = mx > gw * 0.63 - 16 and mx < gw * 0.63 + 16 and
+                          my > gh / 2 - 200 - 16 and my < gh / 2 - 200 + 16   
+                          
   isMouseOnEnableChangeBinds = mx > gw * 0.35 and mx < gw * 0.35 + gw * 0.3 and
-                          my > gh / 2 - 150 and my < gh / 2 - 150 + 50        
+                          my > gh / 2 - 75 and my < gh / 2 - 75 + 50        
                                                 
   if isMouseOnBack or isMouseOnEnableChangeBinds then
     if not hoverButtonOver then
@@ -45,6 +48,13 @@ function Options:mousepressed(x, y,button)
         isEnabledFPS = false
       else
         isEnabledFPS = true
+      end
+    elseif isMouseOnEnableVSync and button == 1 then
+      SoundManager.ButtonHit:play()
+      if isEnabledVSync then
+        isEnabledVSync = false
+      else
+        isEnabledVSync = true
       end
     end
   end

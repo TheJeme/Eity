@@ -14,6 +14,10 @@ function GameManager.setBackgroundDim(v)
   GameManager.backgroundDim = v
 end
 
+function GameManager:update(dt)
+  ScoreManager:update(dt)
+end
+
 function GameManager:load()
   ModManager:load()
   ScoreManager:load()

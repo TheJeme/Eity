@@ -341,8 +341,9 @@ function Mods()
   
   love.graphics.setFont(bigFont)  
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Mods", 0, gh * 0.25, gw, "center") 
+  love.graphics.printf("Mods", 0, gh * 0.22, gw, "center") 
   love.graphics.setFont(smallFont)
+  love.graphics.printf("Score Multiplier: " .. string.format("%0.2f", ScoreManager.modMultiplier) .. "x", 0, gh * 0.33, gw, "center") 
   
   love.graphics.setColor(0, 0, 0, 0.6)
   love.graphics.rectangle('fill', gw * 0.4, gh * 0.4, 150, 50, 10)

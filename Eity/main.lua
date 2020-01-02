@@ -3,17 +3,16 @@ require 'Mainmenu/Mainmenu'
 require 'Managers/GamestateManager'
 require 'Managers/GameManager'
 
-local discordRPC = require("discordRPC")
-local appId = require("applicationId")
-
+local discordRPC = require 'discordRPC'
+local appId = require 'applicationId'
 local SCreen = require 'cscreen'
 
 
 function love.load()
   love.window.setMode(1920,1080,{fullscreen=true, fullscreentype="exclusive"})
   --love.window.setMode(1600,900,{fullscreen=true, fullscreentype="exclusive"})
-  love.window.setVSync(0)
   isEnabledFPS = true
+  isEnabledVSync = false
   gw = love.graphics.getWidth()
   gh = love.graphics.getHeight()
 	SCreen.init(gw, gh, true)
@@ -55,6 +54,12 @@ end
 
 function love.update(dt)
   mx, my = love.mouse.getPosition()
+  ScoreManager:update(dt)
+  if isEnabledVSync then
+    love.window.setVSync(1)
+  else
+    love.window.setVSync(0)
+  end
   
   if nextPresenceUpdate < love.timer.getTime() then
       discordRPC.updatePresence(discordApplyPresence())
