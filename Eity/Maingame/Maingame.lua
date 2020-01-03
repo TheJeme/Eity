@@ -19,7 +19,7 @@ function Maingame:load()
 end
 
 function Maingame:update(dt)
-  
+  Maingame_UI:update(dt)
   if ModManager.isDoubleSpeed then
     ModManager.SetSpeed(DoubleSpeed.ApplyMod())
   elseif ModManager.isHalfSpeed then
@@ -49,7 +49,6 @@ function Maingame:update(dt)
 
     Arrow:update(dt)
     Slider:update(dt)
-    Maingame_UI:update(dt)
     
     if ModManager.isNoFail or ModManager.isAuto then
       GameManager.health = 100
