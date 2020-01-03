@@ -57,7 +57,7 @@ function Slider:update(dt)
           else
             table.remove(listOfSliders, i)
             ScoreManager.destroyednotes = ScoreManager.destroyednotes + 2
-            
+            ScoreManager.destroyedArrows = ScoreManager.destroyedArrows + 1
             if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
               ScoreManager.AddScore("sliderStart")
             elseif((v.scoreLength >= 0 and v.type == 1) or (v.scoreLength >= 0 and v.type == 2)) then
@@ -107,7 +107,7 @@ function Slider:update(dt)
         else
           table.remove(listOfSliders, i)
           ScoreManager.destroyednotes = ScoreManager.destroyednotes + 2
-          
+          ScoreManager.destroyedArrows = ScoreManager.destroyedArrows + 1
           if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
             ScoreManager.AddScore("sliderStart")
           elseif((v.scoreLength >= 0 and v.type == 1) or (v.scoreLength >= 0 and v.type == 2)) then
@@ -157,7 +157,7 @@ function Slider:update(dt)
         else
           table.remove(listOfSliders, i)
           ScoreManager.destroyednotes = ScoreManager.destroyednotes + 2
-          
+          ScoreManager.destroyedArrows = ScoreManager.destroyedArrows + 1
           if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
             ScoreManager.AddScore("sliderStart")
           elseif((v.scoreLength >= 0 and v.type == 1) or (v.scoreLength >= 0 and v.type == 2)) then
@@ -207,7 +207,7 @@ function Slider:update(dt)
       else
         table.remove(listOfSliders, i)
         ScoreManager.destroyednotes = ScoreManager.destroyednotes + 2
-        
+        ScoreManager.destroyedArrows = ScoreManager.destroyedArrows + 1
         if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
           ScoreManager.AddScore("sliderStart")
         elseif((v.scoreLength >= 0 and v.type == 1) or (v.scoreLength >= 0 and v.type == 2)) then

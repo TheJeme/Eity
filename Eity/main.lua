@@ -55,6 +55,7 @@ end
 function love.update(dt)
   mx, my = love.mouse.getPosition()
   ScoreManager:update(dt)
+  GameManager:update(dt)
   if isEnabledVSync then
     love.window.setVSync(1)
   else

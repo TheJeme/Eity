@@ -16,6 +16,10 @@ end
 
 function GameManager:update(dt)
   ScoreManager:update(dt)
+  
+  if GameManager.health <= 0 then
+    GameManager.isFailed = true
+  end
 end
 
 function GameManager:load()

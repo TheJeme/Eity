@@ -3,7 +3,6 @@ require 'Mods/HalfSpeed'
 require 'Mods/DoubleSpeed'
 require 'Mods/Hidden'
 require 'Mods/Flashlight'
-require 'Mods/NoFail'
 
 ModManager = {}
 

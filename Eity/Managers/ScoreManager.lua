@@ -12,10 +12,19 @@ function ScoreManager:load()
   ScoreManager.misses = 0
   ScoreManager.hits = 0
   ScoreManager.Destroyednotes = 0
+  ScoreManager.destroyedArrows = 0
 end
 
 function ScoreManager.ResetCombo()
   ScoreManager.combo = 0
+end
+
+function ScoreManager.AddHealth(value)
+  
+  GameManager.health = GameManager.health + value
+  if GameManager.health > 100 then
+    GameManager.health = 100
+  end
 end
 
 function ScoreManager.Restart()
@@ -24,35 +33,36 @@ function ScoreManager.Restart()
   ScoreManager.misses = 0
   ScoreManager.hits = 0
   ScoreManager.destroyednotes = 0
+  ScoreManager.destroyedArrows = 0
 end
 
 function ScoreManager.AddScore(type)
   if (type == "perfect") then
       ScoreManager.combo = ScoreManager.combo + 1
       ScoreManager.hits = ScoreManager.hits + 1
-      NoFail.AddHealth(5)
+      ScoreManager.AddHealth(5)
       ScoreManager.score = ScoreManager.score + 300 * ScoreManager.combo * ScoreManager.modMultiplier
   elseif (type == "sliderStart") then
         ScoreManager.combo = ScoreManager.combo + 1
-        NoFail.AddHealth(2)
+        ScoreManager.AddHealth(2)
         ScoreManager.score = ScoreManager.score + 100 * ScoreManager.combo * ScoreManager.modMultiplier
   elseif (type == "sliderEnd") then
         ScoreManager.combo = ScoreManager.combo + 1
         ScoreManager.hits = ScoreManager.hits + 1
-        NoFail.AddHealth(2)
+        ScoreManager.AddHealth(2)
         ScoreManager.score = ScoreManager.score + 100 * ScoreManager.combo * ScoreManager.modMultiplier
   elseif (type == "good") then
         ScoreManager.combo = ScoreManager.combo + 1
         ScoreManager.hits = ScoreManager.hits + 1
-        NoFail.AddHealth(5)
+        ScoreManager.AddHealth(5)
         ScoreManager.score = ScoreManager.score + 100 * ScoreManager.combo * ScoreManager.modMultiplier
   elseif (type == "miss") then
         ScoreManager.combo = 0
-        NoFail.AddHealth(-20)
+        ScoreManager.AddHealth(-20)
         ScoreManager.misses = ScoreManager.misses + 1
   elseif (type == "bad") then
         ScoreManager.combo = 0
-        NoFail.AddHealth(-25)
+        ScoreManager.AddHealth(-25)
         ScoreManager.misses = ScoreManager.misses + 1
         ScoreManager.score = ScoreManager.score - 100
         if (ScoreManager.score < 0) then

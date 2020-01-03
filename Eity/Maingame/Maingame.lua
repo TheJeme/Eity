@@ -27,9 +27,12 @@ function Maingame:update(dt)
   else
     ModManager.SetSpeed(1)
   end
+  if ModManager.isAuto then
+    Auto.ApplyMod()
+  end
   
-  if GameManager.pause then SoundManager.maingamesrc:pause() end
-  if not GameManager.pause then
+  if GameManager.pause or GameManager.isFailed then SoundManager.maingamesrc:pause() end
+  if not GameManager.pause and not GameManager.isFailed then
     SoundManager.maingamesrc:setPitch(ModManager.getSpeed())
     SoundManager.maingamesrc:play()
     GameManager.gametime = GameManager.gametime + dt * ModManager.getSpeed()
@@ -48,8 +51,9 @@ function Maingame:update(dt)
     Slider:update(dt)
     Maingame_UI:update(dt)
     
-    if ModManager.isNoFail then
+    if ModManager.isNoFail or ModManager.isAuto then
       GameManager.health = 100
+      xbar = gw * 0.35
     end
     if ModManager.isHidden then
     Hidden.ApplyMod(dt)
@@ -78,7 +82,7 @@ end
 
 function Maingame:keypressed(key, scancode, isrepeat)
   
-  if key == "escape" then
+  if key == "escape" and not GameManager.isFailed then
     GameManager.Pause()
   end
   
@@ -87,7 +91,7 @@ function Maingame:keypressed(key, scancode, isrepeat)
   end
   
   
-  if not GameManager.pause then
+  if not GameManager.pause or not GameManager.isFailed then
     Player:keypressed(key, scancode, isrepeat)
   end
 end 
