@@ -100,10 +100,14 @@ function ScoreManager:draw()
   love.graphics.printf(ScoreManager.combo .. "x", 0, gh - 50, 100, "left")
   love.graphics.printf(string.format("%08d", ScoreManager.score), 0, 0, gw, "right")
   love.graphics.setFont(smallFont)
+  love.graphics.printf(ScoreManager.getAccuracy(), 0, 50, gw, "right")
+end
+
+function ScoreManager.getAccuracy()
   if ScoreManager.destroyednotes == 0 or (ScoreManager.destroyednotes - ScoreManager.misses) / ScoreManager.destroyednotes * 100 == 100 then
-      love.graphics.printf("100%", 0, 50, gw, "right")
+    return "100%"
   else
-    love.graphics.printf(string.format("%0.2f", (ScoreManager.destroyednotes - ScoreManager.misses) / ScoreManager.destroyednotes * 100) .. "%", 0, 50, gw, "right")
+    return string.format("%0.2f", (ScoreManager.destroyednotes - ScoreManager.misses) / ScoreManager.destroyednotes * 100) .. "%"
   end
 end
 

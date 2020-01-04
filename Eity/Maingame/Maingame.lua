@@ -13,6 +13,7 @@ function Maingame:load()
   map_01:load()
   
   nextNote = 1
+  endTime = 0
 
   img = love.graphics.newImage("Shelter/BG1.jpg")
   scaleX, scaleY = GameManager:getImageScaleForNewDimensions( img, gw, gh )
@@ -44,6 +45,13 @@ function Maingame:update(dt)
           createSlider(map_01[nextNote][1], math.ceil(map_01[nextNote][2] * 4 / 512), map_01[nextNote][3] * ModManager.getSpeed(), map_01[nextNote][4])
         end
         nextNote = nextNote + 1
+      elseif #map_01 < ScoreManager.destroyedArrows + 1 then
+        if endTime < 5 then
+          endTime = endTime + dt
+        else
+        GamestateManager.GameState = "Rankingscreen"
+        SoundManager.maingamesrc:stop()
+        end
       end
     end
 
@@ -87,6 +95,10 @@ function Maingame:keypressed(key, scancode, isrepeat)
   
   if key == "r" then
     GameManager.Restart()
+  end
+  
+  if key == "e" then
+    GamestateManager.GameState = "Rankingscreen"
   end
   
   

@@ -1,5 +1,6 @@
 require 'Maingame/Maingame'
 require 'Mainmenu/Mainmenu'
+require 'Rankingscreen'
 require 'Managers/GamestateManager'
 require 'Managers/GameManager'
 
@@ -21,6 +22,7 @@ function love.load()
   GamestateManager:load()
   Mainmenu:load()
   Maingame:load()
+  Rankingscreen:load()
   GameManager:load()
   love.graphics.setBackgroundColor(0.1, 0.1, 0.1, 1)
   
@@ -72,6 +74,8 @@ function love.update(dt)
     Mainmenu:update(dt)
   elseif(GamestateManager.GameState == "Maingame") then
     Maingame:update(dt)
+  elseif(GamestateManager.GameState == "Rankingscreen") then
+    Rankingscreen:update(dt)
   end
 end
 
@@ -82,13 +86,15 @@ function love.draw()
   elseif(GamestateManager.GameState == "Maingame") then
     love.graphics.setFont(defaultFont)
     Maingame:draw()
+  elseif(GamestateManager.GameState == "Rankingscreen") then
+    Rankingscreen:draw()
   end
   	SCreen.cease()
     
   if isEnabledFPS then
     love.graphics.setFont(defaultFont)
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.print("FPS " .. love.timer.getFPS())
+    love.graphics.printf("FPS " .. love.timer.getFPS(), 0, gh - 20, gw, "right")
   end
 end
 
@@ -101,6 +107,8 @@ function love.mousepressed(x, y,button)
     Mainmenu:mousepressed(x, y,button)
   elseif(GamestateManager.GameState == "Maingame") then
     Maingame:mousepressed(x, y,button)
+  elseif(GamestateManager.GameState == "Rankingscreen") then
+    Rankingscreen:mousepressed(x, y,button)
   end
 end
 
@@ -113,5 +121,7 @@ function love.keypressed(key, scancode, isrepeat)
     Maingame:keypressed(key, scancode, isrepeat)
   elseif(GamestateManager.GameState == "Mainmenu") then
     Mainmenu:keypressed(key, scancode, isrepeat)
+  elseif(GamestateManager.GameState == "Rankingscreen") then
+    Rankingscreen:keypressed(key, scancode, isrepeat)
   end
 end

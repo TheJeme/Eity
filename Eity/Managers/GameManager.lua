@@ -32,6 +32,7 @@ function GameManager:load()
   GameManager.backgroundDim = 0.5
   GameManager.health = 50
   nextNote = 1
+  endTime = 0
 end
 
 function GameManager.Pause()
@@ -47,6 +48,7 @@ function GameManager.Restart()
   GameManager.health = 50
   xbar = 20
   nextNote = 1
+  endTime = 0
   for i, v in ipairs(map_01) do
     listOfArrows = {}
     listOfSliders = {}

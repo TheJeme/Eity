@@ -22,11 +22,11 @@ local modsNoFailButtonColor
 local modsAutoButtonColor
 
 function Songselect:load()
+  img = love.graphics.newImage("Shelter/BG1.jpg")
+  scaleX, scaleY = GameManager:getImageScaleForNewDimensions( img, gw, gh )
   bigFont = love.graphics.newFont("Assets/roboto.ttf", 84)
   smallFont = love.graphics.newFont("Assets/roboto.ttf", 24)
   smallestFont = love.graphics.newFont("Assets/roboto.ttf", 18)
-  SongBG = love.graphics.newImage("Shelter/BG2.jpg")
-  scaleX, scaleY = GameManager:getImageScaleForNewDimensions( SongBG, gw, gh )
   playButtonColor = Colors.getGreenColor()
   backButtonColor = Colors.getGreenColor()
   randomButtonColor = Colors.getGreenColor()
@@ -436,7 +436,7 @@ end
 
 function Background()
   love.graphics.push()
-  love.graphics.draw(SongBG, 0, 0, 0, scaleX, scaleY)
+  love.graphics.draw(img, 0, 0, 0, scaleX, scaleY)
   love.graphics.setColor(0.3, 0.3, 0.3, 0.5)
   love.graphics.rectangle('fill', 0, 0, gw, gh)
   love.graphics.pop()
