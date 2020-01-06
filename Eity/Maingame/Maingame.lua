@@ -3,6 +3,7 @@ require 'Maingame/Arrow'
 require 'Maingame/Slider'
 require 'Maingame/Player'
 require 'map_01'
+require 'map_02'
 
 Maingame = {}
 
@@ -11,7 +12,6 @@ function Maingame:load()
   Slider:load()
   Maingame_UI:load()
   map_01:load()
-  
   nextNote = 1
   endTime = 0
 
@@ -37,7 +37,7 @@ function Maingame:update(dt)
     SoundManager.maingamesrc:setPitch(ModManager.getSpeed())
     SoundManager.maingamesrc:play()
     GameManager.gametime = GameManager.gametime + dt * ModManager.getSpeed()
-    for i, v in ipairs(map_01) do
+    for i, v in ipairs(map_02) do
       if (#map_01 >= nextNote and (map_01[nextNote][5] - 400) * 0.001 < GameManager.gametime) then
         if (map_01[nextNote][4] == 0) then
           createArrow(map_01[nextNote][1], math.ceil(map_01[nextNote][2] * 4 / 512), map_01[nextNote][3] * ModManager.getSpeed())          
@@ -49,8 +49,11 @@ function Maingame:update(dt)
         if endTime < 5 then
           endTime = endTime + dt
         else
-        GamestateManager.GameState = "Rankingscreen"
-        SoundManager.maingamesrc:stop()
+          if ScoreManager.combo > ScoreManager.maxCombo then ScoreManager.maxCombo = ScoreManager.combo end
+          ScoreManager.CalculateTotalNotes()
+          SoundManager.maingamesrc:stop()
+          endTime = 0
+          GamestateManager.GameState = "Rankingscreen"
         end
       end
     end

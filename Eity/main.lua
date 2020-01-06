@@ -45,7 +45,7 @@ function discordApplyPresence()
   
   presence = {
     largeImageKey = "eity_icon",
-    largeImageText = "Eity v0.5.8",
+    largeImageText = "Eity v0.6.2",
     details = detailsNow,
     state = stateNow,
     startTimestamp = now,
@@ -94,7 +94,7 @@ function love.draw()
   if isEnabledFPS then
     love.graphics.setFont(defaultFont)
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.printf("FPS " .. love.timer.getFPS(), 0, gh - 20, gw, "right")
+    love.graphics.printf("FPS " .. love.timer.getFPS(), 0, gh - 12, gw, "right")
   end
 end
 

@@ -46,6 +46,7 @@ function Arrow:update(dt)
         ScoreManager.destroyedArrows = ScoreManager.destroyedArrows + 1
         if (v.type == 1) then
           if (Player.direction == 2) then
+            ScoreManager.collectedBlueArrows = ScoreManager.collectedBlueArrows + 1
             SoundManager.hitsrc:play()
             ScoreManager.AddScore("perfect")
           else
@@ -54,6 +55,7 @@ function Arrow:update(dt)
           end
         elseif (v.type == 2) then
           if (Player.direction == 4) then
+            ScoreManager.collectedYellowArrows = ScoreManager.collectedYellowArrows + 1
             SoundManager.hitsrc:play()
             ScoreManager.AddScore("perfect")
           else
@@ -62,6 +64,7 @@ function Arrow:update(dt)
           end
         elseif (v.type == 3) then
           if (Player.direction == 2) then
+            ScoreManager.collectedRedArrows = ScoreManager.collectedRedArrows + 1
             SoundManager.misssrc:play()
             ScoreManager.AddScore("bad")
           end
@@ -83,6 +86,7 @@ function Arrow:update(dt)
       ScoreManager.destroyedArrows = ScoreManager.destroyedArrows + 1
       if (v.type == 1) then
         if (Player.direction == 4) then
+          ScoreManager.collectedBlueArrows = ScoreManager.collectedBlueArrows + 1
           SoundManager.hitsrc:play()
           ScoreManager.AddScore("perfect")
         else
@@ -91,6 +95,7 @@ function Arrow:update(dt)
         end
       elseif (v.type == 2) then
         if (Player.direction == 2) then
+          ScoreManager.collectedYellowArrows = ScoreManager.collectedYellowArrows + 1
           SoundManager.hitsrc:play()
           ScoreManager.AddScore("perfect")
         else
@@ -99,8 +104,9 @@ function Arrow:update(dt)
         end
       elseif (v.type == 3) then
         if (Player.direction == 4) then
-            SoundManager.misssrc:play()
-            ScoreManager.AddScore("bad")
+          ScoreManager.collectedRedArrows = ScoreManager.collectedRedArrows + 1
+          SoundManager.misssrc:play()
+          ScoreManager.AddScore("bad")
         end
       end
     end
@@ -120,6 +126,7 @@ function Arrow:update(dt)
       ScoreManager.destroyedArrows = ScoreManager.destroyedArrows + 1
       if (v.type == 1) then
         if (Player.direction == 3) then
+          ScoreManager.collectedBlueArrows = ScoreManager.collectedBlueArrows + 1
           SoundManager.hitsrc:play()
           ScoreManager.AddScore("perfect")
         else
@@ -128,6 +135,7 @@ function Arrow:update(dt)
         end
       elseif (v.type == 2) then
         if (Player.direction == 1) then
+          ScoreManager.collectedYellowArrows = ScoreManager.collectedYellowArrows + 1
           SoundManager.hitsrc:play()
           ScoreManager.AddScore("perfect")
         else
@@ -136,6 +144,7 @@ function Arrow:update(dt)
         end
       elseif (v.type == 3) then
         if (Player.direction == 3) then
+          ScoreManager.collectedRedArrows = ScoreManager.collectedRedArrows + 1
           SoundManager.misssrc:play()
           ScoreManager.AddScore("bad")
         end
@@ -157,6 +166,7 @@ function Arrow:update(dt)
       ScoreManager.destroyedArrows = ScoreManager.destroyedArrows + 1
       if (v.type == 1) then
         if (Player.direction == 1) then
+          ScoreManager.collectedBlueArrows = ScoreManager.collectedBlueArrows + 1
           SoundManager.hitsrc:play()
           ScoreManager.AddScore("perfect")
         else
@@ -165,6 +175,7 @@ function Arrow:update(dt)
         end
       elseif (v.type == 2) then
         if (Player.direction == 3) then
+          ScoreManager.collectedYellowArrows = ScoreManager.collectedYellowArrows + 1
           SoundManager.hitsrc:play()
           ScoreManager.AddScore("perfect")
         else
@@ -173,6 +184,7 @@ function Arrow:update(dt)
         end
       elseif (v.type == 3) then
         if (Player.direction == 1) then
+          ScoreManager.collectedRedArrows = ScoreManager.collectedRedArrows + 1
           SoundManager.misssrc:play()
           ScoreManager.AddScore("bad")
         end
