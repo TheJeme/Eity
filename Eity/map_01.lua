@@ -4,6 +4,9 @@ function map_01:load()
   
   -- (0 = none, 1 = normal, 2 = slider, 3 = bad), 448 = up, 64 = down, 192 = left, 320 = right, milliseconds to spawn
   -- Slider length
+  
+  map_01.title = "Shelter"
+  map_01.porter = "Robinson & Madeon"
   map_01 = {  
     {1, 320, 400, 600, 402},
     {1, 64, 400, 200, 2802},

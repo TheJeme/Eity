@@ -71,12 +71,12 @@ function ScoreManager.CalculateTotalNotes()
   ScoreManager.totalYellowArrows = 0
   ScoreManager.totalYellowSliders = 0
   note = 1
-  for i, v in ipairs(map_01) do
-    if #map_01 >= note then
-      if map_01[note][1] == 1 and map_01[note][4] == 0 then ScoreManager.totalBlueArrows = ScoreManager.totalBlueArrows + 1
-      elseif map_01[note][1] == 1 and map_01[note][4] ~= 0 then ScoreManager.totalBlueSliders = ScoreManager.totalBlueSliders + 1
-      elseif map_01[note][1] == 2 and map_01[note][4] == 0 then ScoreManager.totalYellowArrows = ScoreManager.totalYellowArrows + 1
-      elseif map_01[note][1] == 2 and map_01[note][4] ~= 0 then ScoreManager.totalYellowSliders = ScoreManager.totalYellowSliders + 1
+  for i, v in ipairs(map) do
+    if #map >= note then
+      if map[note][1] == 1 and map[note][4] == 0 then ScoreManager.totalBlueArrows = ScoreManager.totalBlueArrows + 1
+      elseif map[note][1] == 1 and map[note][4] ~= 0 then ScoreManager.totalBlueSliders = ScoreManager.totalBlueSliders + 1
+      elseif map[note][1] == 2 and map[note][4] == 0 then ScoreManager.totalYellowArrows = ScoreManager.totalYellowArrows + 1
+      elseif map[note][1] == 2 and map[note][4] ~= 0 then ScoreManager.totalYellowSliders = ScoreManager.totalYellowSliders + 1
       end
       note = note + 1
     end

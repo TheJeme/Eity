@@ -49,7 +49,7 @@ function GameManager.Restart()
   xbar = 20
   nextNote = 1
   endTime = 0
-  for i, v in ipairs(map_02) do
+  for i, v in ipairs(map) do
     listOfArrows = {}
     listOfSliders = {}
   end
