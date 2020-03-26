@@ -5,7 +5,7 @@
 
 ## Download
 
-Not done yet
+[Download](https://github.com/TheJeme/Eity/releases/ "Eity") the latest version.
 
 ## License
 
