@@ -25,10 +25,10 @@ end
 
 function gameManager:load()
   modManager:load()
-  scoreManager:load()
   soundManager:load()
   mapManager:load() 
   map:load()
+  scoreManager.Restart()
   gameManager.pause = false
   gameManager.isFailed = false
   gameManager.gametime = 0

@@ -25,10 +25,6 @@ function createArrow(type, direction, speed)
   table.insert(listOfArrows, arrow)
 end
 
-function Arrow:load()
-
-end
-
 function Arrow:update(dt)
   for i, v in ipairs(listOfArrows) do
     if (v.direction == 4) then

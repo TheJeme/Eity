@@ -30,10 +30,6 @@ function createSlider(type, direction, speed, length)
   table.insert(listOfSliders, slider)
 end
 
-function Slider:load()  
-
-end
-
 function Slider:update(dt)
   for i, v in ipairs(listOfSliders) do
 

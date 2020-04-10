@@ -85,7 +85,7 @@ function Songselect:draw()
 end
 
 function Songselect:mousepressed(x, y, button)
-  if menustate == "Songselect" and not isModes and not isMods then                                                       
+  if not isModes and not isMods then                                                       
     backButton:mousepressed(x, y, button)
     modesButton:mousepressed(x, y, button)
     modsButton:mousepressed(x, y, button)

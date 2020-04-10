@@ -1,4 +1,4 @@
-require 'UI/Maingame_UI'
+require 'states/maingame/maingame_UI'
 require 'states/maingame/Arrow'
 require 'states/maingame/Slider'
 require 'states/maingame/player'
@@ -6,9 +6,7 @@ require 'states/maingame/player'
 Maingame = {}
 
 function Maingame:load()
-  Arrow:load()
-  Slider:load()
-  Maingame_UI:load()
+  maingame_UI:load()
   nextNote = 1
   endTime = 0
   img = love.graphics.newImage("maps/Shelter/BG1.jpg")
@@ -16,7 +14,7 @@ function Maingame:load()
 end
 
 function Maingame:update(dt)
-  Maingame_UI:update(dt)
+  maingame_UI:update(dt)
   if modManager.isDoubleSpeed then
     modManager.SetSpeed(DoubleSpeed.ApplyMod())
   elseif modManager.isHalfSpeed then
@@ -28,9 +26,13 @@ function Maingame:update(dt)
     Auto.ApplyMod()
   end
   
-  if gameManager.pause or gameManager.isFailed then soundManager.maingamesrc:pause() end
+  if gameManager.pause or gameManager.isFailed then
+     soundManager.maingamesrc:pause() 
+     love.mouse.setVisible(true) 
+   end
   
   if not gameManager.pause and not gameManager.isFailed then
+    love.mouse.setVisible(false)
     soundManager.maingamesrc:setPitch(modManager.getSpeed())
     soundManager.maingamesrc:play()
     gameManager.gametime = gameManager.gametime + dt * modManager.getSpeed()
@@ -78,13 +80,13 @@ function Maingame:draw()
   love.graphics.pop()
   Arrow:draw()
   Slider:draw()
-  Maingame_UI:draw()
+  maingame_UI:draw()
   love.graphics.setFont(defaultFont)
   love.graphics.print(gameManager.gametime, 0, 60)
 end
 
 function Maingame:mousepressed(x, y,button)
-  Maingame_UI:mousepressed(x, y,button)
+  maingame_UI:mousepressed(x, y,button)
 end
 
 function Maingame:keypressed(key)

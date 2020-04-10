@@ -14,43 +14,43 @@ function stateManager:load()
 end
 
 function stateManager:draw()
-  if(stateManager.GameState == "Mainmenu") then
+  if (stateManager.GameState == "Mainmenu") then
     Mainmenu:draw()
-  elseif(stateManager.GameState == "Maingame") then
+  elseif (stateManager.GameState == "Maingame") then
     love.graphics.setFont(defaultFont)
     Maingame:draw()
-  elseif(stateManager.GameState == "Rankingscreen") then
+  elseif (stateManager.GameState == "Rankingscreen") then
     Rankingscreen:draw()
   end
 end
 
 function stateManager:update(dt)
-  if(stateManager.GameState == "Mainmenu") then
+  if (stateManager.GameState == "Mainmenu") then
     Mainmenu:update(dt)
-  elseif(stateManager.GameState == "Maingame") then
+  elseif (stateManager.GameState == "Maingame") then
     Maingame:update(dt)
-  elseif(stateManager.GameState == "Rankingscreen") then
+  elseif (stateManager.GameState == "Rankingscreen") then
     Rankingscreen:update(dt)
   end
 end
 
 
 function stateManager:mousepressed(x, y, button)
-  if(stateManager.GameState == "Mainmenu") then
+  if (stateManager.GameState == "Mainmenu") then
     Mainmenu:mousepressed(x, y, button)
-  elseif(stateManager.GameState == "Maingame") then
+  elseif (stateManager.GameState == "Maingame") then
     Maingame:mousepressed(x, y, button)
-  elseif(stateManager.GameState == "Rankingscreen") then
+  elseif (stateManager.GameState == "Rankingscreen") then
     Rankingscreen:mousepressed(x, y, button)
   end
 end
 
 function stateManager:keypressed(key)
-  if(stateManager.GameState == "Maingame") then
+  if (stateManager.GameState == "Maingame") then
     Maingame:keypressed(key)
-  elseif(stateManager.GameState == "Mainmenu") then
+  elseif (stateManager.GameState == "Mainmenu") then
     Mainmenu:keypressed(key)
-  elseif(stateManager.GameState == "Rankingscreen") then
+  elseif (stateManager.GameState == "Rankingscreen") then
     Rankingscreen:keypressed(key)
   end
 end
