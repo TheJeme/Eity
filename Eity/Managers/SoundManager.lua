@@ -23,7 +23,7 @@ function SoundManager:load()
   musicVolume = 0.05
   effectsVolume = 0.05
   
-  SoundManager.maingamesrc = love.audio.newSource("Assets/elama.mp3", "static")
+  SoundManager.maingamesrc = love.audio.newSource("maps/Shelter/shelter.mp3", "static")
   SoundManager.mainmenusrc = love.audio.newSource("Assets/Verse_One_BGMusic.mp3", "static")
   
   SoundManager.ButtonOver = love.audio.newSource("Assets/ButtonOver.wav", "static")

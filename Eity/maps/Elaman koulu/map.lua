@@ -1,13 +1,13 @@
-map_02 = { }
+map = { }
  
-function map_02:load()      
+function map:load()      
   
   -- (0 = none, 1 = normal, 2 = slider, 3 = bad), 448 = up, 64 = down, 192 = left, 320 = right, milliseconds to spawn
   -- Slider length
-  map_02.title = "Elämänkoulu"
-  map_02.porter = "Nisku ja Jasku"
+  map.title = "Elämänkoulu"
+  map.porter = "Nisku ja Jasku"
   
-  map_02 = { 
+  map = { 
 	{1, 192, 500, 0, 4631},
 	{3, 448, 500, 0, 4631},
 	{1, 064, 500, 0, 5006},
@@ -616,10 +616,9 @@ function map_02:load()
 	{1, 320, 500, 0, 185381},
 	{1, 064, 500, 0, 185756},
 	{1, 448, 500, 0, 186131},
-	{1, 192, 500, 0, 187631},
 	}
 end
   
   
   
-return map_02
+return map

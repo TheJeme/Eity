@@ -1,19 +1,21 @@
-require "map_01"
-require "map_02"
+elama = require "maps/Elaman koulu/map"
+shelter = require "maps/Shelter/map"
 
-map = { }
+mapManager = { }
  
-function map:load()      
-  map1 = false
+map = {}
+ 
+function mapManager:load()      
+  map1 = true
   -- (0 = none, 1 = normal, 2 = slider, 3 = bad), 448 = up, 64 = down, 192 = left, 320 = right, milliseconds to spawn
   -- Slider length
     
   if map1 == true then
-    map_01:load()
-    map = map_01
+    elama:load()
+    map = elama
   else
-    map_02:load()
-    map = map_02
+    shelter:load()
+    map = shelter
   end
   for i, v in ipairs(map) do
     if (map[i][1] == 3) then
@@ -22,4 +24,4 @@ function map:load()
   end
 end
 
-return map
+return mapManager

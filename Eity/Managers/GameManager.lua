@@ -1,7 +1,7 @@
-require 'Managers/SoundManager'
-require 'Managers/ScoreManager'
-require 'Managers/ModManager'
-require 'Colors'
+require 'managers/soundManager'
+require 'managers/scoreManager'
+require 'managers/modManager'
+require 'managers/mapManager'
 
 GameManager = {}
 
@@ -26,6 +26,8 @@ function GameManager:load()
   ModManager:load()
   ScoreManager:load()
   SoundManager:load()
+  mapManager:load() 
+  Player:resetPosition()
   GameManager.pause = false
   GameManager.isFailed = false
   GameManager.gametime = 0
@@ -42,6 +44,7 @@ end
 function GameManager.Restart()
   SoundManager:Restart()
   ScoreManager.Restart()
+  Player:resetPosition()
   GameManager.pause = false
   GameManager.isFailed = false
   GameManager.gametime = 0

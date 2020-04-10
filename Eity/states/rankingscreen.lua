@@ -42,13 +42,13 @@ end
 function Rankingscreen:mousepressed(x, y,button)
   if isMouseOnBack and button == 1 then
     SoundManager.ButtonHit:play()
-    GamestateManager.GameState = "Mainmenu"
+    stateManager.GameState = "Mainmenu"
   end
 end
 
-function Rankingscreen:keypressed(key, scancode, isrepeat)
+function Rankingscreen:keypressed(key)
   if key == "escape" then
-    GamestateManager.GameState = "Mainmenu"
+    stateManager.GameState = "Mainmenu"
   end
 end
 

@@ -1,10 +1,13 @@
-require 'Mainmenu/Mainmenu_Particles'
+require 'states/mainmenu/mainmenu_Particles'
+require 'objects/squareButton'
 
 Mainmenu_UI = {}
 
 local scaleX, scaleY
 local bigFont
 local smallFont
+
+local noButton, yesButton, eityButton, playButton, optionsButton, exitButton
 
 function Mainmenu_UI:load()
   Mainmenu_Particles:load()
@@ -13,12 +16,19 @@ function Mainmenu_UI:load()
   mainBG = love.graphics.newImage("Assets/MainBG3.jpg")
   scaleX, scaleY = GameManager:getImageScaleForNewDimensions( mainBG, gw, gh )
   
+  noButton = newSquareButton(gw / 2 - 150, gh / 2 + 200, 75, "No", Red, White, 0, -25)
+  yesButton = newSquareButton(gw / 2 + 150, gh / 2 + 200, 75, "Yes", Blue, White, 0, -25)
+  eityButton = newSquareButton(gw / 2 - 250, gh / 2, 220, "Eity", Blue, White, 0, -75)
+  playButton = newSquareButton(gw / 2 + 50, gh / 2 - 200, 120, "Play", Green, White, 0, -25)
+  optionsButton = newSquareButton(gw / 2 + 225, gh / 2, 120, "Options", Purple, White, 0, -25)
+  exitButton = newSquareButton(gw / 2 + 50, gh / 2 + 200, 120, "Exit", Red, White, 0, -25)
+  
+  
   PressedQuit = false
 end
 
 function Mainmenu_UI:update(dt)
     Mainmenu_Particles:update(dt)
-    mx, my = love.mouse.getPosition()
 end
 
 function Mainmenu_UI:draw()
@@ -40,74 +50,23 @@ function DrawAreYouSureQuit()
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.printf("Are you sure you want to exit?", gw / 2 - 500, gh / 2 - 300, 1000, "center")
   
-  love.graphics.push()
   love.graphics.setLineWidth(60)
-  love.graphics.setFont(smallFont)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.circle("line", gw / 2 - 150, gh / 2 + 200, 75, 4)
-  love.graphics.setColor(Colors.getRedColor())
-  love.graphics.circle("fill", gw / 2 - 150, gh / 2 + 200, 75, 4)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("No", gw / 2 - 375, gh / 2 + 175, 450, "center")
-  love.graphics.pop()
-  
-  love.graphics.push()
-  love.graphics.setLineWidth(60)
-  love.graphics.setFont(smallFont)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.circle("line", gw / 2 + 150, gh / 2 + 200, 75, 4)
-  love.graphics.setColor(Colors.getBlueColor())
-  love.graphics.circle("fill", gw / 2 + 150, gh / 2 + 200, 75, 4)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Yes", gw / 2 - 75, gh / 2 + 175, 450, "center")
-  love.graphics.pop()
+  love.graphics.setFont(smallFont)  
+  noButton:draw()
+  yesButton:draw()
 end
 
 
-function DrawMainButtons()
-    
+function DrawMainButtons()    
   love.graphics.push()
-  love.graphics.setLineWidth(60)
-  love.graphics.setFont(bigFont)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.circle("line", gw / 2 - 250, gh / 2, 250, 4)
-  love.graphics.setColor(Colors.getBlueColor())
-  love.graphics.circle("fill", gw / 2 - 250, gh / 2, 220, 4)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Eity", gw / 2 - 475, gh / 2 - 75, 450, "center")
-  love.graphics.pop()
-  
-  love.graphics.push()
-  love.graphics.setLineWidth(60)
-  love.graphics.setFont(smallFont)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.circle("line", gw / 2 + 50, gh / 2 - 200, 120, 4)
-  love.graphics.setColor(Colors.getGreenColor())
-  love.graphics.circle("fill", gw / 2 + 50, gh / 2 - 200, 120, 4)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Play", gw / 2 - 200, gh / 2 - 225, 500, "center")
-  love.graphics.pop()
-  
-  love.graphics.push()
-  love.graphics.setLineWidth(60)
-  love.graphics.setFont(smallFont)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.circle("line", gw / 2 + 225, gh / 2, 120, 4)
-  love.graphics.setColor(Colors.getPurpleColor())
-  love.graphics.circle("fill", gw / 2 + 225, gh / 2, 120, 4)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Options", gw / 2 - 25, gh / 2 - 30, 500, "center")
-  love.graphics.pop()
-  
-  love.graphics.push()
-  love.graphics.setLineWidth(60)
-  love.graphics.setFont(smallFont)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.circle("line", gw / 2 + 50, gh / 2 + 200, 120, 4)
-  love.graphics.setColor(Colors.getRedColor())
-  love.graphics.circle("fill", gw / 2 + 50, gh / 2 + 200, 120, 4)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Exit", gw / 2 - 200, gh / 2 + 175, 500, "center")
+    love.graphics.setLineWidth(90)
+    love.graphics.setFont(bigFont)
+    eityButton:draw()
+    love.graphics.setLineWidth(60)
+    love.graphics.setFont(smallFont)
+    playButton:draw()
+    optionsButton:draw()
+    exitButton:draw()
   love.graphics.pop()
 end
 

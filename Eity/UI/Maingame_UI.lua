@@ -1,16 +1,22 @@
-require 'Maingame/Player'
+require 'objects/squareButton'
 
 Maingame_UI = {}
 
 local bigFont
 local smallFont
 local xScale
+local pausedButton, continueButton, quitButton, restartButton, failedButton
 
 function Maingame_UI:load()
   bigFont = love.graphics.newFont("Assets/roboto.ttf", 92)
   smallFont = love.graphics.newFont("Assets/roboto.ttf", 48)
   xbar = 0
-  Player:load()
+  
+  failedButton = newSquareButton(gw / 2 - 250, gh / 2, 220, "Failed", Blue, White, 0, -50)
+  pausedButton = newSquareButton(gw / 2 - 250, gh / 2, 220, "Paused", Blue, White, 0, -50)
+  restartButton = newSquareButton(gw / 2 + 225, gh / 2, 120, "Restart", Purple, White, 0, -25)
+  quitButton = newSquareButton(gw / 2 + 50, gh / 2 + 200, 120, "Quit", Red, White, 0, -25)  
+  continueButton = newSquareButton(gw / 2 + 50, gh / 2 - 200, 120, "Continue", Green, White, 0, -25)
 end
 
 function Maingame_UI:update(dt)
@@ -30,7 +36,6 @@ function Maingame_UI:draw()
   MaingameOverlay()
   Healthbar()
   ScoreManager:draw()
-  Player:draw()
   if GameManager.pause then
     PauseScreen()
   elseif GameManager.isFailed then
@@ -58,7 +63,7 @@ function Maingame_UI:mousepressed(x, y,button)
      GameManager.Restart()
    elseif (isMouseOnQuit and GameManager.pause) or (GameManager.isFailed and isMouseOnQuit) then
      SoundManager.ButtonHit:play()
-     GamestateManager.GameState = "Mainmenu"
+     stateManager.GameState = "Mainmenu"
    end
 end
 
@@ -72,90 +77,42 @@ function Healthbar()
   love.graphics.setColor(0.95, 0.95, 0.95, 1)
   love.graphics.rectangle("fill", 20, 20, xbar - 20, 10)
   love.graphics.setColor(0.3, 0.3, 0.3, 1)
-
 end
 
 function FailScreen()
   love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', 0, 0, gw, gh)
-  
+  love.graphics.rectangle('fill', 0, 0, gw, gh)  
   love.graphics.draw(mainBG, 0, 0, 0, 1, 1)
   love.graphics.setColor(0.3, 0.3, 0.3, 0.5)
   love.graphics.rectangle('fill', 0, 0, gw, gh)
     
+  love.graphics.setLineWidth(90)
+  love.graphics.setFont(bigFont)  
+  failedButton:draw()
   love.graphics.setLineWidth(60)
-  love.graphics.setFont(bigFont)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.circle("line", gw / 2 - 250, gh / 2, 250, 4)
-  love.graphics.setColor(Colors.getBlueColor())
-  love.graphics.circle("fill", gw / 2 - 250, gh / 2, 220, 4)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Failed", gw / 2 - 475, gh / 2 - 50, 450, "center")
-  
-  love.graphics.setLineWidth(60)
-  love.graphics.setFont(smallFont)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.circle("line", gw / 2 + 225, gh / 2, 120, 4)
-  love.graphics.setColor(Colors.getPurpleColor())
-  love.graphics.circle("fill", gw / 2 + 225, gh / 2, 120, 4)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Restart", gw / 2 - 25, gh / 2 - 30, 500, "center")
-  
-  love.graphics.setLineWidth(60)
-  love.graphics.setFont(smallFont)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.circle("line", gw / 2 + 50, gh / 2 + 200, 120, 4)
-  love.graphics.setColor(Colors.getRedColor())
-  love.graphics.circle("fill", gw / 2 + 50, gh / 2 + 200, 120, 4)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Quit", gw / 2 - 200, gh / 2 + 175, 500, "center")
+  love.graphics.setFont(smallFont)  
+  restartButton:draw()
+  quitButton:draw()
 end
 
 
 function PauseScreen()
   love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', 0, 0, gw, gh)
-  
+  love.graphics.rectangle('fill', 0, 0, gw, gh)  
   love.graphics.draw(mainBG, 0, 0, 0, 1, 1)
   love.graphics.setColor(0.3, 0.3, 0.3, 0.5)
   love.graphics.rectangle('fill', 0, 0, gw, gh)
     
-  love.graphics.setLineWidth(60)
+  love.graphics.setLineWidth(90)
   love.graphics.setFont(bigFont)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.circle("line", gw / 2 - 250, gh / 2, 250, 4)
-  love.graphics.setColor(Colors.getBlueColor())
-  love.graphics.circle("fill", gw / 2 - 250, gh / 2, 220, 4)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Paused", gw / 2 - 475, gh / 2 - 50, 450, "center")
-  
+  pausedButton:draw()
   love.graphics.setLineWidth(60)
   love.graphics.setFont(smallFont)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.circle("line", gw / 2 + 50, gh / 2 - 200, 120, 4)
-  love.graphics.setColor(Colors.getGreenColor())
-  love.graphics.circle("fill", gw / 2 + 50, gh / 2 - 200, 120, 4)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Continue", gw / 2 - 200, gh / 2 - 227, 500, "center")
-  
-  love.graphics.setLineWidth(60)
-  love.graphics.setFont(smallFont)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.circle("line", gw / 2 + 225, gh / 2, 120, 4)
-  love.graphics.setColor(Colors.getPurpleColor())
-  love.graphics.circle("fill", gw / 2 + 225, gh / 2, 120, 4)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Restart", gw / 2 - 25, gh / 2 - 30, 500, "center")
-  
-  love.graphics.setLineWidth(60)
-  love.graphics.setFont(smallFont)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.circle("line", gw / 2 + 50, gh / 2 + 200, 120, 4)
-  love.graphics.setColor(Colors.getRedColor())
-  love.graphics.circle("fill", gw / 2 + 50, gh / 2 + 200, 120, 4)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Quit", gw / 2 - 200, gh / 2 + 175, 500, "center")
+  restartButton:draw()
+  continueButton:draw()
+  quitButton:draw()
 end
+
 
 function MaingameOverlay()
   love.graphics.setLineWidth(700)
