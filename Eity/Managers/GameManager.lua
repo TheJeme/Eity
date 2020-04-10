@@ -2,53 +2,54 @@ require 'managers/soundManager'
 require 'managers/scoreManager'
 require 'managers/modManager'
 require 'managers/mapManager'
+require 'states/maingame/player'
 
-GameManager = {}
+gameManager = {}
 
-function GameManager:getImageScaleForNewDimensions( image, newWidth, newHeight )
+function gameManager:getImageScaleForNewDimensions( image, newWidth, newHeight )
   local currentWidth, currentHeight = image:getDimensions()
   return ( newWidth / currentWidth ), ( newHeight / currentHeight )
 end
 
-function GameManager.setBackgroundDim(v)
-  GameManager.backgroundDim = v
+function gameManager.setBackgroundDim(v)
+  gameManager.backgroundDim = v
 end
 
-function GameManager:update(dt)
-  ScoreManager:update(dt)
+function gameManager:update(dt)
+  scoreManager:update(dt)
   
-  if GameManager.health <= 0 then
-    GameManager.isFailed = true
+  if gameManager.health <= 0 then
+    gameManager.isFailed = true
   end
 end
 
-function GameManager:load()
-  ModManager:load()
-  ScoreManager:load()
-  SoundManager:load()
+function gameManager:load()
+  modManager:load()
+  scoreManager:load()
+  soundManager:load()
   mapManager:load() 
-  Player:resetPosition()
-  GameManager.pause = false
-  GameManager.isFailed = false
-  GameManager.gametime = 0
-  GameManager.backgroundDim = 0.5
-  GameManager.health = 50
+  map:load()
+  gameManager.pause = false
+  gameManager.isFailed = false
+  gameManager.gametime = 0
+  gameManager.backgroundDim = 0.5
+  gameManager.health = 50
   nextNote = 1
   endTime = 0
 end
 
-function GameManager.Pause()
-  GameManager.pause = not GameManager.pause
+function gameManager.Pause()
+  gameManager.pause = not gameManager.pause
 end
 
-function GameManager.Restart()
-  SoundManager:Restart()
-  ScoreManager.Restart()
-  Player:resetPosition()
-  GameManager.pause = false
-  GameManager.isFailed = false
-  GameManager.gametime = 0
-  GameManager.health = 50
+function gameManager.Restart()
+  soundManager:Restart()
+  scoreManager.Restart()
+  player:resetPosition()
+  gameManager.pause = false
+  gameManager.isFailed = false
+  gameManager.gametime = 0
+  gameManager.health = 50
   xbar = 20
   nextNote = 1
   endTime = 0
@@ -58,4 +59,4 @@ function GameManager.Restart()
   end
 end
 
-return GameManager
+return gameManager

@@ -4,25 +4,25 @@ require 'Mods/DoubleSpeed'
 require 'Mods/Hidden'
 require 'Mods/Flashlight'
 
-ModManager = {}
+modManager = {}
 
-function ModManager:load()
-  ModManager.isHalfSpeed = false
-  ModManager.isDoubleSpeed = false
-  ModManager.isHidden = false
-  ModManager.isFlashlight = false
-  ModManager.isNoFail = false
-  ModManager.isAuto = false
+function modManager:load()
+  modManager.isHalfSpeed = false
+  modManager.isDoubleSpeed = false
+  modManager.isHidden = false
+  modManager.isFlashlight = false
+  modManager.isNoFail = false
+  modManager.isAuto = false
   
-  ModManager.speed = 1.0
+  modManager.speed = 1.0
 end
 
-function ModManager.SetSpeed(speed)
-  ModManager.speed = speed
+function modManager.SetSpeed(speed)
+  modManager.speed = speed
 end
 
-function ModManager.getSpeed()
-  return ModManager.speed
+function modManager.getSpeed()
+  return modManager.speed
 end
 
-return ModManager
+return modManager

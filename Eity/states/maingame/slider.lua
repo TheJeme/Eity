@@ -21,7 +21,7 @@ function createSlider(type, direction, speed, length)
   slider.maxlength = length
   slider.length = length
   slider.scoreLength = length
-  if ModManager.isFlashlight then
+  if modManager.isFlashlight then
     slider.alpha = 0
   else
     slider.alpha = 1
@@ -50,41 +50,41 @@ function Slider:update(dt)
         v.tempPosition = gh * 0.615
           if(v.length > 0) then
             v.length = v.length - v.speed * dt
-            if((v.type == 1 and Player.direction == 2) or (v.type == 3 and Player.direction == 2) or (v.type == 2 and Player.direction == 4)) then
+            if((v.type == 1 and player.direction == "down") or (v.type == 3 and player.direction == "down") or (v.type == 2 and player.direction == "up")) then
               v.scoreLength = v.scoreLength - v.speed * dt
-              SoundManager.hitSlidersrc:play()
+              soundManager.hitSlidersrc:play()
             end
           else
             table.remove(listOfSliders, i)
-            ScoreManager.destroyednotes = ScoreManager.destroyednotes + 2
-            ScoreManager.destroyedArrows = ScoreManager.destroyedArrows + 1
+            scoreManager.destroyednotes = scoreManager.destroyednotes + 2
+            scoreManager.destroyedArrows = scoreManager.destroyedArrows + 1
             if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
-              ScoreManager.AddScore("sliderStart")
+              scoreManager.AddScore("sliderStart")
             elseif((v.scoreLength >= 0 and v.type == 1) or (v.scoreLength >= 0 and v.type == 2)) then
-              ScoreManager.AddScore("miss")
+              scoreManager.AddScore("miss")
             elseif ((v.scoreLength < v.maxlength and v.type == 3)) then
-              ScoreManager.collectedRedSliders = ScoreManager.collectedRedSliders + 1
-              SoundManager.misssrc:play()
-              ScoreManager.AddScore("bad")
+              scoreManager.collectedRedSliders = scoreManager.collectedRedSliders + 1
+              soundManager.misssrc:play()
+              scoreManager.AddScore("bad")
             end
 
             if (v.type == 1) then
-              if (Player.direction == 2) then
-                ScoreManager.collectedBlueSliders = ScoreManager.collectedBlueSliders + 1
-                SoundManager.hitsrc:play()
-                ScoreManager.AddScore("sliderEnd")
+              if (player.direction == "down") then
+                scoreManager.collectedBlueSliders = scoreManager.collectedBlueSliders + 1
+                soundManager.hitsrc:play()
+                scoreManager.AddScore("sliderEnd")
               else
-                SoundManager.misssrc:play()
-                ScoreManager.AddScore("miss")
+                soundManager.misssrc:play()
+                scoreManager.AddScore("miss")
               end
             elseif (v.type == 2) then
-              ScoreManager.collectedYellowArrowsSliders = ScoreManager.collectedYellowArrowsSliders + 1
-              if (Player.direction == 4) then
-                SoundManager.hitsrc:play()
-                ScoreManager.AddScore("sliderEnd")
+              scoreManager.collectedYellowArrowsSliders = scoreManager.collectedYellowArrowsSliders + 1
+              if (player.direction == "up") then
+                soundManager.hitsrc:play()
+                scoreManager.AddScore("sliderEnd")
               else
-                SoundManager.misssrc:play()
-                ScoreManager.AddScore("miss")
+                soundManager.misssrc:play()
+                scoreManager.AddScore("miss")
               end
             end
           end
@@ -103,41 +103,41 @@ function Slider:update(dt)
       v.tempPosition = gh * 0.385
         if(v.length > 0) then
           v.length = v.length - v.speed * dt
-        if((v.type == 1 and Player.direction == 4) or (v.type == 3 and Player.direction == 4) or (v.type == 2 and Player.direction == 2)) then
+        if((v.type == 1 and player.direction == "up") or (v.type == 3 and player.direction == "up") or (v.type == 2 and player.direction == "down")) then
           v.scoreLength = v.scoreLength - v.speed * dt
-          SoundManager.hitSlidersrc:play()
+          soundManager.hitSlidersrc:play()
         end
         else
           table.remove(listOfSliders, i)
-          ScoreManager.destroyednotes = ScoreManager.destroyednotes + 2
-          ScoreManager.destroyedArrows = ScoreManager.destroyedArrows + 1
+          scoreManager.destroyednotes = scoreManager.destroyednotes + 2
+          scoreManager.destroyedArrows = scoreManager.destroyedArrows + 1
           if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
-            ScoreManager.AddScore("sliderStart")
+            scoreManager.AddScore("sliderStart")
           elseif((v.scoreLength >= 0 and v.type == 1) or (v.scoreLength >= 0 and v.type == 2)) then
-            ScoreManager.AddScore("miss")
+            scoreManager.AddScore("miss")
           elseif ((v.scoreLength < v.maxlength and v.type == 3)) then
-            ScoreManager.collectedRedSliders = ScoreManager.collectedRedSliders + 1
-            SoundManager.misssrc:play()
-            ScoreManager.AddScore("bad")
+            scoreManager.collectedRedSliders = scoreManager.collectedRedSliders + 1
+            soundManager.misssrc:play()
+            scoreManager.AddScore("bad")
           end
 
           if (v.type == 1) then
-            if (Player.direction == 4) then
-              ScoreManager.collectedBlueSliders = ScoreManager.collectedBlueSliders + 1
-              SoundManager.hitsrc:play()
-              ScoreManager.AddScore("sliderEnd")
+            if (player.direction == "up") then
+              scoreManager.collectedBlueSliders = scoreManager.collectedBlueSliders + 1
+              soundManager.hitsrc:play()
+              scoreManager.AddScore("sliderEnd")
             else
-              SoundManager.misssrc:play()
-              ScoreManager.AddScore("miss")
+              soundManager.misssrc:play()
+              scoreManager.AddScore("miss")
             end
           elseif (v.type == 2) then
-            if (Player.direction == 2) then
-              ScoreManager.collectedYellowArrowsSliders = ScoreManager.collectedYellowArrowsSliders + 1
-              SoundManager.hitsrc:play()
-              ScoreManager.AddScore("sliderEnd")
+            if (player.direction == "down") then
+              scoreManager.collectedYellowArrowsSliders = scoreManager.collectedYellowArrowsSliders + 1
+              soundManager.hitsrc:play()
+              scoreManager.AddScore("sliderEnd")
             else
-              SoundManager.misssrc:play()
-              ScoreManager.AddScore("miss")
+              soundManager.misssrc:play()
+              scoreManager.AddScore("miss")
             end
           end
         end
@@ -156,41 +156,41 @@ function Slider:update(dt)
       v.tempPosition  = gw * 0.575
         if(v.length > 0) then
           v.length = v.length - v.speed * dt
-          if((v.type == 1 and Player.direction == 3) or (v.type == 3 and Player.direction == 3) or (v.type == 2 and Player.direction == 1)) then
+          if((v.type == 1 and player.direction == "right") or (v.type == 3 and player.direction == "right") or (v.type == 2 and player.direction == "left")) then
             v.scoreLength = v.scoreLength - v.speed * dt
-            SoundManager.hitSlidersrc:play()
+            soundManager.hitSlidersrc:play()
           end
         else
           table.remove(listOfSliders, i)
-          ScoreManager.destroyednotes = ScoreManager.destroyednotes + 2
-          ScoreManager.destroyedArrows = ScoreManager.destroyedArrows + 1
+          scoreManager.destroyednotes = scoreManager.destroyednotes + 2
+          scoreManager.destroyedArrows = scoreManager.destroyedArrows + 1
           if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
-            ScoreManager.AddScore("sliderStart")
+            scoreManager.AddScore("sliderStart")
           elseif((v.scoreLength >= 0 and v.type == 1) or (v.scoreLength >= 0 and v.type == 2)) then
-            ScoreManager.AddScore("miss")
+            scoreManager.AddScore("miss")
           elseif ((v.scoreLength < v.maxlength and v.type == 3)) then
-            ScoreManager.collectedRedSliders = ScoreManager.collectedRedSliders + 1
-            SoundManager.misssrc:play()
-            ScoreManager.AddScore("bad")
+            scoreManager.collectedRedSliders = scoreManager.collectedRedSliders + 1
+            soundManager.misssrc:play()
+            scoreManager.AddScore("bad")
           end
 
           if (v.type == 1) then
-            if (Player.direction == 3) then
-              ScoreManager.collectedBlueSliders = ScoreManager.collectedBlueSliders + 1
-              SoundManager.hitsrc:play()
-              ScoreManager.AddScore("sliderEnd")
+            if (player.direction == "right") then
+              scoreManager.collectedBlueSliders = scoreManager.collectedBlueSliders + 1
+              soundManager.hitsrc:play()
+              scoreManager.AddScore("sliderEnd")
             else
-              SoundManager.misssrc:play()
-              ScoreManager.AddScore("miss")
+              soundManager.misssrc:play()
+              scoreManager.AddScore("miss")
             end
           elseif (v.type == 2) then
-            if (Player.direction == 1) then
-              ScoreManager.collectedYellowArrowsSliders = ScoreManager.collectedYellowArrowsSliders + 1
-              SoundManager.hitsrc:play()
-              ScoreManager.AddScore("sliderEnd")
+            if (player.direction == "left") then
+              scoreManager.collectedYellowArrowsSliders = scoreManager.collectedYellowArrowsSliders + 1
+              soundManager.hitsrc:play()
+              scoreManager.AddScore("sliderEnd")
             else
-              SoundManager.misssrc:play()
-              ScoreManager.AddScore("miss")
+              soundManager.misssrc:play()
+              scoreManager.AddScore("miss")
             end
           end
         end
@@ -209,41 +209,41 @@ function Slider:update(dt)
     v.tempPosition = gw * 0.425 
       if(v.length > 0) then
         v.length = v.length - v.speed * dt
-        if((v.type == 1 and Player.direction == 1) or (v.type == 3 and Player.direction == 1) or (v.type == 2 and Player.direction == 3)) then
+        if((v.type == 1 and player.direction == "left") or (v.type == 3 and player.direction == "left") or (v.type == 2 and player.direction == "right")) then
           v.scoreLength = v.scoreLength - v.speed * dt
-          SoundManager.hitSlidersrc:play()
+          soundManager.hitSlidersrc:play()
         end
       else
         table.remove(listOfSliders, i)
-        ScoreManager.destroyednotes = ScoreManager.destroyednotes + 2
-        ScoreManager.destroyedArrows = ScoreManager.destroyedArrows + 1
+        scoreManager.destroyednotes = scoreManager.destroyednotes + 2
+        scoreManager.destroyedArrows = scoreManager.destroyedArrows + 1
         if((v.scoreLength <= 0 and v.type == 1) or (v.scoreLength <= 0 and v.type == 2)) then
-          ScoreManager.AddScore("sliderStart")
+          scoreManager.AddScore("sliderStart")
         elseif((v.scoreLength >= 0 and v.type == 1) or (v.scoreLength >= 0 and v.type == 2)) then
-          ScoreManager.AddScore("miss")
+          scoreManager.AddScore("miss")
         elseif ((v.scoreLength < v.maxlength and v.type == 3)) then
-          ScoreManager.collectedRedSliders = ScoreManager.collectedRedSliders + 1
-          SoundManager.misssrc:play()
-          ScoreManager.AddScore("bad")
+          scoreManager.collectedRedSliders = scoreManager.collectedRedSliders + 1
+          soundManager.misssrc:play()
+          scoreManager.AddScore("bad")
         end
 
         if (v.type == 1) then
-          if (Player.direction == 1) then
-            ScoreManager.collectedBlueSliders = ScoreManager.collectedBlueSliders + 1
-            SoundManager.hitsrc:play()
-            ScoreManager.AddScore("sliderEnd")
+          if (player.direction == "left") then
+            scoreManager.collectedBlueSliders = scoreManager.collectedBlueSliders + 1
+            soundManager.hitsrc:play()
+            scoreManager.AddScore("sliderEnd")
           else
-            SoundManager.misssrc:play()
-            ScoreManager.AddScore("miss")
+            soundManager.misssrc:play()
+            scoreManager.AddScore("miss")
           end
         elseif (v.type == 2) then
-          if (Player.direction == 3) then
-            ScoreManager.collectedYellowArrowsSliders = ScoreManager.collectedYellowArrowsSliders + 1
-            SoundManager.hitsrc:play()
-            ScoreManager.AddScore("sliderEnd")
+          if (player.direction == "right") then
+            scoreManager.collectedYellowArrowsSliders = scoreManager.collectedYellowArrowsSliders + 1
+            soundManager.hitsrc:play()
+            scoreManager.AddScore("sliderEnd")
           else
-            SoundManager.misssrc:play()
-            ScoreManager.AddScore("miss")
+            soundManager.misssrc:play()
+            scoreManager.AddScore("miss")
           end
         end
       end

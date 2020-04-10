@@ -1,52 +1,52 @@
-SoundManager = {}
+soundManager = {}
 
-function SoundManager:SetMusicVolume(v)
+function soundManager:SetMusicVolume(v)
   musicVolume = v
   
-  SoundManager.mainmenusrc:setVolume(musicVolume)
-  SoundManager.maingamesrc:setVolume(musicVolume)
+  soundManager.mainmenusrc:setVolume(musicVolume)
+  soundManager.maingamesrc:setVolume(musicVolume)
 end
 
-function SoundManager:SetEffectsVolume(v)
+function soundManager:SetEffectsVolume(v)
   effectsVolume = v
   
-  SoundManager.ButtonOver:setVolume(effectsVolume)
-  SoundManager.ButtonHit:setVolume(effectsVolume)
+  soundManager.ButtonOver:setVolume(effectsVolume)
+  soundManager.ButtonHit:setVolume(effectsVolume)
 
-  SoundManager.hitsrc:setVolume(effectsVolume)
-  SoundManager.hitSlidersrc:setVolume(effectsVolume)
-  SoundManager.misssrc:setVolume(effectsVolume)
+  soundManager.hitsrc:setVolume(effectsVolume)
+  soundManager.hitSlidersrc:setVolume(effectsVolume)
+  soundManager.misssrc:setVolume(effectsVolume)
 end
 
 
-function SoundManager:load()
+function soundManager:load()
   musicVolume = 0.05
   effectsVolume = 0.05
   
-  SoundManager.maingamesrc = love.audio.newSource("maps/Shelter/shelter.mp3", "static")
-  SoundManager.mainmenusrc = love.audio.newSource("Assets/Verse_One_BGMusic.mp3", "static")
+  soundManager.maingamesrc = love.audio.newSource("maps/Shelter/shelter.mp3", "static")
+  soundManager.mainmenusrc = love.audio.newSource("Assets/Verse_One_BGMusic.mp3", "static")
   
-  SoundManager.ButtonOver = love.audio.newSource("Assets/ButtonOver.wav", "static")
-  SoundManager.ButtonHit = love.audio.newSource("Assets/ButtonHit.wav", "static")
+  soundManager.ButtonOver = love.audio.newSource("Assets/ButtonOver.wav", "static")
+  soundManager.ButtonHit = love.audio.newSource("Assets/ButtonHit.wav", "static")
   
-  SoundManager.hitsrc = love.audio.newSource("Assets/hit.wav", "static")
-  SoundManager.hitSlidersrc = love.audio.newSource("Assets/slider.wav", "static")
-  SoundManager.misssrc = love.audio.newSource("Assets/miss.wav", "static")
+  soundManager.hitsrc = love.audio.newSource("Assets/hit.wav", "static")
+  soundManager.hitSlidersrc = love.audio.newSource("Assets/slider.wav", "static")
+  soundManager.misssrc = love.audio.newSource("Assets/miss.wav", "static")
   
-  SoundManager.mainmenusrc:setVolume(musicVolume)
-  SoundManager.maingamesrc:setVolume(musicVolume)
+  soundManager.mainmenusrc:setVolume(musicVolume)
+  soundManager.maingamesrc:setVolume(musicVolume)
   
-  SoundManager.ButtonOver:setVolume(effectsVolume)
-  SoundManager.ButtonHit:setVolume(effectsVolume)
+  soundManager.ButtonOver:setVolume(effectsVolume)
+  soundManager.ButtonHit:setVolume(effectsVolume)
 
-  SoundManager.hitsrc:setVolume(effectsVolume)
-  SoundManager.hitSlidersrc:setVolume(effectsVolume)
-  SoundManager.misssrc:setVolume(effectsVolume)
+  soundManager.hitsrc:setVolume(effectsVolume)
+  soundManager.hitSlidersrc:setVolume(effectsVolume)
+  soundManager.misssrc:setVolume(effectsVolume)
 end
 
-function SoundManager:Restart()
-  SoundManager.maingamesrc:stop()
-  SoundManager.maingamesrc:play()
+function soundManager:Restart()
+  soundManager.maingamesrc:stop()
+  soundManager.maingamesrc:play()
 end
 
-return SoundManager
+return soundManager

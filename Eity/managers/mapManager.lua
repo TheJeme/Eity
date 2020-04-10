@@ -1,5 +1,5 @@
-elama = require "maps/Elaman koulu/map"
 shelter = require "maps/Shelter/map"
+elama = require "maps/Elaman koulu/map"
 
 mapManager = { }
  
@@ -11,11 +11,11 @@ function mapManager:load()
   -- Slider length
     
   if map1 == true then
-    elama:load()
-    map = elama
-  else
     shelter:load()
     map = shelter
+  else
+    elama:load()
+    map = elama
   end
   for i, v in ipairs(map) do
     if (map[i][1] == 3) then

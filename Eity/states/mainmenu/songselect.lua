@@ -23,7 +23,7 @@ local modsAutoButtonColor
 
 function Songselect:load()
   img = love.graphics.newImage("maps/Shelter/BG1.jpg")
-  scaleX, scaleY = GameManager:getImageScaleForNewDimensions( img, gw, gh )
+  scaleX, scaleY = gameManager:getImageScaleForNewDimensions( img, gw, gh )
   bigFont = love.graphics.newFont("Assets/roboto.ttf", 84)
   smallFont = love.graphics.newFont("Assets/roboto.ttf", 24)
   smallestFont = love.graphics.newFont("Assets/roboto.ttf", 18)
@@ -47,20 +47,20 @@ end
 
 function Songselect:update(dt)
   if not isModes and not isMods then
-    isMouseOnPlay = mx > gw - 200 and mx < gw - 200 + 150 and
-                            my > gh * 0.94 and my < gh * 0.94 + 50        
+    isMouseOnPlay = mx > window_width - 200 and mx < window_width - 200 + 150 and
+                            my > window_height * 0.94 and my < window_height * 0.94 + 50        
                             
     isMouseOnBack = mx > 50 and mx < 200 and         
                             my > gh * 0.94 and my < gh * 0.94 + 50
                             
-    isMouseOnRandom = mx > gw - 400 and mx < gw - 400 + 150 and         
-                            my > gh * 0.94 and my < gh * 0.94 + 50
+    isMouseOnRandom = mx > window_width - 400 and mx < window_width - 400 + 150 and         
+                            my > window_height * 0.94 and my < window_height * 0.94 + 50
                             
-    isMouseOnMods = mx > gw - 600 and mx < gw - 600 + 150 and         
-                            my > gh * 0.94 and my < gh * 0.94 + 50
+    isMouseOnMods = mx > window_width - 600 and mx < window_width - 600 + 150 and         
+                            my > window_height * 0.94 and my < window_height * 0.94 + 50
                             
-    isMouseOnModes = mx > gw - 800 and mx < gw - 800 + 150 and         
-                            my > gh * 0.94 and my < gh * 0.94 + 50
+    isMouseOnModes = mx > window_width - 800 and mx < window_width - 800 + 150 and         
+                            my > window_height * 0.94 and my < window_height * 0.94 + 50
  
   
     playButtonColor = Green
@@ -84,19 +84,19 @@ function Songselect:update(dt)
     
       if not hoverButtonOver then
         hoverButtonOver = true
-        SoundManager.ButtonOver:play()
+        soundManager.ButtonOver:play()
       end
     else
       hoverButtonOver = false
     end
   end
   if isModes or isMods then
-    isMouseOnModeRhombus = mx > gw * 0.46 and mx < gw * 0.46 + gw * 0.08 and
-                            my > gh * 0.4 and my < gh * 0.4 + 50                                    
-    isMouseOnModeCatch = mx > gw * 0.46 and mx < gw * 0.46 + gw * 0.08 and
-                            my > gh * 0.5 and my < gh * 0.5 + 50                                
-    isMouseOnModeRush = mx > gw * 0.46 and mx < gw * 0.46 + gw * 0.08 and
-                            my > gh * 0.6 and my < gh * 0.6 + 50    
+    isMouseOnModeRhombus = mx > window_width * 0.46 and mx < gw * 0.46 + window_width * 0.08 and
+                            my > window_height * 0.4 and my < window_height * 0.4 + 50                                    
+    isMouseOnModeCatch = mx > window_width * 0.46 and mx < window_width * 0.46 + window_width * 0.08 and
+                            my > window_height * 0.5 and my < window_height * 0.5 + 50                                
+    isMouseOnModeRush = mx > window_width * 0.46 and mx < window_width * 0.46 + window_width * 0.08 and
+                            my > window_height * 0.6 and my < window_height * 0.6 + 50    
                             
     isMouseOnModsBack = mx > gw * 0.46 and mx < gw * 0.46 + 150 and
                             my > gh * 0.7 and my < gh * 0.7 + 50 
@@ -130,7 +130,7 @@ function Songselect:update(dt)
             
         if not hoverButtonOver then
           hoverButtonOver = true
-          SoundManager.ButtonOver:play()
+          soundManager.ButtonOver:play()
         end
       else
         hoverButtonOver = false
@@ -143,7 +143,7 @@ function Songselect:update(dt)
               
         if not hoverButtonOver then
           hoverButtonOver = true
-          SoundManager.ButtonOver:play()
+          soundManager.ButtonOver:play()
         end
       else
         hoverButtonOver = false
@@ -181,110 +181,110 @@ end
 function Songselect:mousepressed(x, y, button)
   if state == "Songselect" and not isModes and not isMods then                                                       
     if isMouseOnPlay and button == 1 then
-      SoundManager.ButtonHit:play()
-      GameManager.Restart()
+      soundManager.ButtonHit:play()
+      gameManager.Restart()
       stateManager.GameState = "Maingame"
     elseif isMouseOnBack and button == 1 then
       state = "Startmenu"
-      SoundManager.ButtonHit:play()
+      soundManager.ButtonHit:play()
     elseif isMouseOnRandom and button == 1 then
-      SoundManager.ButtonHit:play()
+      soundManager.ButtonHit:play()
     elseif isMouseOnMods and button == 1 then
       isMods = true
-      SoundManager.ButtonHit:play()
+      soundManager.ButtonHit:play()
     elseif isMouseOnModes and button == 1 then
       isModes = true
-      SoundManager.ButtonHit:play()
+      soundManager.ButtonHit:play()
     end
   elseif isModes then 
     if isMouseOnModeRhombus and button == 1 then
       stateManager.GameModeState = "Rhombus"
       isModes = false
-      SoundManager.ButtonHit:play()
+      soundManager.ButtonHit:play()
     elseif isMouseOnModeCatch and button == 1 then
       stateManager.GameModeState = "Catch"
       isModes = false 
-      SoundManager.ButtonHit:play()
+      soundManager.ButtonHit:play()
     elseif isMouseOnModeRush and button == 1 then
       stateManager.GameModeState = "Rush"
       isModes = false
-      SoundManager.ButtonHit:play()
+      soundManager.ButtonHit:play()
     end
     
   elseif isMods then 
     if isMouseOnModsHalfSpeed and button == 1 then
-      SoundManager.ButtonHit:play()
-      if ModManager.isDoubleSpeed == true then
-        ModManager.isDoubleSpeed = false
+      soundManager.ButtonHit:play()
+      if modManager.isDoubleSpeed == true then
+        modManager.isDoubleSpeed = false
         modsDoubleSpeedButtonColor = Red
       end
-      if ModManager.isHalfSpeed == false then
-        ModManager.isHalfSpeed = true
-        modsHalfSpeedButtonColor = Red
+      if modManager.isHalfSpeed == false then
+        modManager.isHalfSpeed = true
+        modsHalfSpeedButtonColor = Green
       else
-        ModManager.isHalfSpeed = false
+        modManager.isHalfSpeed = false
         modsHalfSpeedButtonColor = Red
       end
     elseif isMouseOnModsDoubleSpeed and button == 1 then
-      SoundManager.ButtonHit:play()
-      if ModManager.isHalfSpeed == true then
-        ModManager.isHalfSpeed = false
+      soundManager.ButtonHit:play()
+      if modManager.isHalfSpeed == true then
+        modManager.isHalfSpeed = false
         modsHalfSpeedButtonColor = Red
       end
-      if ModManager.isDoubleSpeed == false then
-        ModManager.isDoubleSpeed = true
+      if modManager.isDoubleSpeed == false then
+        modManager.isDoubleSpeed = true
         modsDoubleSpeedButtonColor = Green
       else
-        ModManager.isDoubleSpeed = false
+        modManager.isDoubleSpeed = false
         modsDoubleSpeedButtonColor = Red
       end
     elseif isMouseOnModsHidden and button == 1 then            
-      SoundManager.ButtonHit:play()
-      if ModManager.isHidden == false then
-        ModManager.isHidden = true
+      soundManager.ButtonHit:play()
+      if modManager.isHidden == false then
+        modManager.isHidden = true
         modsHiddenButtonColor = Green
       else
-        ModManager.isHidden = false
+        modManager.isHidden = false
         modsHiddenButtonColor = Red
       end
     elseif isMouseOnModsFlashlight and button == 1 then            
-      SoundManager.ButtonHit:play()
-      if ModManager.isFlashlight == false then
-        ModManager.isFlashlight = true
+      soundManager.ButtonHit:play()
+      if modManager.isFlashlight == false then
+        modManager.isFlashlight = true
         modsFlashlightButtonColor = Green
       else
-        ModManager.isFlashlight = false
+        modManager.isFlashlight = false
         modsFlashlightButtonColor = Red
       end
     elseif isMouseOnModsNoFail and button == 1 then            
-      SoundManager.ButtonHit:play()
-      if ModManager.isAuto == true then
-        ModManager.isAuto = false
+      soundManager.ButtonHit:play()
+      if modManager.isAuto == true then
+        modManager.isAuto = false
         modsAutoButtonColor = Red
       end
-      if ModManager.isNoFail == false then
-        ModManager.isNoFail = true
+      if modManager.isNoFail == false then
+        modManager.isNoFail = true
         modsNoFailButtonColor = Green
       else
-        ModManager.isNoFail = false
+        modManager.isNoFail = false
         modsNoFailButtonColor = Red
       end
     elseif isMouseOnModsAuto and button == 1 then            
-      SoundManager.ButtonHit:play()
-      if ModManager.isNoFail == true then
-        ModManager.isNoFail = false
+      soundManager.ButtonHit:play()
+      if modManager.isNoFail == true then
+        modManager.isNoFail = false
         modsNoFailButtonColor = Red
       end
-      if ModManager.isAuto == false then
-        ModManager.isAuto = true
+      if modManager.isAuto == false then
+        modManager.isAuto = true
         modsAutoButtonColor = Green
       else
-        ModManager.isAuto = false
+        modManager.isAuto = false
         modsAutoButtonColor = Red
       end
     elseif isMouseOnModsBack and button == 1 then            
       isMods = false    
-      SoundManager.ButtonHit:play()
+      soundManager.ButtonHit:play()
     end
   end
 end
@@ -350,7 +350,7 @@ function Mods()
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.printf("Mods", 0, gh * 0.22, gw, "center") 
   love.graphics.setFont(smallFont)
-  love.graphics.printf("Score Multiplier: " .. string.format("%0.2f", ScoreManager.modMultiplier) .. "x", 0, gh * 0.33, gw, "center") 
+  love.graphics.printf("Score Multiplier: " .. string.format("%0.2f", scoreManager.modMultiplier) .. "x", 0, gh * 0.33, gw, "center") 
   
   love.graphics.setColor(0, 0, 0, 0.6)
   love.graphics.rectangle('fill', gw * 0.4, gh * 0.4, 150, 50, 10)

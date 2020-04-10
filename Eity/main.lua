@@ -14,7 +14,7 @@ function love.load()
   isEnabledVSync = false
   defaultFont = love.graphics.getFont()
   stateManager:load()
-  GameManager:load()
+  gameManager:load()
   beloved:load()
   love.graphics.setBackgroundColor(0.1, 0.1, 0.1, 1)
   
@@ -48,8 +48,8 @@ end
 
 function love.update(dt)
   mx, my = love.mouse.getPosition()
-  ScoreManager:update(dt)
-  GameManager:update(dt)
+  scoreManager:update(dt)
+  gameManager:update(dt)
   stateManager:update(dt)
   
   if isEnabledVSync then

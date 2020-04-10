@@ -23,11 +23,11 @@ function Options_UI:load()
   backroundDimButton = newButton(gw * 0.35, gh / 2 - 150, gw * 0.3, 50, 15, "Background dim", GrayOpacity4, White, White, "left", 15, 10)
 
 
-  backgroundDimSlider = newSlider(gw * 0.56, gh / 2 - 125, gw * 0.15, 0.5, 0, 1, function (v) GameManager.setBackgroundDim(v) end)
+  backgroundDimSlider = newSlider(gw * 0.56, gh / 2 - 125, gw * 0.15, 0.5, 0, 1, function (v) gameManager.setBackgroundDim(v) end)
   
   mainVolumeSlider = newSlider(gw * 0.56, gh / 2 + 100, gw * 0.15, 1, 0, 2, function (v) love.audio.setVolume(v) end)
-  musicVolumeSlider = newSlider(gw * 0.56, gh / 2 + 175, gw * 0.15, 0.05, 0, 0.1, function (v) SoundManager:SetMusicVolume(v) end)
-  effectsVolumeSlider = newSlider(gw * 0.56, gh / 2 + 250, gw * 0.15, 0.05, 0, 0.1, function (v) SoundManager:SetEffectsVolume(v) end)
+  musicVolumeSlider = newSlider(gw * 0.56, gh / 2 + 175, gw * 0.15, 0.05, 0, 0.1, function (v) soundManager:SetMusicVolume(v) end)
+  effectsVolumeSlider = newSlider(gw * 0.56, gh / 2 + 250, gw * 0.15, 0.05, 0, 0.1, function (v) soundManager:SetEffectsVolume(v) end)
 end
 
 function Options_UI:update(dt)

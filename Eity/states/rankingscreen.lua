@@ -24,7 +24,7 @@ function Rankingscreen:update(dt)
   if isMouseOnBack then
     if not hoverButtonOver then
       hoverButtonOver = true
-      SoundManager.ButtonOver:play()
+      soundManager.ButtonOver:play()
     end
   else
     hoverButtonOver = false
@@ -41,7 +41,7 @@ end
 
 function Rankingscreen:mousepressed(x, y,button)
   if isMouseOnBack and button == 1 then
-    SoundManager.ButtonHit:play()
+    soundManager.ButtonHit:play()
     stateManager.GameState = "Mainmenu"
   end
 end
@@ -55,7 +55,7 @@ end
 function Rankingscreen.Background()
   love.graphics.push()
   love.graphics.draw(img, 0, 0, 0, scaleX, scaleY)
-  love.graphics.setColor(0.3, 0.3, 0.3, GameManager.backgroundDim)
+  love.graphics.setColor(0.3, 0.3, 0.3, gameManager.backgroundDim)
   love.graphics.rectangle('fill', 0, 0, gw, gh)
   love.graphics.pop()
 end
@@ -81,12 +81,12 @@ function Rankingscreen.Ranking()
   love.graphics.rectangle('line', gw * 0.6, gh * 0.15, gw * 0.3, 100, 15)
   love.graphics.printf("Ranking", gw * 0.6, gh * 0.15, gw * 0.3, "center")
   love.graphics.setFont(rankingFont)
-  love.graphics.printf(ScoreManager.getGrade(), gw * 0.45 - 6, gh * 0.2 - 6, gw * 0.6, "center")
-  love.graphics.printf(ScoreManager.getGrade(), gw * 0.45 + 6, gh * 0.2 - 6, gw * 0.6, "center")
-  love.graphics.printf(ScoreManager.getGrade(), gw * 0.45 - 6, gh * 0.2 + 6, gw * 0.6, "center")
-  love.graphics.printf(ScoreManager.getGrade(), gw * 0.45 + 6, gh * 0.2 + 6, gw * 0.6, "center")
-  love.graphics.setColor(ScoreManager.getGradeColor())
-  love.graphics.printf(ScoreManager.getGrade(), gw * 0.45, gh * 0.2, gw * 0.6, "center")
+  love.graphics.printf(scoreManager.getGrade(), gw * 0.45 - 6, gh * 0.2 - 6, gw * 0.6, "center")
+  love.graphics.printf(scoreManager.getGrade(), gw * 0.45 + 6, gh * 0.2 - 6, gw * 0.6, "center")
+  love.graphics.printf(scoreManager.getGrade(), gw * 0.45 - 6, gh * 0.2 + 6, gw * 0.6, "center")
+  love.graphics.printf(scoreManager.getGrade(), gw * 0.45 + 6, gh * 0.2 + 6, gw * 0.6, "center")
+  love.graphics.setColor(scoreManager.getGradeColor())
+  love.graphics.printf(scoreManager.getGrade(), gw * 0.45, gh * 0.2, gw * 0.6, "center")
 end
 
 function Rankingscreen.Results()
@@ -97,12 +97,12 @@ function Rankingscreen.Results()
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.rectangle('line', 50, gh * 0.15, gw * 0.5, gh * 0.65, 15)
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Score " .. string.format("%08d", ScoreManager.score), 50, gh * 0.16, gw / 2, "center")
+  love.graphics.printf("Score " .. string.format("%08d", scoreManager.score), 50, gh * 0.16, gw / 2, "center")
   Rankingscreen:Blues()   
   Rankingscreen:yellows()
   Rankingscreen:reds()    
-  love.graphics.printf("Combo " .. ScoreManager.maxCombo .. "x", 100, gh * 0.7, 450, "left")           
-  love.graphics.printf("Accuracy " ..string.format("%0.2f",  ScoreManager.getAccuracy()) .. "%" , 475, gh * 0.7, 450, "left")                      
+  love.graphics.printf("Combo " .. scoreManager.maxCombo .. "x", 100, gh * 0.7, 450, "left")           
+  love.graphics.printf("Accuracy " ..string.format("%0.2f",  scoreManager.getAccuracy()) .. "%" , 475, gh * 0.7, 450, "left")                      
                         
 end
 
@@ -122,10 +122,10 @@ end
 
 function Rankingscreen:Blues()
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf( ScoreManager.collectedBlueArrows .. "/" .. ScoreManager.totalBlueArrows, -26 + 130 + 90, gh / 2 - gh * 0.23, 500, "left")
+  love.graphics.printf( scoreManager.collectedBlueArrows .. "/" .. scoreManager.totalBlueArrows, -26 + 130 + 90, gh / 2 - gh * 0.23, 500, "left")
   
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf(ScoreManager.collectedBlueSliders .. "/" .. ScoreManager.totalBlueSliders, -26 + 600 + 90, gh / 2 - gh * 0.23, 500, "left")
+  love.graphics.printf(scoreManager.collectedBlueSliders .. "/" .. scoreManager.totalBlueSliders, -26 + 600 + 90, gh / 2 - gh * 0.23, 500, "left")
   
   
   love.graphics.setColor(34 / 255, 150 / 255, 227 / 255, 1)
@@ -176,10 +176,10 @@ end
 
 function Rankingscreen:yellows()
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf(ScoreManager.collectedYellowArrows .. "/" .. ScoreManager.totalYellowArrows, -26 + 130 + 90, gh / 2 - gh * 0.08, 500, "left")
+  love.graphics.printf(scoreManager.collectedYellowArrows .. "/" .. scoreManager.totalYellowArrows, -26 + 130 + 90, gh / 2 - gh * 0.08, 500, "left")
   
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf(ScoreManager.collectedYellowSliders .. "/" .. ScoreManager.totalYellowSliders, -26 + 600 + 90, gh / 2 - gh * 0.08, 500, "left")
+  love.graphics.printf(scoreManager.collectedYellowSliders .. "/" .. scoreManager.totalYellowSliders, -26 + 600 + 90, gh / 2 - gh * 0.08, 500, "left")
   
   
   love.graphics.setColor(219 / 255, 130 / 255, 52 / 255, 1)
@@ -230,10 +230,10 @@ end
 
 function Rankingscreen:reds()
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf(ScoreManager.collectedRedArrows .. "x", -26 + 130 + 90, gh / 2 + gh * 0.07, 500, "left")
+  love.graphics.printf(scoreManager.collectedRedArrows .. "x", -26 + 130 + 90, gh / 2 + gh * 0.07, 500, "left")
   
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf(ScoreManager.collectedRedSliders .. "x", -26 + 600 + 90, gh / 2 + gh * 0.07, 500, "left")
+  love.graphics.printf(scoreManager.collectedRedSliders .. "x", -26 + 600 + 90, gh / 2 + gh * 0.07, 500, "left")
   
   
   love.graphics.setColor(219 / 255, 52 / 255, 52 / 255, 1)

@@ -24,7 +24,7 @@ function Options:update(dt)
   if isMouseOnBack then
     if not hoverButtonOver then
       hoverButtonOver = true
-      SoundManager.ButtonOver:play()
+      soundManager.ButtonOver:play()
     end
   else
     hoverButtonOver = false
@@ -38,17 +38,17 @@ end
 function Options:mousepressed(x, y,button)
   if state == "Options" then                          
     if isMouseOnBack and button == 1 then
-      SoundManager.ButtonHit:play()
+      soundManager.ButtonHit:play()
       state = "Startmenu"
     elseif isMouseOnEnableFPS and button == 1 then
-      SoundManager.ButtonHit:play()
+      soundManager.ButtonHit:play()
       if isEnabledFPS then
         isEnabledFPS = false
       else
         isEnabledFPS = true
       end
     elseif isMouseOnEnableVSync and button == 1 then
-      SoundManager.ButtonHit:play()
+      soundManager.ButtonHit:play()
       if isEnabledVSync then
         isEnabledVSync = false
       else

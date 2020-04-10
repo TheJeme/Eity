@@ -1,34 +1,34 @@
-Player = {}
+player = {}
 
-function Player:resetPosition()
-  Player.direction = "up"
+function player:resetPosition()
+  player.direction = "up"
 end
 
-function Player:draw()  
+function player:draw()  
   love.graphics.setColor(1, 1, 1, 1)
   
-  if Player.direction == "up" then
+  if player.direction == "up" then
     love.graphics.polygon('fill', gw / 2, gh / 2 - 34,
                           gw / 2 + 40, gh / 2 + 5,
                           gw / 2 + 20, gh / 2 + 25,
                           gw / 2, gh / 2 + 5,
                           gw / 2 - 20, gh / 2 + 25,
                           gw / 2 - 40, gh / 2 + 5)
-  elseif Player.direction == "down" then
+  elseif player.direction == "down" then
     love.graphics.polygon('fill', gw / 2, gh / 2 - 34 * -1,
                           gw / 2 + 40, gh / 2 + 5 * -1,
                           gw / 2 + 20, gh / 2 + 25 * -1,
                           gw / 2, gh / 2 + 5 * -1,
                           gw / 2 - 20, gh / 2 + 25 * -1,
                           gw / 2 - 40, gh / 2 + 5 * -1)
-  elseif Player.direction == "left" then
+  elseif player.direction == "left" then
     love.graphics.polygon('fill', gw / 2 - 34, gh / 2,
                           gw / 2 + 5, gh / 2 + 40,
                           gw / 2 + 25, gh / 2 + 20,
                           gw / 2 + 5, gh / 2,
                           gw / 2 + 25, gh / 2 - 20,
                           gw / 2 + 5, gh / 2 - 40)
-  elseif Player.direction == "right" then
+  elseif player.direction == "right" then
     love.graphics.polygon('fill', gw / 2 - 34 * -1, gh / 2,
                           gw / 2 + 5 * -1, gh / 2 + 40,
                           gw / 2 + 25 * -1, gh / 2 + 20,
@@ -37,21 +37,21 @@ function Player:draw()
                           gw / 2 + 5 * -1, gh / 2 - 40)
   end
 end
-function Player:keypressed(key)
-  if not ModManager.isAuto then
+function player:keypressed(key)
+  if not modManager.isAuto then
     if key == "w" or key == "up" then
-      Player.direction = "up"
+      player.direction = "up"
     end
     if key == "s" or key == "down" then
-      Player.direction = "down"
+      player.direction = "down"
     end
     if key == "a" or key == "left" then
-      Player.direction = "left"
+      player.direction = "left"
     end
     if key == "d" or key == "right" then
-      Player.direction = "right"
+      player.direction = "right"
     end
   end
 end
 
-return Player
+return player

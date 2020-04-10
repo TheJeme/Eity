@@ -14,7 +14,7 @@ function Mainmenu_UI:load()
   bigFont = love.graphics.newFont("Assets/roboto.ttf", 124)
   smallFont = love.graphics.newFont("Assets/roboto.ttf", 48)
   mainBG = love.graphics.newImage("Assets/MainBG3.jpg")
-  scaleX, scaleY = GameManager:getImageScaleForNewDimensions( mainBG, gw, gh )
+  scaleX, scaleY = gameManager:getImageScaleForNewDimensions( mainBG, gw, gh )
   
   noButton = newSquareButton(gw / 2 - 150, gh / 2 + 200, 75, "No", Red, White, 0, -25)
   yesButton = newSquareButton(gw / 2 + 150, gh / 2 + 200, 75, "Yes", Blue, White, 0, -25)

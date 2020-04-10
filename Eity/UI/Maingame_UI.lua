@@ -1,4 +1,5 @@
 require 'objects/squareButton'
+require 'states/maingame/player'
 
 Maingame_UI = {}
 
@@ -20,8 +21,8 @@ function Maingame_UI:load()
 end
 
 function Maingame_UI:update(dt)
-  if GameManager.health > 0 then
-    xScale = gw * 0.35 * GameManager.health / 100
+  if gameManager.health > 0 then
+    xScale = gw * 0.35 * gameManager.health / 100
   else
     xScale = 20
   end
@@ -35,10 +36,11 @@ end
 function Maingame_UI:draw()
   MaingameOverlay()
   Healthbar()
-  ScoreManager:draw()
-  if GameManager.pause then
+  scoreManager:draw()
+  player:draw()
+  if gameManager.pause then
     PauseScreen()
-  elseif GameManager.isFailed then
+  elseif gameManager.isFailed then
     FailScreen()
   end
 end
@@ -55,14 +57,14 @@ function Maingame_UI:mousepressed(x, y,button)
                           my > gh / 2 + 90 and my < gh / 2 + 250 + 60
                           
                           
-   if isMouseOnContinue and GameManager.pause then
-     SoundManager.ButtonHit:play()
-     GameManager.Pause()
-   elseif (isMouseOnRestart and GameManager.pause) or (GameManager.isFailed and isMouseOnRestart) then
-     SoundManager.ButtonHit:play()
-     GameManager.Restart()
-   elseif (isMouseOnQuit and GameManager.pause) or (GameManager.isFailed and isMouseOnQuit) then
-     SoundManager.ButtonHit:play()
+   if isMouseOnContinue and gameManager.pause then
+     soundManager.ButtonHit:play()
+     gameManager.Pause()
+   elseif (isMouseOnRestart and gameManager.pause) or (gameManager.isFailed and isMouseOnRestart) then
+     soundManager.ButtonHit:play()
+     gameManager.Restart()
+   elseif (isMouseOnQuit and gameManager.pause) or (gameManager.isFailed and isMouseOnQuit) then
+     soundManager.ButtonHit:play()
      stateManager.GameState = "Mainmenu"
    end
 end
@@ -82,7 +84,6 @@ end
 function FailScreen()
   love.graphics.setColor(0, 0, 0, 0.6)
   love.graphics.rectangle('fill', 0, 0, gw, gh)  
-  love.graphics.draw(mainBG, 0, 0, 0, 1, 1)
   love.graphics.setColor(0.3, 0.3, 0.3, 0.5)
   love.graphics.rectangle('fill', 0, 0, gw, gh)
     
@@ -99,8 +100,7 @@ end
 function PauseScreen()
   love.graphics.setColor(0, 0, 0, 0.6)
   love.graphics.rectangle('fill', 0, 0, gw, gh)  
-  love.graphics.draw(mainBG, 0, 0, 0, 1, 1)
-  love.graphics.setColor(0.3, 0.3, 0.3, 0.5)
+  love.graphics.setColor(0.1, 0.1, 0.1, 0.5)
   love.graphics.rectangle('fill', 0, 0, gw, gh)
     
   love.graphics.setLineWidth(90)
@@ -112,7 +112,6 @@ function PauseScreen()
   continueButton:draw()
   quitButton:draw()
 end
-
 
 function MaingameOverlay()
   love.graphics.setLineWidth(700)
