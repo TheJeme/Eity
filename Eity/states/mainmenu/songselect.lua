@@ -1,25 +1,13 @@
+require 'objects/button'
+
 Songselect = {}
 
 local smallFont
 local bigFont
-local isMouseOnPlay
-local isMouseOnBack
-local playButtonColor
-local backButtonColor
-local randomButtonColor
-local modsButtonColor
-local modesButtonColor
 
-local modeRhombusButtonColor
-local modeCatchButtonColor
-local modeRushButtonColor
-
-local modsHalfSpeedButtonColor
-local modsDoubleSpeedButtonColor
-local modsHiddenButtonColor
-local modsFlashlightButtonColor
-local modsNoFailButtonColor
-local modsAutoButtonColor
+local playButton, backButton, randomButton, modsButton, modesButton
+local modeRhombusButton, modeCatchButton, modeRushButton
+local modsHiddenButton, modsHalfSpeedButton, modsDoubleSpeedButton, modsHiddenButton, modsFlashlightButton, modsNoFailButton, modsAutoButton
 
 function Songselect:load()
   img = love.graphics.newImage("maps/Shelter/BG1.jpg")
@@ -27,129 +15,47 @@ function Songselect:load()
   bigFont = love.graphics.newFont("Assets/roboto.ttf", 84)
   smallFont = love.graphics.newFont("Assets/roboto.ttf", 24)
   smallestFont = love.graphics.newFont("Assets/roboto.ttf", 18)
-  playButtonColor = Green
-  backButtonColor = Green
-  randomButtonColor = Green
-  modsButtonColor = Green
+
   
-  modesButtonColor = Green
-  modeRhombusButtonColor = Green
-  modeCatchButtonColor = Green
-  modeRushButtonColor = Green
+  backButton = newButton(50, gh * 0.94, 150, 50, 10, "Back", GrayOpacity6, Green, Blue, "center", 0, 10, function() menustate = "Startmenu" end)
+  modesButton = newButton(gw - 800, gh * 0.94, 150, 50, 10, "Modes", GrayOpacity6, Green, Blue, "center", 0, 10, function() isModes = true end)
+  modsButton = newButton(gw - 600, gh * 0.94, 150, 50, 10, "Mods", GrayOpacity6, Green, Blue, "center", 0, 10, function() isMods = true end)
+  randomButton = newButton(gw - 400, gh * 0.94, 150, 50, 10, "Random", GrayOpacity6, Green, Blue, "center", 0, 10, function() end)
+  playButton = newButton(gw - 200, gh * 0.94, 150, 50, 10, "Play", GrayOpacity6, Green, Blue, "center", 0, 10, function() gameManager.Restart() stateManager.GameState = "Maingame" end)
   
-  modsHalfSpeedButtonColor = Red
-  modsDoubleSpeedButtonColor = Red
-  modsHiddenButtonColor = Red
-  modsFlashlightButtonColor = Red
-  modsNoFailButtonColor = Red
-  modsAutoButtonColor = Red
+  modsHalfSpeedButton = newButton(gw * 0.4, gh * 0.4, 150, 50, 10, "0.75x speed", GrayOpacity6, Red, Red, "center", 0, 10, function() enableHalfTimeMod() end)
+  modsDoubleSpeedButton = newButton(gw * 0.52, gh * 0.4, 150, 50, 10, "1.25x speed", GrayOpacity6, Red, Red, "center", 0, 10, function() enableDoubleTimeMod() end)
+  modsHiddenButton = newButton(gw * 0.4, gh * 0.5, 150, 50, 10, "Hidden", GrayOpacity6, Red, Red, "center", 0, 10, function() enableHiddenMod() end)
+  modsFlashlightButton = newButton(gw * 0.52, gh * 0.5, 150, 50, 10, "Flashlight", GrayOpacity6, Red, Red, "center", 0, 10, function() enableFlashlightMod() end)
+  modsNoFailButton = newButton(gw * 0.4, gh * 0.6, 150, 50, 10, "No Fail", GrayOpacity6, Red, Red, "center", 0, 10, function() enableNoFailMod() end)
+  modsAutoButton = newButton(gw * 0.52, gh * 0.6, 150, 50, 10, "Auto", GrayOpacity6, Red, Red, "center", 0, 10, function() enableAutoMod() end)
+  modsbackButton = newButton(gw * 0.46, gh * 0.7, gw * 0.08, 50, 10, "Back", GrayOpacity6, Red, Red, "center", 0, 10, function() isMods = false end)
+  
+  modeRhombusButton = newButton(gw * 0.46, gh * 0.4, gw * 0.08, 50, 10, "Rhombus", GrayOpacity6, Green, Blue, "center", 0, 10, function() stateManager.GameModeState = "Rhombus" isModes = false end)
+  modeCatchButton = newButton(gw * 0.46, gh * 0.5, gw * 0.08, 50, 10, "Catch", GrayOpacity6, Green, Blue, "center", 0, 10, function() stateManager.GameModeState = "Catch" isModes = false end)
+  modeRushButton = newButton(gw * 0.46, gh * 0.6, gw * 0.08, 50, 10, "Rush", GrayOpacity6, Green, Blue, "center", 0, 10, function() stateManager.GameModeState = "Rush" isModes = false end)
 end
 
 function Songselect:update(dt)
   if not isModes and not isMods then
-    isMouseOnPlay = mx > window_width - 200 and mx < window_width - 200 + 150 and
-                            my > window_height * 0.94 and my < window_height * 0.94 + 50        
-                            
-    isMouseOnBack = mx > 50 and mx < 200 and         
-                            my > gh * 0.94 and my < gh * 0.94 + 50
-                            
-    isMouseOnRandom = mx > window_width - 400 and mx < window_width - 400 + 150 and         
-                            my > window_height * 0.94 and my < window_height * 0.94 + 50
-                            
-    isMouseOnMods = mx > window_width - 600 and mx < window_width - 600 + 150 and         
-                            my > window_height * 0.94 and my < window_height * 0.94 + 50
-                            
-    isMouseOnModes = mx > window_width - 800 and mx < window_width - 800 + 150 and         
-                            my > window_height * 0.94 and my < window_height * 0.94 + 50
- 
-  
-    playButtonColor = Green
-    backButtonColor = Green
-    randomButtonColor = Green
-    modsButtonColor = Green
-    modesButtonColor = Green
-            
-    if isMouseOnPlay or isMouseOnBack or isMouseOnRandom or isMouseOnMods or isMouseOnModes then
-      if isMouseOnPlay then
-        playButtonColor = Blue
-      elseif isMouseOnBack then
-        backButtonColor = Blue
-      elseif isMouseOnRandom then
-        randomButtonColor = Blue
-      elseif isMouseOnMods then
-        modsButtonColor = Blue
-      elseif isMouseOnModes then
-        modesButtonColor = Blue
-      end  
-    
-      if not hoverButtonOver then
-        hoverButtonOver = true
-        soundManager.ButtonOver:play()
-      end
-    else
-      hoverButtonOver = false
-    end
-  end
-  if isModes or isMods then
-    isMouseOnModeRhombus = mx > window_width * 0.46 and mx < gw * 0.46 + window_width * 0.08 and
-                            my > window_height * 0.4 and my < window_height * 0.4 + 50                                    
-    isMouseOnModeCatch = mx > window_width * 0.46 and mx < window_width * 0.46 + window_width * 0.08 and
-                            my > window_height * 0.5 and my < window_height * 0.5 + 50                                
-    isMouseOnModeRush = mx > window_width * 0.46 and mx < window_width * 0.46 + window_width * 0.08 and
-                            my > window_height * 0.6 and my < window_height * 0.6 + 50    
-                            
-    isMouseOnModsBack = mx > gw * 0.46 and mx < gw * 0.46 + 150 and
-                            my > gh * 0.7 and my < gh * 0.7 + 50 
-    isMouseOnModsHalfSpeed = mx > gw * 0.4 and mx < gw * 0.4 + 150 and
-                            my > gh * 0.4 and my < gh * 0.4 + 50       
-    isMouseOnModsDoubleSpeed = mx > gw * 0.52 and mx < gw * 0.52 + 150 and
-                            my > gh * 0.4 and my < gh * 0.4 + 50 
-    isMouseOnModsHidden = mx > gw * 0.4 and mx < gw * 0.4 + 150 and
-                            my > gh * 0.5 and my < gh * 0.5 + 50             
-    isMouseOnModsFlashlight = mx > gw * 0.52 and mx < gw * 0.52 + 150 and
-                            my > gh * 0.5 and my < gh * 0.5 + 50       
-    isMouseOnModsNoFail = mx > gw * 0.4 and mx < gw * 0.4 + 150 and
-                            my > gh * 0.6 and my < gh * 0.6 + 50 
-    isMouseOnModsAuto = mx > gw * 0.52 and mx < gw * 0.52 + 150 and
-                            my > gh * 0.6 and my < gh * 0.6 + 50              
-                                                        
-
-    modeRhombusButtonColor = Green
-    modeCatchButtonColor = Green
-    modeRushButtonColor = Green
-    
-    if isModes then
-      if isMouseOnModeRhombus or isMouseOnModeCatch or isMouseOnModeRush then
-        if isMouseOnModeRhombus then
-          modeRhombusButtonColor = Blue
-        elseif isMouseOnModeCatch then
-          modeCatchButtonColor = Blue
-        elseif isMouseOnModeRush then
-          modeRushButtonColor = Blue
-        end  
-            
-        if not hoverButtonOver then
-          hoverButtonOver = true
-          soundManager.ButtonOver:play()
-        end
-      else
-        hoverButtonOver = false
-      end
-    end
-    
-    if isMods then                
-      if isMouseOnModsBack or isMouseOnModsHalfSpeed or isMouseOnModsDoubleSpeed or isMouseOnModsHidden
-       or isMouseOnModsFlashlight or isMouseOnModsNoFail or isMouseOnModsAuto then       
-              
-        if not hoverButtonOver then
-          hoverButtonOver = true
-          soundManager.ButtonOver:play()
-        end
-      else
-        hoverButtonOver = false
-      end
-    end
-  end
+    backButton:update(dt)
+    modesButton:update(dt)
+    modsButton:update(dt)
+    randomButton:update(dt)
+    playButton:update(dt)      
+  elseif isModes then
+    modeRhombusButton:update(dt)
+    modeRushButton:update(dt)
+    modeCatchButton:update(dt) 
+  elseif isMods then    
+    modsHalfSpeedButton:update(dt)        
+    modsDoubleSpeedButton:update(dt)   
+    modsHiddenButton:update(dt)   
+    modsFlashlightButton:update(dt)   
+    modsNoFailButton:update(dt)   
+    modsAutoButton:update(dt)   
+    modsbackButton:update(dt)   
+  end  
 end
 
 
@@ -179,157 +85,114 @@ function Songselect:draw()
 end
 
 function Songselect:mousepressed(x, y, button)
-  if state == "Songselect" and not isModes and not isMods then                                                       
-    if isMouseOnPlay and button == 1 then
-      soundManager.ButtonHit:play()
-      gameManager.Restart()
-      stateManager.GameState = "Maingame"
-    elseif isMouseOnBack and button == 1 then
-      state = "Startmenu"
-      soundManager.ButtonHit:play()
-    elseif isMouseOnRandom and button == 1 then
-      soundManager.ButtonHit:play()
-    elseif isMouseOnMods and button == 1 then
-      isMods = true
-      soundManager.ButtonHit:play()
-    elseif isMouseOnModes and button == 1 then
-      isModes = true
-      soundManager.ButtonHit:play()
-    end
+  if menustate == "Songselect" and not isModes and not isMods then                                                       
+    backButton:mousepressed(x, y, button)
+    modesButton:mousepressed(x, y, button)
+    modsButton:mousepressed(x, y, button)
+    randomButton:mousepressed(x, y, button)
+    playButton:mousepressed(x, y, button)    
   elseif isModes then 
-    if isMouseOnModeRhombus and button == 1 then
-      stateManager.GameModeState = "Rhombus"
-      isModes = false
-      soundManager.ButtonHit:play()
-    elseif isMouseOnModeCatch and button == 1 then
-      stateManager.GameModeState = "Catch"
-      isModes = false 
-      soundManager.ButtonHit:play()
-    elseif isMouseOnModeRush and button == 1 then
-      stateManager.GameModeState = "Rush"
-      isModes = false
-      soundManager.ButtonHit:play()
-    end
-    
+    modeRhombusButton:mousepressed(x, y, button)
+    modeCatchButton:mousepressed(x, y, button)
+    modeRushButton:mousepressed(x, y, button)  
   elseif isMods then 
-    if isMouseOnModsHalfSpeed and button == 1 then
-      soundManager.ButtonHit:play()
-      if modManager.isDoubleSpeed == true then
-        modManager.isDoubleSpeed = false
-        modsDoubleSpeedButtonColor = Red
-      end
-      if modManager.isHalfSpeed == false then
-        modManager.isHalfSpeed = true
-        modsHalfSpeedButtonColor = Green
-      else
-        modManager.isHalfSpeed = false
-        modsHalfSpeedButtonColor = Red
-      end
-    elseif isMouseOnModsDoubleSpeed and button == 1 then
-      soundManager.ButtonHit:play()
-      if modManager.isHalfSpeed == true then
-        modManager.isHalfSpeed = false
-        modsHalfSpeedButtonColor = Red
-      end
-      if modManager.isDoubleSpeed == false then
-        modManager.isDoubleSpeed = true
-        modsDoubleSpeedButtonColor = Green
-      else
-        modManager.isDoubleSpeed = false
-        modsDoubleSpeedButtonColor = Red
-      end
-    elseif isMouseOnModsHidden and button == 1 then            
-      soundManager.ButtonHit:play()
-      if modManager.isHidden == false then
-        modManager.isHidden = true
-        modsHiddenButtonColor = Green
-      else
-        modManager.isHidden = false
-        modsHiddenButtonColor = Red
-      end
-    elseif isMouseOnModsFlashlight and button == 1 then            
-      soundManager.ButtonHit:play()
-      if modManager.isFlashlight == false then
-        modManager.isFlashlight = true
-        modsFlashlightButtonColor = Green
-      else
-        modManager.isFlashlight = false
-        modsFlashlightButtonColor = Red
-      end
-    elseif isMouseOnModsNoFail and button == 1 then            
-      soundManager.ButtonHit:play()
-      if modManager.isAuto == true then
-        modManager.isAuto = false
-        modsAutoButtonColor = Red
-      end
-      if modManager.isNoFail == false then
-        modManager.isNoFail = true
-        modsNoFailButtonColor = Green
-      else
-        modManager.isNoFail = false
-        modsNoFailButtonColor = Red
-      end
-    elseif isMouseOnModsAuto and button == 1 then            
-      soundManager.ButtonHit:play()
-      if modManager.isNoFail == true then
-        modManager.isNoFail = false
-        modsNoFailButtonColor = Red
-      end
-      if modManager.isAuto == false then
-        modManager.isAuto = true
-        modsAutoButtonColor = Green
-      else
-        modManager.isAuto = false
-        modsAutoButtonColor = Red
-      end
-    elseif isMouseOnModsBack and button == 1 then            
-      isMods = false    
-      soundManager.ButtonHit:play()
-    end
+    modsHalfSpeedButton:mousepressed(x, y, button)        
+    modsDoubleSpeedButton:mousepressed(x, y, button)
+    modsHiddenButton:mousepressed(x, y, button)  
+    modsFlashlightButton:mousepressed(x, y, button)
+    modsNoFailButton:mousepressed(x, y, button) 
+    modsAutoButton:mousepressed(x, y, button)
+    modsbackButton:mousepressed(x, y, button)
+  end
+end
+
+function enableHalfTimeMod()
+  if modManager.isDoubleSpeed == true then
+    modManager.isDoubleSpeed = false
+    modsDoubleSpeedButtonColor = Red
+  end
+  if modManager.isHalfSpeed == false then
+    modManager.isHalfSpeed = true
+    modsHalfSpeedButtonColor = Green
+  else
+    modManager.isHalfSpeed = false
+    modsHalfSpeedButtonColor = Red
+  end
+end
+
+function enableDoubleTimeMod()
+  if modManager.isHalfSpeed == true then
+    modManager.isHalfSpeed = false
+    modsHalfSpeedButtonColor = Red
+  end
+  if modManager.isDoubleSpeed == false then
+    modManager.isDoubleSpeed = true
+    modsDoubleSpeedButtonColor = Green
+  else
+    modManager.isDoubleSpeed = false
+    modsDoubleSpeedButtonColor = Red
+  end
+end
+
+function enableHiddenMod()
+  if modManager.isHidden == false then
+    modManager.isHidden = true
+    modsHiddenButtonColor = Green
+  else
+    modManager.isHidden = false
+    modsHiddenButtonColor = Red
+  end
+end
+
+function enableFlashlightMod()
+  if modManager.isFlashlight == false then
+    modManager.isFlashlight = true
+    modsFlashlightButtonColor = Green
+  else
+    modManager.isFlashlight = false
+    modsFlashlightButtonColor = Red
+  end
+end
+
+function enableNoFailMod()
+  if modManager.isAuto == true then
+    modManager.isAuto = false
+    modsAutoButtonColor = Red
+  end
+  if modManager.isNoFail == false then
+    modManager.isNoFail = true
+    modsNoFailButtonColor = Green
+  else
+    modManager.isNoFail = false
+    modsNoFailButtonColor = Red
+  end
+end
+
+function enableAutoMod()
+  if modManager.isNoFail == true then
+    modManager.isNoFail = false
+    modsNoFailButtonColor = Red
+  end
+  if modManager.isAuto == false then
+    modManager.isAuto = true
+    modsAutoButtonColor = Green
+  else
+    modManager.isAuto = false
+    modsAutoButtonColor = Red
   end
 end
 
 function BottomBar()
   love.graphics.setFont(smallFont)
-  love.graphics.setLineWidth(3)
-  
+  love.graphics.setLineWidth(3)  
   love.graphics.setColor(0, 0, 0, 0.6)
   love.graphics.rectangle('fill', 0, gh * 0.92, gw, gh * 0.08)
   
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', 50, gh * 0.94, 150, 50, 10)
-  love.graphics.setColor(backButtonColor)
-  love.graphics.rectangle('line', 50, gh * 0.94, 150, 50, 10)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Back", -75, gh * 0.95, 400, "center")
-  
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', gw - 800, gh * 0.94, 150, 50, 10)
-  love.graphics.setColor(modesButtonColor)
-  love.graphics.rectangle('line', gw - 800, gh * 0.94, 150, 50, 10)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Modes", gw - 925, gh * 0.95, 400, "center")
-  
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', gw - 600, gh * 0.94, 150, 50, 10)
-  love.graphics.setColor(modsButtonColor)
-  love.graphics.rectangle('line', gw - 600, gh * 0.94, 150, 50, 10)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Mods", gw - 725, gh * 0.95, 400, "center")  
-  
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', gw - 400, gh * 0.94, 150, 50, 10)
-  love.graphics.setColor(randomButtonColor)
-  love.graphics.rectangle('line', gw - 400, gh * 0.94, 150, 50, 10)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Random", gw - 525, gh * 0.95, 400, "center")
-  
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', gw - 200, gh * 0.94, 150, 50, 10)
-  love.graphics.setColor(playButtonColor)
-  love.graphics.rectangle('line', gw - 200, gh * 0.94, 150, 50, 10)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Play", gw - 325, gh * 0.95, 400, "center")
+  backButton:draw()
+  modesButton:draw()
+  modsButton:draw()
+  randomButton:draw()
+  playButton:draw()
 end
 
 function Scores()
@@ -352,54 +215,13 @@ function Mods()
   love.graphics.setFont(smallFont)
   love.graphics.printf("Score Multiplier: " .. string.format("%0.2f", scoreManager.modMultiplier) .. "x", 0, gh * 0.33, gw, "center") 
   
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', gw * 0.4, gh * 0.4, 150, 50, 10)
-  love.graphics.setColor(modsHalfSpeedButtonColor)
-  love.graphics.rectangle('line', gw * 0.4, gh * 0.4, 150, 50, 10)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("0.75x speed", gw * 0.4, gh * 0.4 + 10, 150, "center")
-  
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', gw * 0.52, gh * 0.4, 150, 50, 10)
-  love.graphics.setColor(modsDoubleSpeedButtonColor)
-  love.graphics.rectangle('line', gw * 0.52, gh * 0.4, 150, 50, 10)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("1.25x speed", gw * 0.52, gh * 0.4 + 10, 150, "center")
-  
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', gw * 0.4, gh * 0.5, 150, 50, 10)
-  love.graphics.setColor(modsHiddenButtonColor)
-  love.graphics.rectangle('line', gw * 0.4, gh * 0.5, 150, 50, 10)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Hidden", gw * 0.4, gh * 0.5 + 10, 150, "center")
-  
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', gw * 0.52, gh * 0.5, 150, 50, 10)
-  love.graphics.setColor(modsFlashlightButtonColor)
-  love.graphics.rectangle('line', gw * 0.52, gh * 0.5, 150, 50, 10)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Flashlight", gw * 0.52, gh * 0.5 + 10, 150, "center")
-  
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', gw * 0.4, gh * 0.6, 150, 50, 10)
-  love.graphics.setColor(modsNoFailButtonColor)
-  love.graphics.rectangle('line', gw * 0.4, gh * 0.6, 150, 50, 10)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("No Fail", gw * 0.4, gh * 0.6 + 10, 150, "center")
-  
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', gw * 0.52, gh * 0.6, 150, 50, 10)
-  love.graphics.setColor(modsAutoButtonColor)
-  love.graphics.rectangle('line', gw * 0.52, gh * 0.6, 150, 50, 10)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Auto", gw * 0.52, gh * 0.6 + 10, 150, "center")
-  
-  
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', gw * 0.46, gh * 0.7, gw * 0.08, 50, 10)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.rectangle('line', gw * 0.46, gh * 0.7, gw * 0.08, 50, 10)
-  love.graphics.printf("Back", gw * 0.46, gh * 0.7 + 10, gw * 0.08, "center")
+  modsHalfSpeedButton:draw()
+  modsDoubleSpeedButton:draw()
+  modsHiddenButton:draw()
+  modsFlashlightButton:draw()
+  modsNoFailButton:draw()
+  modsAutoButton:draw()
+  modsbackButton:draw()
 end
 
 function Modes()
@@ -412,34 +234,15 @@ function Modes()
   
   love.graphics.setFont(smallFont)  
   
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', gw * 0.46, gh * 0.4, gw * 0.08, 50, 10)
-  love.graphics.setColor(modeRhombusButtonColor)
-  love.graphics.rectangle('line', gw * 0.46, gh * 0.4, gw * 0.08, 50, 10)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Rhombus", gw * 0.46, gh * 0.4 + 10, gw * 0.08, "center")
-  
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', gw * 0.46, gh * 0.5, gw * 0.08, 50, 10)
-  love.graphics.setColor(modeCatchButtonColor)
-  love.graphics.rectangle('line', gw * 0.46, gh * 0.5, gw * 0.08, 50, 10)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Catch", gw * 0.46, gh * 0.5 + 10, gw * 0.08, "center")
-  
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', gw * 0.46, gh * 0.6, gw * 0.08, 50, 10)
-  love.graphics.setColor(modeRushButtonColor)
-  love.graphics.rectangle('line', gw * 0.46, gh * 0.6, gw * 0.08, 50, 10)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Rush", gw * 0.46, gh * 0.6 + 10, gw * 0.08, "center")
+  modeRhombusButton:draw()
+  modeCatchButton:draw()
+  modeRushButton:draw()
 end
 
 function Background()
-  love.graphics.push()
   love.graphics.draw(img, 0, 0, 0, scaleX, scaleY)
   love.graphics.setColor(0.3, 0.3, 0.3, 0.5)
   love.graphics.rectangle('fill', 0, 0, gw, gh)
-  love.graphics.pop()
 end
 
 

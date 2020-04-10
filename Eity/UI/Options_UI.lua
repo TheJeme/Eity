@@ -3,16 +3,10 @@ require 'objects/button'
 
 Options_UI = {}
 
-local smallFont
-local bigFont
-
 local backButton, generalButton, volumeButton, mainButton, musicButton, effectButton, vsyncButton
 
-function Options_UI:load()
-  bigFont = love.graphics.newFont("Assets/roboto.ttf", 124)
-  smallFont = love.graphics.newFont("Assets/roboto.ttf", 24)
-  
-  backButton = newButton(gw * 0.54, gh / 2 + 300, gw * 0.1, 50, 15, "Back", Blue, White, White, "center", 0, 10)
+function Options_UI:load()  
+  backButton = newButton(gw * 0.54, gh / 2 + 300, gw * 0.1, 50, 15, "Back", Blue, White, White, "center", 0, 10, function() menustate = "Startmenu" end)
   generalButton = newButton(gw * 0.38, gh / 2 - 375, gw * 0.1, 50, 15, "General", Purple, White, White, "center", 0, 10)
   volumeButton = newButton(gw * 0.38, gh / 2, gw * 0.1, 50, 15, "Volume", Purple, White, White, "center", 0, 10)
   mainButton = newButton(gw * 0.35, gh / 2 + 75, gw * 0.3, 50, 15, "Main", GrayOpacity4, White, White, "left", 15, 10)
@@ -22,7 +16,6 @@ function Options_UI:load()
   fpsButton = newButton(gw * 0.35, gh / 2 - 225, gw * 0.3, 50, 15, "Show FPS", GrayOpacity4, White, White, "left", 15, 10)
   backroundDimButton = newButton(gw * 0.35, gh / 2 - 150, gw * 0.3, 50, 15, "Background dim", GrayOpacity4, White, White, "left", 15, 10)
 
-
   backgroundDimSlider = newSlider(gw * 0.56, gh / 2 - 125, gw * 0.15, 0.5, 0, 1, function (v) gameManager.setBackgroundDim(v) end)
   
   mainVolumeSlider = newSlider(gw * 0.56, gh / 2 + 100, gw * 0.15, 1, 0, 2, function (v) love.audio.setVolume(v) end)
@@ -31,6 +24,7 @@ function Options_UI:load()
 end
 
 function Options_UI:update(dt)
+  backButton:update(dt)
   backgroundDimSlider:update()
   mainVolumeSlider:update()
   musicVolumeSlider:update()
@@ -50,7 +44,7 @@ function DrawSliders()
 end
 
 function DrawButtons()  
-  love.graphics.setFont(smallFont)
+  love.graphics.setFont(buttonSmallFont)
   love.graphics.setLineWidth(6)   
   backButton:draw()
   generalButton:draw()  
@@ -81,7 +75,10 @@ function DrawButtons()
   love.graphics.rectangle('line', gw * 0.35, gh / 2 - 75, gw * 0.3, 50, 15)
   love.graphics.printf("Keyboard bindings", 0, gh / 2 - 63, gw, "center")
   ]]
+end
 
+function Options_UI:mousepressed(x, y,button)
+  backButton:mousepressed(x, y, button)
 end
 
 return Options_UI

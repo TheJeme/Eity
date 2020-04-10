@@ -12,7 +12,7 @@ function Maingame:load()
   nextNote = 1
   endTime = 0
   img = love.graphics.newImage("maps/Shelter/BG1.jpg")
-  scaleX, scaleY = gameManager:getImageScaleForNewDimensions( img, gw, gh )
+  scaleX, scaleY = gameManager:getImageScaleForNewDimensions(img, gw, gh)
 end
 
 function Maingame:update(dt)

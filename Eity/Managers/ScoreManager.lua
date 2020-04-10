@@ -1,34 +1,10 @@
 scoreManager = {}
 
-local bigFont
-local smallFont
 local note
+
 function scoreManager:load()
-  bigFont = love.graphics.newFont("Assets/roboto.ttf", 48)
-  smallFont = love.graphics.newFont("Assets/roboto.ttf", 24)
-  scoreManager.score = 0
-  scoreManager.combo = 0
   scoreManager.modMultiplier = 1.00
-  scoreManager.misses = 0
-  scoreManager.hits = 0
-  
-  scoreManager.totalBlueArrows = 0
-  scoreManager.totalBlueSliders = 0
-  scoreManager.totalYellowArrows = 0
-  scoreManager.totalYellowSliders = 0
-  scoreManager.totalRedArrows = 0
-  scoreManager.totalRedSliders = 0
-  
-  scoreManager.Destroyednotes = 0
-  scoreManager.destroyedArrows = 0
-  scoreManager.collectedBlueArrows = 0
-  scoreManager.collectedBlueSliders = 0
-  scoreManager.collectedYellowArrows = 0
-  scoreManager.collectedYellowSliders = 0
-  scoreManager.collectedRedArrows = 0
-  scoreManager.collectedRedSliders = 0
-  
-  note = 1
+  scoreManager.Restart()  
 end
 
 function scoreManager.ResetCombo()
@@ -138,11 +114,11 @@ function scoreManager:update(dt)
 end
 
 function scoreManager:draw()
-  love.graphics.setFont(bigFont)
+  love.graphics.setFont(squareButtonsmallFont)
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.printf(scoreManager.combo .. "x", 0, gh - 50, 100, "left")
   love.graphics.printf(string.format("%08d", scoreManager.score), 0, 0, gw, "right")
-  love.graphics.setFont(smallFont)
+  love.graphics.setFont(buttonSmallFont)
   love.graphics.printf(string.format("%0.2f", scoreManager.getAccuracy()) .. "%", 0, 50, gw, "right")
 end
 

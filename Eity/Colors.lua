@@ -5,3 +5,4 @@ Purple = {108 / 255, 92 / 255, 231 / 255, 1}
 White = {1, 1, 1, 1}
 Black = {0, 0, 0, 1}
 GrayOpacity4 = {0, 0, 0, 0.4}
+GrayOpacity6 = {0, 0, 0, 0.6}
