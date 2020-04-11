@@ -21,7 +21,7 @@ function soundManager:load()
   musicVolume = 0.05
   effectsVolume = 0.05
   
-  soundManager.maingamesrc = love.audio.newSource("maps/Shelter/shelter.mp3", "static")
+  soundManager.maingamesrc = love.audio.newSource("maps/Shelter/song.mp3", "static")
   soundManager.mainmenusrc = love.audio.newSource("Assets/Verse_One_BGMusic.mp3", "static")
   
   soundManager.ButtonOver = love.audio.newSource("Assets/ButtonOver.wav", "static")
@@ -40,6 +40,11 @@ function soundManager:load()
   soundManager.hitsrc:setVolume(effectsVolume)
   soundManager.hitSlidersrc:setVolume(effectsVolume)
   soundManager.misssrc:setVolume(effectsVolume)
+end
+
+function soundManager.playSoundEffect(source)
+	local clone = source:clone()
+	clone:play()
 end
 
 function soundManager:Restart()

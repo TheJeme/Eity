@@ -43,25 +43,25 @@ function Arrow:update(dt)
         if (v.type == 1) then
           if (player.direction == "down") then
             scoreManager.collectedBlueArrows = scoreManager.collectedBlueArrows + 1
-            soundManager.hitsrc:play()
+            soundManager.playSoundEffect(soundManager.hitsrc)
             scoreManager.AddScore("perfect")
           else
-            soundManager.misssrc:play()
+            soundManager.playSoundEffect(soundManager.misssrc)
             scoreManager.AddScore("miss")
           end
         elseif (v.type == 2) then
           if (player.direction == "up") then
             scoreManager.collectedYellowArrows = scoreManager.collectedYellowArrows + 1
-            soundManager.hitsrc:play()
+            soundManager.playSoundEffect(soundManager.hitsrc)
             scoreManager.AddScore("perfect")
           else
-            soundManager.misssrc:play()
+            soundManager.playSoundEffect(soundManager.misssrc)
             scoreManager.AddScore("miss")
           end
         elseif (v.type == 3) then
           if (player.direction == "down") then
             scoreManager.collectedRedArrows = scoreManager.collectedRedArrows + 1
-            soundManager.misssrc:play()
+            soundManager.playSoundEffect(soundManager.misssrc)
             scoreManager.AddScore("bad")
           end
         end
@@ -83,25 +83,25 @@ function Arrow:update(dt)
       if (v.type == 1) then
         if (player.direction == "up") then
           scoreManager.collectedBlueArrows = scoreManager.collectedBlueArrows + 1
-          soundManager.hitsrc:play()
+          soundManager.playSoundEffect(soundManager.hitsrc)
           scoreManager.AddScore("perfect")
         else
-          soundManager.misssrc:play()
+          soundManager.playSoundEffect(soundManager.misssrc)
           scoreManager.AddScore("miss")
         end
       elseif (v.type == 2) then
         if (player.direction == "down") then
           scoreManager.collectedYellowArrows = scoreManager.collectedYellowArrows + 1
-          soundManager.hitsrc:play()
+          soundManager.playSoundEffect(soundManager.hitsrc)
           scoreManager.AddScore("perfect")
         else
-          soundManager.misssrc:play()
+          soundManager.playSoundEffect(soundManager.misssrc)
           scoreManager.AddScore("miss")
         end
       elseif (v.type == 3) then
         if (player.direction == "up") then
           scoreManager.collectedRedArrows = scoreManager.collectedRedArrows + 1
-          soundManager.misssrc:play()
+          soundManager.playSoundEffect(soundManager.misssrc)
           scoreManager.AddScore("bad")
         end
       end
@@ -123,25 +123,25 @@ function Arrow:update(dt)
       if (v.type == 1) then
         if (player.direction == "right") then
           scoreManager.collectedBlueArrows = scoreManager.collectedBlueArrows + 1
-          soundManager.hitsrc:play()
+          soundManager.playSoundEffect(soundManager.hitsrc)
           scoreManager.AddScore("perfect")
         else
-          soundManager.misssrc:play()
+          soundManager.playSoundEffect(soundManager.misssrc)
           scoreManager.AddScore("miss")
         end
       elseif (v.type == 2) then
         if (player.direction == "left") then
           scoreManager.collectedYellowArrows = scoreManager.collectedYellowArrows + 1
-          soundManager.hitsrc:play()
+          soundManager.playSoundEffect(soundManager.hitsrc)
           scoreManager.AddScore("perfect")
         else
-          soundManager.misssrc:play()
+          soundManager.playSoundEffect(soundManager.misssrc)
           scoreManager.AddScore("miss")
         end
       elseif (v.type == 3) then
         if (player.direction == "right") then
           scoreManager.collectedRedArrows = scoreManager.collectedRedArrows + 1
-          soundManager.misssrc:play()
+          soundManager.playSoundEffect(soundManager.misssrc)
           scoreManager.AddScore("bad")
         end
       end
@@ -163,25 +163,25 @@ function Arrow:update(dt)
       if (v.type == 1) then
         if (player.direction == "left") then
           scoreManager.collectedBlueArrows = scoreManager.collectedBlueArrows + 1
-          soundManager.hitsrc:play()
+          soundManager.playSoundEffect(soundManager.hitsrc)
           scoreManager.AddScore("perfect")
         else
-          soundManager.misssrc:play()
+          soundManager.playSoundEffect(soundManager.misssrc)
           scoreManager.AddScore("miss")
         end
       elseif (v.type == 2) then
         if (player.direction == "right") then
           scoreManager.collectedYellowArrows = scoreManager.collectedYellowArrows + 1
-          soundManager.hitsrc:play()
+          soundManager.playSoundEffect(soundManager.hitsrc)
           scoreManager.AddScore("perfect")
         else
-          soundManager.misssrc:play()
+          soundManager.playSoundEffect(soundManager.misssrc)
           scoreManager.AddScore("miss")
         end
       elseif (v.type == 3) then
         if (player.direction == "left") then
           scoreManager.collectedRedArrows = scoreManager.collectedRedArrows + 1
-          soundManager.misssrc:play()
+          soundManager.playSoundEffect(soundManager.misssrc)
           scoreManager.AddScore("bad")
         end
       end

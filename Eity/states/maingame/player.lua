@@ -37,6 +37,7 @@ function player:draw()
                           gw / 2 + 5 * -1, gh / 2 - 40)
   end
 end
+
 function player:keypressed(key)
   if not modManager.isAuto and not gameManager.pause and not gameManager.isFailed then
     if key == "w" or key == "up" then

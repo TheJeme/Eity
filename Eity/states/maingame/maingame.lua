@@ -8,6 +8,9 @@ Maingame = {}
 local img
 local scaleX, scaleY
 
+local joysticks = love.joystick.getJoysticks()
+joystick = joysticks[1]
+
 function Maingame:load()
   maingame_UI:load()
   nextNote = 1
@@ -55,6 +58,7 @@ function Maingame:update(dt)
           scoreManager.CalculateTotalNotes()
           soundManager.maingamesrc:stop()
           endTime = 0
+          love.mouse.setVisible(true)
           stateManager.GameState = "Rankingscreen"
         end
       end
@@ -73,7 +77,22 @@ function Maingame:update(dt)
       Flashlight.ApplyMod(dt)
     end
   end
+  
+  if not joystick or not gameManager.pause or not gameManager.isFailed or not modManager.isAuto then return end
+  if joystick:isGamepadDown("dpleft") or joystick:isGamepadDown('x') then
+    player.direction = "left"
+  elseif joystick:isGamepadDown("dpright") or joystick:isGamepadDown('b') then
+    player.direction = "right"
+  end
+
+  if joystick:isGamepadDown("dpup") or joystick:isGamepadDown('y') then
+    player.direction = "up"
+  elseif joystick:isGamepadDown("dpdown") or joystick:isGamepadDown('a') then
+    player.direction = "down"
+  end  
 end
+
+
 
 function Maingame:draw()
   love.graphics.push()

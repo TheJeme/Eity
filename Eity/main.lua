@@ -42,6 +42,8 @@ function discordApplyPresence()
   return presence
 end
 
+
+
 function love.update(dt)
   mx, my = love.mouse.getPosition()
   scoreManager:update(dt)
@@ -74,6 +76,13 @@ function love.draw()
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.printf("FPS " .. love.timer.getFPS(), 0, gh - 12, gw, "right")
   end
+  love.graphics.print(lastbutton)
+end
+
+ lastbutton = "s"
+
+function love.gamepadpressed(joystick, button)
+    lastbutton = button
 end
 
 function love.quit()
