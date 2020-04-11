@@ -10,9 +10,6 @@ local beloved = require 'lib/beloved'
 
 function love.load()
   simpleScale.setWindow(gw, gh, window_width, window_height)
-  isEnabledFPS = true
-  isEnabledVSync = false
-  defaultFont = love.graphics.getFont()
   stateManager:load()
   gameManager:load()
   beloved:load()
@@ -21,18 +18,17 @@ function love.load()
   discordRPC.initialize(appId, true)
   now = os.time(os.date("*t"))
   detailsNow = "In Mainmenu"
-  stateNow = ""
-  
+  stateNow = ""  
   nextPresenceUpdate = 0
 end
 
 function discordApplyPresence()
-  if stateManager.GameState == "Mainmenu" then
-    detailsNow = "In Mainmenu"
-    stateNow = ""
-  elseif stateManager.GameState == "Maingame" then
+  if stateManager.GameState == "Maingame" then
     detailsNow = "Shelter"
     stateNow = "By Porter Robinson & Madeon"
+  else
+    detailsNow = "In Mainmenu"
+    stateNow = ""
   end
   
   presence = {

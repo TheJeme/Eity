@@ -1,6 +1,11 @@
 gw = 1920
 gh = 1080
 
+defaultFont = love.graphics.getFont()
+
+isEnabledFPS = true
+isEnabledVSync = false
+
 window_width = love.graphics.getWidth()
 window_height = love.graphics.getHeight()
 

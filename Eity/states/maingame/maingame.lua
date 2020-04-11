@@ -5,6 +5,9 @@ require 'states/maingame/player'
 
 Maingame = {}
 
+local img
+local scaleX, scaleY
+
 function Maingame:load()
   maingame_UI:load()
   nextNote = 1
@@ -20,7 +23,7 @@ function Maingame:update(dt)
   elseif modManager.isHalfSpeed then
     modManager.SetSpeed(HalfSpeed.ApplyMod())
   else
-    modManager.SetSpeed(1)
+    modManager.SetSpeed(1.0)
   end
   if modManager.isAuto then
     Auto.ApplyMod()

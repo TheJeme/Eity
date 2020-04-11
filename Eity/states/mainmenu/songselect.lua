@@ -23,13 +23,13 @@ function Songselect:load()
   randomButton = newButton(gw - 400, gh * 0.94, 150, 50, 10, "Random", GrayOpacity6, Green, Blue, "center", 0, 10, function() end)
   playButton = newButton(gw - 200, gh * 0.94, 150, 50, 10, "Play", GrayOpacity6, Green, Blue, "center", 0, 10, function() gameManager.Restart() stateManager.GameState = "Maingame" end)
   
-  modsHalfSpeedButton = newButton(gw * 0.4, gh * 0.4, 150, 50, 10, "0.75x speed", GrayOpacity6, Red, Red, "center", 0, 10, function() enableHalfTimeMod() end)
-  modsDoubleSpeedButton = newButton(gw * 0.52, gh * 0.4, 150, 50, 10, "1.25x speed", GrayOpacity6, Red, Red, "center", 0, 10, function() enableDoubleTimeMod() end)
-  modsHiddenButton = newButton(gw * 0.4, gh * 0.5, 150, 50, 10, "Hidden", GrayOpacity6, Red, Red, "center", 0, 10, function() enableHiddenMod() end)
-  modsFlashlightButton = newButton(gw * 0.52, gh * 0.5, 150, 50, 10, "Flashlight", GrayOpacity6, Red, Red, "center", 0, 10, function() enableFlashlightMod() end)
-  modsNoFailButton = newButton(gw * 0.4, gh * 0.6, 150, 50, 10, "No Fail", GrayOpacity6, Red, Red, "center", 0, 10, function() enableNoFailMod() end)
-  modsAutoButton = newButton(gw * 0.52, gh * 0.6, 150, 50, 10, "Auto", GrayOpacity6, Red, Red, "center", 0, 10, function() enableAutoMod() end)
-  modsbackButton = newButton(gw * 0.46, gh * 0.7, gw * 0.08, 50, 10, "Back", GrayOpacity6, Red, Red, "center", 0, 10, function() isMods = false end)
+  modsHalfSpeedButton = newButton(gw * 0.4, gh * 0.4, 150, 50, 10, "0.75x speed", GrayOpacity6, Red, Green, "center", 0, 10, function() enableHalfTimeMod() end, true)
+  modsDoubleSpeedButton = newButton(gw * 0.52, gh * 0.4, 150, 50, 10, "1.25x speed", GrayOpacity6, Red, Green, "center", 0, 10, function() enableDoubleTimeMod() end, true)
+  modsHiddenButton = newButton(gw * 0.4, gh * 0.5, 150, 50, 10, "Hidden", GrayOpacity6, Red, Green, "center", 0, 10, function() enableHiddenMod() end, true)
+  modsFlashlightButton = newButton(gw * 0.52, gh * 0.5, 150, 50, 10, "Flashlight", GrayOpacity6, Red, Green, "center", 0, 10, function() enableFlashlightMod() end, true)
+  modsNoFailButton = newButton(gw * 0.4, gh * 0.6, 150, 50, 10, "No Fail", GrayOpacity6, Red, Green, "center", 0, 10, function() enableNoFailMod() end, true)
+  modsAutoButton = newButton(gw * 0.52, gh * 0.6, 150, 50, 10, "Auto", GrayOpacity6, Red, Green, "center", 0, 10, function() enableAutoMod() end, true)
+  modsbackButton = newButton(gw * 0.46, gh * 0.7, gw * 0.08, 50, 10, "Back", GrayOpacity6, Green, Blue, "center", 0, 10, function() isMods = false end)
   
   modeRhombusButton = newButton(gw * 0.46, gh * 0.4, gw * 0.08, 50, 10, "Rhombus", GrayOpacity6, Green, Blue, "center", 0, 10, function() stateManager.GameModeState = "Rhombus" isModes = false end)
   modeCatchButton = newButton(gw * 0.46, gh * 0.5, gw * 0.08, 50, 10, "Catch", GrayOpacity6, Green, Blue, "center", 0, 10, function() stateManager.GameModeState = "Catch" isModes = false end)
@@ -72,9 +72,7 @@ function Songselect:draw()
     love.graphics.printf("Shelter", gw - 500, gh * 0.5 + 15, 500, "left")
     love.graphics.setFont(smallestFont)
     love.graphics.printf("Porter Robinson & Madeon", gw - 490, gh * 0.5 + 45, 500, "left")
-    love.graphics.printf("Easy", gw - 490, gh * 0.5 + 70, 500, "left")
-    
-    
+    love.graphics.printf("Easy", gw - 490, gh * 0.5 + 70, 500, "left")        
     
     love.graphics.print("Selected Mode: " .. stateManager.GameModeState, 0, 20)
   elseif isModes then
@@ -109,76 +107,76 @@ end
 function enableHalfTimeMod()
   if modManager.isDoubleSpeed == true then
     modManager.isDoubleSpeed = false
-    modsDoubleSpeedButtonColor = Red
+    modsDoubleSpeedButton:setNormalOutlineColor()
   end
   if modManager.isHalfSpeed == false then
     modManager.isHalfSpeed = true
-    modsHalfSpeedButtonColor = Green
+    modsHalfSpeedButton:setHighlightOutlineColor()
   else
     modManager.isHalfSpeed = false
-    modsHalfSpeedButtonColor = Red
+    modsHalfSpeedButton:setNormalOutlineColor()
   end
 end
 
 function enableDoubleTimeMod()
   if modManager.isHalfSpeed == true then
     modManager.isHalfSpeed = false
-    modsHalfSpeedButtonColor = Red
+    modsHalfSpeedButton:setNormalOutlineColor()
   end
   if modManager.isDoubleSpeed == false then
     modManager.isDoubleSpeed = true
-    modsDoubleSpeedButtonColor = Green
+    modsDoubleSpeedButton:setHighlightOutlineColor()
   else
     modManager.isDoubleSpeed = false
-    modsDoubleSpeedButtonColor = Red
+    modsDoubleSpeedButton:setNormalOutlineColor()
   end
 end
 
 function enableHiddenMod()
   if modManager.isHidden == false then
     modManager.isHidden = true
-    modsHiddenButtonColor = Green
+    modsHiddenButton:setHighlightOutlineColor()
   else
     modManager.isHidden = false
-    modsHiddenButtonColor = Red
+    modsHiddenButton:setNormalOutlineColor()
   end
 end
 
 function enableFlashlightMod()
   if modManager.isFlashlight == false then
     modManager.isFlashlight = true
-    modsFlashlightButtonColor = Green
+    modsFlashlightButton:setHighlightOutlineColor()
   else
     modManager.isFlashlight = false
-    modsFlashlightButtonColor = Red
+    modsFlashlightButton:setNormalOutlineColor()
   end
 end
 
 function enableNoFailMod()
   if modManager.isAuto == true then
     modManager.isAuto = false
-    modsAutoButtonColor = Red
+    modsAutoButton:setNormalOutlineColor()
   end
   if modManager.isNoFail == false then
     modManager.isNoFail = true
-    modsNoFailButtonColor = Green
+    modsNoFailButton:setHighlightOutlineColor()
   else
     modManager.isNoFail = false
-    modsNoFailButtonColor = Red
+    modsNoFailButton:setNormalOutlineColor()
   end
 end
 
 function enableAutoMod()
   if modManager.isNoFail == true then
     modManager.isNoFail = false
-    modsNoFailButtonColor = Red
+    modsNoFailButton:setNormalOutlineColor()
   end
   if modManager.isAuto == false then
     modManager.isAuto = true
-    modsAutoButtonColor = Green
+    modsAutoButton:setHighlightOutlineColor()
   else
     modManager.isAuto = false
-    modsAutoButtonColor = Red
+    modsAutoButton:setNormalOutlineColor()
   end
 end
 

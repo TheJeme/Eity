@@ -38,7 +38,7 @@ function player:draw()
   end
 end
 function player:keypressed(key)
-  if not modManager.isAuto then
+  if not modManager.isAuto and not gameManager.pause and not gameManager.isFailed then
     if key == "w" or key == "up" then
       player.direction = "up"
     end

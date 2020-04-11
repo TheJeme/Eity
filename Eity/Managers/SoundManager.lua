@@ -1,21 +1,19 @@
 soundManager = {}
 
-function soundManager:SetMusicVolume(v)
-  musicVolume = v
+function soundManager:SetMusicVolume(volume)
   
-  soundManager.mainmenusrc:setVolume(musicVolume)
-  soundManager.maingamesrc:setVolume(musicVolume)
+  soundManager.mainmenusrc:setVolume(volume)
+  soundManager.maingamesrc:setVolume(volume)
 end
 
-function soundManager:SetEffectsVolume(v)
-  effectsVolume = v
+function soundManager:SetEffectsVolume(volume)
   
-  soundManager.ButtonOver:setVolume(effectsVolume)
-  soundManager.ButtonHit:setVolume(effectsVolume)
+  soundManager.ButtonOver:setVolume(volume)
+  soundManager.ButtonHit:setVolume(volume)
 
-  soundManager.hitsrc:setVolume(effectsVolume)
-  soundManager.hitSlidersrc:setVolume(effectsVolume)
-  soundManager.misssrc:setVolume(effectsVolume)
+  soundManager.hitsrc:setVolume(volume)
+  soundManager.hitSlidersrc:setVolume(volume)
+  soundManager.misssrc:setVolume(volume)
 end
 
 

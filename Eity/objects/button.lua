@@ -3,7 +3,7 @@ button.__index = button
 
 local hoverButtonOver
 
-function newButton(x, y, width, height, corner, text, inlineColor, normalOutlineColor, highlightOutlineColor, textAlign, ox, oy, func)
+function newButton(x, y, width, height, corner, text, inlineColor, normalOutlineColor, highlightOutlineColor, textAlign, ox, oy, func, isToggle)
   local b = {}
   b.x = x
   b.y = y
@@ -18,6 +18,7 @@ function newButton(x, y, width, height, corner, text, inlineColor, normalOutline
   b.ox = ox or 0
   b.oy = oy or 0
   b.func = func
+  b.isToggle = isToggle or false
   b.activeOutlineColor = normalOutlineColor
   
   return setmetatable(b, button)
@@ -29,14 +30,18 @@ function button:update(dt)
                           
                           
   if self.isMouseOnButton then
-    self.activeOutlineColor = self.highlightOutlineColor
+    if not self.isToggle then
+      self.activeOutlineColor = self.highlightOutlineColor
+    end
     if not self.hoverButtonOver then
       self.hoverButtonOver = true
       soundManager.ButtonOver:play()
     end
   else
     self.hoverButtonOver = false
-    self.activeOutlineColor = self.normalOutlineColor
+    if not self.isToggle then
+      self.activeOutlineColor = self.normalOutlineColor
+    end
   end
   
 end
@@ -55,4 +60,12 @@ function button:mousepressed(x, y, button)
     self.func()
     soundManager.ButtonHit:play()
   end
+end
+
+function button:setHighlightOutlineColor()
+  self.activeOutlineColor = self.highlightOutlineColor
+end
+
+function button:setNormalOutlineColor()
+  self.activeOutlineColor = self.normalOutlineColor
 end
