@@ -78,7 +78,7 @@ function Maingame:update(dt)
     end
   end
   
-  if not joystick or not gameManager.pause or not gameManager.isFailed or not modManager.isAuto then return end
+  if not joystick or gameManager.pause or gameManager.isFailed or modManager.isAuto then return end
   if joystick:isGamepadDown("dpleft") or joystick:isGamepadDown('x') then
     player.direction = "left"
   elseif joystick:isGamepadDown("dpright") or joystick:isGamepadDown('b') then

@@ -33,11 +33,6 @@ function Mainmenu:update(dt)
   if menustate == "Startmenu" then
     soundManager.mainmenusrc:play()
     Mainmenu_Particles:update(dt)
-    noButton:update(dt)
-    yesButton:update(dt)
-    playButton:update(dt)
-    optionsButton:update(dt)
-    exitButton:update(dt)
   elseif menustate == "Options" then
     Options:update(dt)
   elseif menustate == "Songselect" then
@@ -72,14 +67,14 @@ function menu_UI()
 end
 
 function Mainmenu:keypressed(key)
-  
-  if key == "escape" and menustate == "Songselect" and isModes then
-    isModes = false
-  elseif key == "escape" and menustate == "Songselect" and isMods then
-    isMods = false
+  if menustate == "Songselect" then
+    Songselect:keypressed(key)
+    if key == "escape" then
+      menustate = "Startmenu"
+    end
   elseif key == "escape" and menustate == "Startmenu" then
     PressedQuit = true
-  elseif key == "escape" and menustate == "Options" or menustate == "Songselect" and key == "escape" then
+  elseif key == "escape" and menustate == "Options" then
     menustate = "Startmenu"
   end
 end

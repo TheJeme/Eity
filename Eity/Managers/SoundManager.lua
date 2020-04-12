@@ -8,8 +8,8 @@ end
 
 function soundManager:SetEffectsVolume(volume)
   
-  soundManager.ButtonOver:setVolume(volume)
-  soundManager.ButtonHit:setVolume(volume)
+  soundManager.buttonOversrc:setVolume(volume)
+  soundManager.buttonHitsrc:setVolume(volume)
 
   soundManager.hitsrc:setVolume(volume)
   soundManager.hitSlidersrc:setVolume(volume)
@@ -24,8 +24,8 @@ function soundManager:load()
   soundManager.maingamesrc = love.audio.newSource("maps/Shelter/song.mp3", "static")
   soundManager.mainmenusrc = love.audio.newSource("Assets/Verse_One_BGMusic.mp3", "static")
   
-  soundManager.ButtonOver = love.audio.newSource("Assets/ButtonOver.wav", "static")
-  soundManager.ButtonHit = love.audio.newSource("Assets/ButtonHit.wav", "static")
+  soundManager.buttonOversrc = love.audio.newSource("Assets/ButtonOver.wav", "static")
+  soundManager.buttonHitsrc = love.audio.newSource("Assets/ButtonHit.wav", "static")
   
   soundManager.hitsrc = love.audio.newSource("Assets/hit.wav", "static")
   soundManager.hitSlidersrc = love.audio.newSource("Assets/slider.wav", "static")
@@ -34,8 +34,8 @@ function soundManager:load()
   soundManager.mainmenusrc:setVolume(musicVolume)
   soundManager.maingamesrc:setVolume(musicVolume)
   
-  soundManager.ButtonOver:setVolume(effectsVolume)
-  soundManager.ButtonHit:setVolume(effectsVolume)
+  soundManager.buttonOversrc:setVolume(effectsVolume)
+  soundManager.buttonHitsrc:setVolume(effectsVolume)
 
   soundManager.hitsrc:setVolume(effectsVolume)
   soundManager.hitSlidersrc:setVolume(effectsVolume)

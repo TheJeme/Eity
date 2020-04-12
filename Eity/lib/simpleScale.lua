@@ -83,6 +83,10 @@ function simpleScale.resizeUpdate()
 	simpleScale.scale = scale
 end
 
+function simpleScale.getScale()
+	return scale
+end
+
 -- Transforms the game's window relative to the entire window
 -- Call this at the beginning of love.draw()
 function simpleScale.set()

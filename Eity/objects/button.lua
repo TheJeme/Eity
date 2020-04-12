@@ -25,8 +25,7 @@ function newButton(x, y, width, height, corner, text, inlineColor, normalOutline
 end
 
 function button:update(dt)
-  self.isMouseOnButton = mx > self.x and mx < self.x + self.width and
-                          my > self.y and my < self.y + self.height
+
                           
                           
   if self.isMouseOnButton then
@@ -35,7 +34,7 @@ function button:update(dt)
     end
     if not self.hoverButtonOver then
       self.hoverButtonOver = true
-      soundManager.ButtonOver:play()
+      soundManager.playSoundEffect(soundManager.buttonOversrc)
     end
   else
     self.hoverButtonOver = false
@@ -47,6 +46,9 @@ function button:update(dt)
 end
 
 function button:draw()
+  self.isMouseOnButton = mx > self.x and mx < self.x + self.width and
+                          my > self.y and my < self.y + self.height
+  
   love.graphics.setColor(self.inlineColor)
   love.graphics.rectangle('fill', self.x, self.y, self.width, self.height, self.corner)
   love.graphics.setColor(self.activeOutlineColor)
@@ -58,7 +60,7 @@ end
 function button:mousepressed(x, y, button)
   if self.isMouseOnButton and button == 1 then
     self.func()
-    soundManager.ButtonHit:play()
+    soundManager.playSoundEffect(soundManager.buttonHitsrc)
   end
 end
 

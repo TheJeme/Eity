@@ -33,11 +33,11 @@ function Options:update(dt)
   musicVolumeSlider:update()
   effectsVolumeSlider:update()
                       
-  isMouseOnEnableVSync = mx > window_width * 0.63 - 16 and mx < window_width * 0.63 + 16 and
-                          my > window_height / 2 - 275 - 16 and my < window_height / 2 - 275 + 16   
+  isMouseOnEnableVSync = mx > gw * 0.63 - 16 and mx < gw * 0.63 + 16 and
+                          my > gh / 2 - 275 - 16 and my < gh / 2 - 275 + 16   
                           
-  isMouseOnEnableFPS = mx > window_width * 0.63 - 16 and mx < window_width * 0.63 + 16 and
-                          my > window_height / 2 - 200 - 16 and my < window_height / 2 - 200 + 16   
+  isMouseOnEnableFPS = mx > gw * 0.63 - 16 and mx < gw * 0.63 + 16 and
+                          my > gh / 2 - 200 - 16 and my < gh / 2 - 200 + 16   
                                                             
 end
 
@@ -49,14 +49,14 @@ end
 function Options:mousepressed(x, y,button)     
   backButton:mousepressed(x, y, button)              
   if isMouseOnEnableFPS and button == 1 then
-    soundManager.ButtonHit:play()
+    soundManager.playSoundEffect(soundManager.buttonHitsrc)
     if isEnabledFPS then
       isEnabledFPS = false
     else
       isEnabledFPS = true
     end
   elseif isMouseOnEnableVSync and button == 1 then
-    soundManager.ButtonHit:play()
+    soundManager.playSoundEffect(soundManager.buttonHitsrc)
     if isEnabledVSync then
       isEnabledVSync = false
     else

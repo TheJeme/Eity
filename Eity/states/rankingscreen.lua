@@ -24,7 +24,7 @@ function Rankingscreen:update(dt)
   if isMouseOnBack then
     if not hoverButtonOver then
       hoverButtonOver = true
-      soundManager.ButtonOver:play()
+      soundManager.playSoundEffect(soundManager.buttonOversrc)
     end
   else
     hoverButtonOver = false
@@ -41,7 +41,7 @@ end
 
 function Rankingscreen:mousepressed(x, y,button)
   if isMouseOnBack and button == 1 then
-    soundManager.ButtonHit:play()
+    soundManager.playSoundEffect(soundManager.buttonHitsrc)
     stateManager.GameState = "Mainmenu"
   end
 end
@@ -61,14 +61,16 @@ function Rankingscreen.Background()
 end
 
 function Rankingscreen.Topbar()
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', 0, 0, gw, gh * 0.1)
+  love.graphics.setColor(GrayOpacity6)
+  love.graphics.rectangle('fill', 0, 0, gw, gh * 0.08)
+  love.graphics.setColor(White)
+  love.graphics.line(0, gh * 0.08, gw, gh * 0.08)
   
-  love.graphics.setColor(1, 1, 1, 1)
+
   love.graphics.setFont(titleFont)
-  love.graphics.printf("Shelter - Porter Robinson & Madeon [Easy]", 0, 0, gw, "left")
+  love.graphics.printf("Shelter - Porter Robinson & Madeon [Easy]", 15, 10, gw, "left")
   love.graphics.setFont(descFont)  
-  love.graphics.printf("Played on " .. os.date("%d/%m/%Y"), 0, 45, gw, "left")
+  love.graphics.printf("Played on " .. os.date("%d/%m/%Y"), 18, 45, gw, "left")
 end
 
 function Rankingscreen.Ranking()

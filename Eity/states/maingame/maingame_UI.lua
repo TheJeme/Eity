@@ -19,10 +19,6 @@ function maingame_UI:load()
 end
 
 function maingame_UI:update(dt)
-  restartButton:update(dt)
-  quitButton:update(dt)
-  continueButton:update(dt)
-  
   
   if gameManager.health > 0 then
     xScale = gw * 0.35 * gameManager.health / 100

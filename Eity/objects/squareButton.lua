@@ -17,13 +17,10 @@ function newSquareButton(x, y, radius, text, inlineColor, outlineColor, ox, oy, 
   return setmetatable(s, squareButton)
 end
 
-
-function squareButton:update(dt)
+function squareButton:draw() --love.mouse.getX() / gw * 100
   self.isMouseOnButton = mx > self.x - self.radius * 0.8 and mx < self.x + self.radius * 2 * 0.4 and
                           my > self.y - self.radius * 0.8 and my < self.y + self.radius * 2 * 0.4
-end
-
-function squareButton:draw()
+  
   love.graphics.setColor(self.outlineColor)
   love.graphics.circle("line", self.x, self.y, self.radius, 4)
   love.graphics.setColor(self.inlineColor)
@@ -32,9 +29,9 @@ function squareButton:draw()
   love.graphics.printf(self.text, self.x - self.radius + self.ox, self.y + self.oy, self.radius * 2, "center")
 end
 
-function squareButton:mousepressed(x, y, button)
+function squareButton:mousepressed(x, y, button)                          
   if self.isMouseOnButton and button == 1 then
     self.func()
-    soundManager.ButtonHit:play()
+    soundManager.playSoundEffect(soundManager.buttonHitsrc)
   end
 end

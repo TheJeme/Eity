@@ -14,7 +14,7 @@ function love.load()
   gameManager:load()
   beloved:load()
   love.graphics.setBackgroundColor(0.1, 0.1, 0.1, 1)
-  
+
   discordRPC.initialize(appId, true)
   now = os.time(os.date("*t"))
   detailsNow = "In Mainmenu"
@@ -45,7 +45,8 @@ end
 
 
 function love.update(dt)
-  mx, my = love.mouse.getPosition()
+  mx = love.mouse.getX() / simpleScale.getScale()
+  my = love.mouse.getY() / simpleScale.getScale()
   scoreManager:update(dt)
   gameManager:update(dt)
   stateManager:update(dt)
@@ -76,13 +77,6 @@ function love.draw()
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.printf("FPS " .. love.timer.getFPS(), 0, gh - 12, gw, "right")
   end
-  love.graphics.print(lastbutton)
-end
-
- lastbutton = "s"
-
-function love.gamepadpressed(joystick, button)
-    lastbutton = button
 end
 
 function love.quit()

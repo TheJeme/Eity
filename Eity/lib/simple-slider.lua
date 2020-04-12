@@ -50,13 +50,11 @@ function newSlider(x, y, length, value, min, max, setter, style)
     return setmetatable(s, slider)
 end
 
-function slider:update(mouseX, mouseY, mouseDown)
-    local x = mouseX or love.mouse.getX()
-    local y = mouseY or love.mouse.getY()
+function slider:update()
+    local x = mx
+    local y = my
     local down = love.mouse.isDown(1)
-    if mouseDown ~= nil then
-        down = mouseDown
-    end
+
 
     local knobX = self.x
     local knobY = self.y

@@ -1,21 +1,22 @@
 require 'objects/button'
+require 'objects/mapList'
 
 Songselect = {}
 
-local smallFont
-local bigFont
+local bigFont, smallFont, smallestFont
 
 local playButton, backButton, randomButton, modsButton, modesButton
 local modeRhombusButton, modeCatchButton, modeRushButton
 local modsHiddenButton, modsHalfSpeedButton, modsDoubleSpeedButton, modsHiddenButton, modsFlashlightButton, modsNoFailButton, modsAutoButton
 
+list = {"s", "s", "s", "s", "s", "s", "s", "s", "s", "s", "s", "s", "s", "s", "s", "s"}
 function Songselect:load()
+  mapList:load(list)
   img = love.graphics.newImage("maps/Shelter/BG1.jpg")
   scaleX, scaleY = gameManager:getImageScaleForNewDimensions( img, gw, gh )
   bigFont = love.graphics.newFont("Assets/roboto.ttf", 84)
   smallFont = love.graphics.newFont("Assets/roboto.ttf", 24)
   smallestFont = love.graphics.newFont("Assets/roboto.ttf", 18)
-
   
   backButton = newButton(50, gh * 0.94, 150, 50, 10, "Back", GrayOpacity6, Green, Blue, "center", 0, 10, function() menustate = "Startmenu" end)
   modesButton = newButton(gw - 800, gh * 0.94, 150, 50, 10, "Modes", GrayOpacity6, Green, Blue, "center", 0, 10, function() isModes = true end)
@@ -29,7 +30,7 @@ function Songselect:load()
   modsFlashlightButton = newButton(gw * 0.52, gh * 0.5, 150, 50, 10, "Flashlight", GrayOpacity6, Red, Green, "center", 0, 10, function() enableFlashlightMod() end, true)
   modsNoFailButton = newButton(gw * 0.4, gh * 0.6, 150, 50, 10, "No Fail", GrayOpacity6, Red, Green, "center", 0, 10, function() enableNoFailMod() end, true)
   modsAutoButton = newButton(gw * 0.52, gh * 0.6, 150, 50, 10, "Auto", GrayOpacity6, Red, Green, "center", 0, 10, function() enableAutoMod() end, true)
-  modsbackButton = newButton(gw * 0.46, gh * 0.7, gw * 0.08, 50, 10, "Back", GrayOpacity6, Green, Blue, "center", 0, 10, function() isMods = false end)
+  modsbackButton = newButton(gw * 0.46, gh * 0.7, gw * 0.08, 50, 10, "Back", GrayOpacity6, White, White, "center", 0, 10, function() isMods = false end)
   
   modeRhombusButton = newButton(gw * 0.46, gh * 0.4, gw * 0.08, 50, 10, "Rhombus", GrayOpacity6, Green, Blue, "center", 0, 10, function() stateManager.GameModeState = "Rhombus" isModes = false end)
   modeCatchButton = newButton(gw * 0.46, gh * 0.5, gw * 0.08, 50, 10, "Catch", GrayOpacity6, Green, Blue, "center", 0, 10, function() stateManager.GameModeState = "Catch" isModes = false end)
@@ -58,23 +59,13 @@ function Songselect:update(dt)
   end  
 end
 
-
 function Songselect:draw()
   Background()  
   if not isModes and not isMods then
-    Scores()
+    mapList:draw()    
     BottomBar()
-    love.graphics.setColor(0, 0, 0, 0.6)
-    love.graphics.rectangle('fill', gw - 520, gh * 0.5, 500, 100, 10)
-    love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.rectangle('line', gw - 520, gh * 0.5, 500, 100, 10)
-    love.graphics.setFont(smallFont)
-    love.graphics.printf("Shelter", gw - 500, gh * 0.5 + 15, 500, "left")
-    love.graphics.setFont(smallestFont)
-    love.graphics.printf("Porter Robinson & Madeon", gw - 490, gh * 0.5 + 45, 500, "left")
-    love.graphics.printf("Easy", gw - 490, gh * 0.5 + 70, 500, "left")        
-    
-    love.graphics.print("Selected Mode: " .. stateManager.GameModeState, 0, 20)
+    TopBar()
+    Scores()
   elseif isModes then
     Modes()
   elseif isMods then
@@ -82,8 +73,24 @@ function Songselect:draw()
   end
 end
 
+function Songselect:keypressed(key)
+  if key == "escape" and isModes then
+    isModes = false
+  elseif key == "escape" and isMods then
+    isMods = false
+  elseif key == "up" and not isMods and not isModes then
+    mapList.mapListUp()
+  elseif key == "down" and not isMods and not isModes then
+    mapList.mapListDown()
+  elseif key == "return" and not isMods and not isModes then
+    gameManager.Restart()
+    stateManager.GameState = "Maingame"
+  end
+end
+
 function Songselect:mousepressed(x, y, button)
-  if not isModes and not isMods then                                                       
+  if not isModes and not isMods then       
+    mapList:mousepressed(x, y, button)                                                  
     backButton:mousepressed(x, y, button)
     modesButton:mousepressed(x, y, button)
     modsButton:mousepressed(x, y, button)
@@ -183,8 +190,10 @@ end
 function BottomBar()
   love.graphics.setFont(smallFont)
   love.graphics.setLineWidth(3)  
-  love.graphics.setColor(0, 0, 0, 0.6)
+  love.graphics.setColor(0,0,0,1)
   love.graphics.rectangle('fill', 0, gh * 0.92, gw, gh * 0.08)
+  love.graphics.setColor(White)
+  love.graphics.line(0, gh * 0.92, gw, gh * 0.92)
   
   backButton:draw()
   modesButton:draw()
@@ -193,14 +202,20 @@ function BottomBar()
   playButton:draw()
 end
 
+function TopBar()
+  love.graphics.setFont(smallFont)
+  love.graphics.setLineWidth(3)  
+  love.graphics.setColor(0,0,0,1)
+  love.graphics.rectangle('fill', 0, gh * 0.0, gw, gh * 0.08)
+  love.graphics.setColor(White)
+  love.graphics.line(0, gh * 0.08, gw, gh * 0.08)
+
+  love.graphics.printf("Shelter - Porter Robinson & Madeon", 15, 10, 700, "left")
+  love.graphics.printf("[Easy]", 15, 40, 700, "left")
+end
+
 function Scores()
-  love.graphics.setFont(bigFont)
-  love.graphics.setColor(0, 0, 0, 0.6)
-  love.graphics.rectangle('fill', 20, gh / 3 - 200, 450, gh / 3 + 300, 15)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.rectangle('line', 20, gh / 3 - 200, 450, gh / 3 + 300, 15)
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Scores", 20, gh / 3 - 200, 450, "center")
+
 end
 
 function Mods()
