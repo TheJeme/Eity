@@ -40,16 +40,19 @@ function Maingame:update(dt)
     
     mapSongs[mapList.getSelectedMapIndex()]:setPitch(modManager.getSpeed())
     mapSongs[mapList.getSelectedMapIndex()]:play()
-    gameManager.gametime = gameManager.gametime + dt * modManager.getSpeed()
-    for i, v in ipairs(listOfMaps[mapList.getSelectedMapIndex()]) do
-      if (#map >= nextNote and (map[nextNote][5] - 400) * 0.001 < gameManager.gametime) then
-        if (map[nextNote][4] == 0) then
-          createArrow(map[nextNote][1], math.ceil(map[nextNote][2] * 4 / 512), map[nextNote][3] * modManager.getSpeed())          
-        elseif (map[nextNote][4] ~= 0) then
-          createSlider(map[nextNote][1], math.ceil(map[nextNote][2] * 4 / 512), map[nextNote][3] * modManager.getSpeed(), map[nextNote][4])
+    gameManager.gametime = gameManager.gametime + dt * modManager.getSpeed()----------ss--ss--ssmapManager.getNotesOfIndex(1)[1][2])
+
+    local mapNotes = mapManager.getNotesOfIndex(mapList.getSelectedMapIndex())
+    
+    for i, v in ipairs(mapNotes) do
+      if (#mapNotes >= nextNote and (mapNotes[nextNote][5] - 400) * 0.001 < gameManager.gametime) then
+        if (mapNotes[nextNote][4] == 0) then
+          createArrow(mapNotes[nextNote][1], math.ceil(mapNotes[nextNote][2] * 4 / 512), mapNotes[nextNote][3] * modManager.getSpeed())          
+        elseif (mapNotes[nextNote][4] ~= 0) then
+          createSlider(mapNotes[nextNote][1], math.ceil(mapNotes[nextNote][2] * 4 / 512), mapNotes[nextNote][3] * modManager.getSpeed(), mapNotes[nextNote][4])
         end
         nextNote = nextNote + 1
-      elseif #map < scoreManager.destroyedArrows + 1 then
+      elseif #mapNotes < scoreManager.destroyedArrows + 1 then
         if endTime < 5 then
           endTime = endTime + dt
         else

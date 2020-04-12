@@ -20,12 +20,10 @@ function map:getSong()
   return "maps/Shelter/song.mp3"
 end
  
-function map:load()      
-  
+function map:getNotes()        
   -- (0 = none, 1 = normal, 2 = slider, 3 = bad), 448 = up, 64 = down, 192 = left, 320 = right, milliseconds to spawn
-  -- Slider length
-  
-  map = {  
+  -- Slider length  
+  return {
     {1, 320, 400, 600, 402},
     {1, 64, 400, 200, 2802},
     {1, 448, 400, 300, 3702},

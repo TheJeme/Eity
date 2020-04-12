@@ -66,12 +66,12 @@ function love.update(dt)
 
 end
 
+
 function love.draw()  
 	simpleScale.set()
     stateManager:draw()
 	simpleScale.unSet()
-  beloved:draw() 
-  
+  beloved:draw()
   if isEnabledFPS then
     love.graphics.setFont(defaultFont)
     love.graphics.setColor(1, 1, 1, 1)
