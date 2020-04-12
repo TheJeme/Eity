@@ -1,9 +1,12 @@
 soundManager = {}
 
-function soundManager:SetMusicVolume(volume)
-  
+mapSongs = {}
+
+function soundManager:SetMusicVolume(volume)  
+  for i, v in ipairs(mapSongs) do
+    v:setVolume(volume)
+  end
   soundManager.mainmenusrc:setVolume(volume)
-  soundManager.maingamesrc:setVolume(volume)
 end
 
 function soundManager:SetEffectsVolume(volume)
@@ -20,8 +23,12 @@ end
 function soundManager:load()
   musicVolume = 0.05
   effectsVolume = 0.05
+
+  for i in ipairs(mapManager.getListOfMaps()) do
+    local song = love.audio.newSource(mapManager.getSongOfIndex(i), "static")
+    table.insert(mapSongs, song)
+  end
   
-  soundManager.maingamesrc = love.audio.newSource("maps/Shelter/song.mp3", "static")
   soundManager.mainmenusrc = love.audio.newSource("Assets/Verse_One_BGMusic.mp3", "static")
   
   soundManager.buttonOversrc = love.audio.newSource("Assets/ButtonOver.wav", "static")
@@ -31,15 +38,9 @@ function soundManager:load()
   soundManager.hitSlidersrc = love.audio.newSource("Assets/slider.wav", "static")
   soundManager.misssrc = love.audio.newSource("Assets/miss.wav", "static")
   
-  soundManager.mainmenusrc:setVolume(musicVolume)
-  soundManager.maingamesrc:setVolume(musicVolume)
+  soundManager:SetMusicVolume(musicVolume)  
+  soundManager:SetEffectsVolume(effectsVolume)
   
-  soundManager.buttonOversrc:setVolume(effectsVolume)
-  soundManager.buttonHitsrc:setVolume(effectsVolume)
-
-  soundManager.hitsrc:setVolume(effectsVolume)
-  soundManager.hitSlidersrc:setVolume(effectsVolume)
-  soundManager.misssrc:setVolume(effectsVolume)
 end
 
 function soundManager.playSoundEffect(source)
@@ -48,8 +49,8 @@ function soundManager.playSoundEffect(source)
 end
 
 function soundManager:Restart()
-  soundManager.maingamesrc:stop()
-  soundManager.maingamesrc:play()
+  mapSongs[mapList.getSelectedMapIndex()]:stop()
+  mapSongs[mapList.getSelectedMapIndex()]:play()
 end
 
 return soundManager

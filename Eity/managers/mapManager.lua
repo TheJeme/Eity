@@ -25,13 +25,17 @@ function mapManager.getBackgroundOfIndex(index)
   return listOfMaps[index].getBackground()
 end
 
+function mapManager.getSongOfIndex(index)
+  return listOfMaps[index].getSong()
+end
+
  
 function mapManager:load()      
   -- (0 = none, 1 = normal, 2 = slider, 3 = bad), 448 = up, 64 = down, 192 = left, 320 = right, milliseconds to spawn
   -- Slider length
   table.insert(listOfMaps, shelter)
   table.insert(listOfMaps, elama)
-  for i, v in ipairs(listOfMaps) do
+  for i, v in ipairs(mapManager.getListOfMaps()) do
     for i, v in ipairs(v) do
       if (v[i][1] == 3) then
         v[i][5] = v[i][5] + 100

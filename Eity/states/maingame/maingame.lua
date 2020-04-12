@@ -31,14 +31,15 @@ function Maingame:update(dt)
   end
   
   if gameManager.pause or gameManager.isFailed then
-     soundManager.maingamesrc:pause() 
+     mapSongs[mapList.getSelectedMapIndex()]:pause() 
      love.mouse.setVisible(true) 
    end
   
   if not gameManager.pause and not gameManager.isFailed then
     love.mouse.setVisible(false)
-    soundManager.maingamesrc:setPitch(modManager.getSpeed())
-    soundManager.maingamesrc:play()
+    
+    mapSongs[mapList.getSelectedMapIndex()]:setPitch(modManager.getSpeed())
+    mapSongs[mapList.getSelectedMapIndex()]:play()
     gameManager.gametime = gameManager.gametime + dt * modManager.getSpeed()
     for i, v in ipairs(listOfMaps[mapList.getSelectedMapIndex()]) do
       if (#map >= nextNote and (map[nextNote][5] - 400) * 0.001 < gameManager.gametime) then
@@ -54,7 +55,7 @@ function Maingame:update(dt)
         else
           if scoreManager.combo > scoreManager.maxCombo then scoreManager.maxCombo = scoreManager.combo end
           scoreManager.CalculateTotalNotes()
-          soundManager.maingamesrc:stop()
+          mapSongs[mapList.getSelectedMapIndex()]:stop()
           endTime = 0
           love.mouse.setVisible(true)
           stateManager.GameState = "Rankingscreen"

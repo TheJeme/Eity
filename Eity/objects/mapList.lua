@@ -58,7 +58,7 @@ function mapList:mousepressed(x, y, button)
                             my > scrollY + 100 + 111 * (i - 1) and my < scrollY + 100 + 111 * (i - 1) + 100         
     if isMouseOnMap and button == 1 then    
       selectedMap = i    
-      img = gameManager:setBackground()
+      img = mapImages[mapList.getSelectedMapIndex()]
     end  
   end 
 end
@@ -82,13 +82,13 @@ end
 function mapList.mapListUp()
   if selectedMap > 1 then
     selectedMap = selectedMap - 1
-    img = gameManager:setBackground()
+    img = mapImages[mapList.getSelectedMapIndex()]
   end
 end
 
 function mapList.mapListDown()
   if selectedMap < #maplist then
     selectedMap = selectedMap + 1
-    img = gameManager:setBackground()
+    img = mapImages[mapList.getSelectedMapIndex()]
   end
 end

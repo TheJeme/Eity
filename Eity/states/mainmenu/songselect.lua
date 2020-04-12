@@ -9,10 +9,19 @@ local playButton, backButton, randomButton, modsButton, modesButton
 local modeRhombusButton, modeCatchButton, modeRushButton
 local modsHiddenButton, modsHalfSpeedButton, modsDoubleSpeedButton, modsHiddenButton, modsFlashlightButton, modsNoFailButton, modsAutoButton
 
+mapImages = {}
+
+function getBackgrounds()
+  for i in ipairs(mapManager.getListOfMaps()) do
+    local bg = love.graphics.newImage(mapManager.getBackgroundOfIndex(i))
+    table.insert(mapImages, bg)
+  end
+end
 
 function Songselect:load()
+  getBackgrounds()
   mapList:load(mapManager.getListOfMaps())
-  img = gameManager:setBackground()
+  img = mapImages[mapList.getSelectedMapIndex()]
   scaleX, scaleY = gameManager:getImageScaleForNewDimensions( img, gw, gh )
   bigFont = love.graphics.newFont("Assets/roboto.ttf", 84)
   smallFont = love.graphics.newFont("Assets/roboto.ttf", 24)
@@ -210,8 +219,8 @@ function TopBar()
   love.graphics.setColor(White)
   love.graphics.line(0, gh * 0.08, gw, gh * 0.08)
 
-  love.graphics.printf("Shelter - Porter Robinson & Madeon", 15, 10, 700, "left")
-  love.graphics.printf("[Easy]", 15, 40, 700, "left")
+  love.graphics.printf(mapManager.getTitleOfIndex(mapList.getSelectedMapIndex()) .. " - " .. mapManager.getPorterOfIndex(mapList.getSelectedMapIndex()), 15, 10, 700, "left")
+  love.graphics.printf(mapManager.getDifficultOfIndex(mapList.getSelectedMapIndex()), 15, 40, 700, "left")
 end
 
 function Scores()

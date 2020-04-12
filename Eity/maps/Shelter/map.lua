@@ -17,7 +17,7 @@ function map:getPorter()
 end
 
 function map:getSong()
-  love.audio.newSource("maps/Shelter/song.mp3", "static")
+  return "maps/Shelter/song.mp3"
 end
  
 function map:load()      
