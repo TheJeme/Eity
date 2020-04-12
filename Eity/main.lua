@@ -10,8 +10,8 @@ local beloved = require 'lib/beloved'
 
 function love.load()
   simpleScale.setWindow(gw, gh, window_width, window_height)
-  stateManager:load()
   gameManager:load()
+  stateManager:load()
   beloved:load()
   love.graphics.setBackgroundColor(0.1, 0.1, 0.1, 1)
 
@@ -71,7 +71,6 @@ function love.draw()
     stateManager:draw()
 	simpleScale.unSet()
   beloved:draw() 
-    
   if isEnabledFPS then
     love.graphics.setFont(defaultFont)
     love.graphics.setColor(1, 1, 1, 1)

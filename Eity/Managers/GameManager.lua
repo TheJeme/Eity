@@ -27,7 +27,6 @@ function gameManager:load()
   modManager:load()
   soundManager:load()
   mapManager:load() 
-  map:load()
   scoreManager.Restart()
   gameManager.pause = false
   gameManager.isFailed = false
@@ -40,6 +39,10 @@ end
 
 function gameManager.Pause()
   gameManager.pause = not gameManager.pause
+end
+
+function gameManager:setBackground()
+  return love.graphics.newImage(mapManager.getBackgroundOfIndex(mapList.getSelectedMapIndex()))
 end
 
 function gameManager.Restart()

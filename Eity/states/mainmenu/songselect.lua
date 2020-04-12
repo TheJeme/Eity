@@ -9,10 +9,10 @@ local playButton, backButton, randomButton, modsButton, modesButton
 local modeRhombusButton, modeCatchButton, modeRushButton
 local modsHiddenButton, modsHalfSpeedButton, modsDoubleSpeedButton, modsHiddenButton, modsFlashlightButton, modsNoFailButton, modsAutoButton
 
-list = {"s", "s", "s", "s", "s", "s", "s", "s", "s", "s", "s", "s", "s", "s", "s", "s"}
+
 function Songselect:load()
-  mapList:load(list)
-  img = love.graphics.newImage("maps/Shelter/BG1.jpg")
+  mapList:load(mapManager.getListOfMaps())
+  img = gameManager:setBackground()
   scaleX, scaleY = gameManager:getImageScaleForNewDimensions( img, gw, gh )
   bigFont = love.graphics.newFont("Assets/roboto.ttf", 84)
   smallFont = love.graphics.newFont("Assets/roboto.ttf", 24)

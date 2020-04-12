@@ -1,12 +1,30 @@
 map = { }
  
+function map:getBackground()
+  return "maps/Shelter/bg.jpg"
+end
+
+function map:getTitle()
+  return "Shelter"
+end
+
+function map:getDifficult()
+  return "Easy"
+end
+ 
+function map:getPorter()
+  return "Robinson & Madeon"
+end
+
+function map:getSong()
+  love.audio.newSource("maps/Shelter/song.mp3", "static")
+end
+ 
 function map:load()      
   
   -- (0 = none, 1 = normal, 2 = slider, 3 = bad), 448 = up, 64 = down, 192 = left, 320 = right, milliseconds to spawn
   -- Slider length
   
-  map.title = "Shelter"
-  map.porter = "Robinson & Madeon"
   map = {  
     {1, 320, 400, 600, 402},
     {1, 64, 400, 200, 2802},

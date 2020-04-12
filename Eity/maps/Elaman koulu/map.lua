@@ -1,11 +1,29 @@
 map = { }
  
+function map:getBackground()
+  return "maps/Elaman koulu/bg.png"
+end
+
+function map:getDifficult()
+  return "Hard"
+end
+
+function map:getTitle()
+ return "Elämänkoulu"
+end
+ 
+function map:getPorter()
+ return "Nisku ja Jasku"
+end
+
+function map:getSong()
+ love.audio.newSource("maps/Elaman koulu/song.mp3", "static")
+end
+ 
 function map:load()      
   
   -- (0 = none, 1 = normal, 2 = slider, 3 = bad), 448 = up, 64 = down, 192 = left, 320 = right, milliseconds to spawn
   -- Slider length
-  map.title = "Elämänkoulu"
-  map.porter = "Nisku ja Jasku"
   
   map = { 
 	{1, 192, 500, 0, 4631},

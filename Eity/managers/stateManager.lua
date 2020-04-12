@@ -8,9 +8,13 @@ function stateManager:load()
   stateManager.GameState = "Mainmenu" -- Mainmenu, Maingame, Rankingscreen
   stateManager.GameModeState = "Rhombus" -- Rhombus, Catch, Rush
   
-  Mainmenu:load()
-  Maingame:load()
-  Rankingscreen:load()
+
+    Mainmenu:load()
+
+    Maingame:load()
+
+    Rankingscreen:load()
+
 end
 
 function stateManager:draw()

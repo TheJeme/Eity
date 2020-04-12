@@ -5,7 +5,6 @@ require 'states/maingame/player'
 
 Maingame = {}
 
-local img
 local scaleX, scaleY
 
 local joysticks = love.joystick.getJoysticks()
@@ -15,7 +14,6 @@ function Maingame:load()
   maingame_UI:load()
   nextNote = 1
   endTime = 0
-  img = love.graphics.newImage("maps/Shelter/BG1.jpg")
   scaleX, scaleY = gameManager:getImageScaleForNewDimensions(img, gw, gh)
 end
 
@@ -42,7 +40,7 @@ function Maingame:update(dt)
     soundManager.maingamesrc:setPitch(modManager.getSpeed())
     soundManager.maingamesrc:play()
     gameManager.gametime = gameManager.gametime + dt * modManager.getSpeed()
-    for i, v in ipairs(map) do
+    for i, v in ipairs(listOfMaps[mapList.getSelectedMapIndex()]) do
       if (#map >= nextNote and (map[nextNote][5] - 400) * 0.001 < gameManager.gametime) then
         if (map[nextNote][4] == 0) then
           createArrow(map[nextNote][1], math.ceil(map[nextNote][2] * 4 / 512), map[nextNote][3] * modManager.getSpeed())          
