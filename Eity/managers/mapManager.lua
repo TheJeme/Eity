@@ -1,5 +1,8 @@
 shelter = require "maps/Shelter/map"
 elama = require "maps/Elaman koulu/map"
+freedomDive = require "maps/FREEDOM DiVE/map"
+yumeiroParade = require "maps/Yumeiro Parade/map"
+template = require "maps/Template/map"
 
 mapManager = { }
  
@@ -39,6 +42,33 @@ function mapManager:load()
   -- Slider length
   table.insert(listOfMaps, shelter)
   table.insert(listOfMaps, elama)
+  table.insert(listOfMaps, freedomDive)
+  table.insert(listOfMaps, yumeiroParade)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, template)
   for i, v in ipairs(mapManager.getListOfMaps()) do
     for i, v in ipairs(v) do
       if (v[i][1] == 3) then
