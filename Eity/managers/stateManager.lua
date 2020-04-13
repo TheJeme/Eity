@@ -1,6 +1,6 @@
-require 'states/maingame/Maingame'
-require 'states/mainmenu/Mainmenu'
-require 'states/Rankingscreen'
+require 'states/maingame/maingame'
+require 'states/mainmenu/mainmenu'
+require 'states/rankingscreen'
 
 stateManager = {}
 

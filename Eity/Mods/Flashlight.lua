@@ -1,7 +1,7 @@
-Flashlight = {}
+flashlight = {}
 
 
-function Flashlight.ApplyMod(dt)
+function flashlight.ApplyMod(dt)
   for i, v in ipairs(listOfArrows) do
     if (v.direction == 4 and v.tempPosition < gh * 0.815) or (v.direction == 2 and v.tempPosition > gh * 0.185) or
       (v.direction == 1 and v.tempPosition < gw * 0.675) or (v.direction == 3 and v.tempPosition > gw * 0.325) then
@@ -16,4 +16,4 @@ function Flashlight.ApplyMod(dt)
   end
 end
 
-return Flashlight
+return flashlight

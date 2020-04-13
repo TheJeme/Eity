@@ -8,7 +8,7 @@ local xScale
 local pausedButton, continueButton, quitButton, restartButton, failedButton
 
 function maingame_UI:load()
-  bigFont = love.graphics.newFont("Assets/roboto.ttf", 92)
+  bigFont = love.graphics.newFont("assets/roboto.ttf", 92)
   xbar = 0
   
   failedButton = newSquareButton(gw / 2 - 250, gh / 2, 220, "Failed", Blue, White, 0, -50)

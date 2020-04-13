@@ -1,5 +1,5 @@
-require 'states/mainmenu/Options'
-require 'states/mainmenu/Songselect'
+require 'states/mainmenu/options'
+require 'states/mainmenu/songselect'
 require 'states/mainmenu/mainmenu_Particles'
 require 'objects/squareButton'
 
@@ -16,7 +16,7 @@ function Mainmenu:load()
   menustate = "Startmenu"
   
   Mainmenu_Particles:load()
-  mainBG = love.graphics.newImage("Assets/MainBG3.jpg")
+  mainBG = love.graphics.newImage("assets/MainBG3.jpg")
   scaleX, scaleY = gameManager:getImageScaleForNewDimensions( mainBG, gw, gh )
   
   noButton = newSquareButton(gw / 2 - 150, gh / 2 + 200, 75, "No", Red, White, 0, -25, function() PressedQuit = false end)

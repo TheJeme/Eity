@@ -14,15 +14,15 @@ function Songselect:load()
   mapList:load(mapManager.getListOfMaps())
   img = gameManager:setBackground()
   scaleX, scaleY = gameManager:getImageScaleForNewDimensions( img, gw, gh )
-  bigFont = love.graphics.newFont("Assets/roboto.ttf", 84)
-  smallFont = love.graphics.newFont("Assets/roboto.ttf", 24)
-  smallestFont = love.graphics.newFont("Assets/roboto.ttf", 18)
+  bigFont = love.graphics.newFont("assets/roboto.ttf", 84)
+  smallFont = love.graphics.newFont("assets/roboto.ttf", 24)
+  smallestFont = love.graphics.newFont("assets/roboto.ttf", 18)
   
   backButton = newButton(50, gh * 0.94, 150, 50, 10, "Back", GrayOpacity6, Green, Blue, "center", 0, 10, function() menustate = "Startmenu" end)
   modesButton = newButton(gw - 800, gh * 0.94, 150, 50, 10, "Modes", GrayOpacity6, Green, Blue, "center", 0, 10, function() isModes = true end)
   modsButton = newButton(gw - 600, gh * 0.94, 150, 50, 10, "Mods", GrayOpacity6, Green, Blue, "center", 0, 10, function() isMods = true end)
   randomButton = newButton(gw - 400, gh * 0.94, 150, 50, 10, "Random", GrayOpacity6, Green, Blue, "center", 0, 10, function() end)
-  playButton = newButton(gw - 200, gh * 0.94, 150, 50, 10, "Play", GrayOpacity6, Green, Blue, "center", 0, 10, function() gameManager.RestartNewMap() stateManager.GameState = "Maingame" end)
+  playButton = newButton(gw - 200, gh * 0.94, 150, 50, 10, "Play", GrayOpacity6, Green, Blue, "center", 0, 10, function() stateManager.GameState = "Maingame" gameManager.RestartNewMap() end)
   
   modsHalfSpeedButton = newButton(gw * 0.4, gh * 0.4, 150, 50, 10, "0.75x speed", GrayOpacity6, Red, Green, "center", 0, 10, function() enableHalfTimeMod() end, true)
   modsDoubleSpeedButton = newButton(gw * 0.52, gh * 0.4, 150, 50, 10, "1.25x speed", GrayOpacity6, Red, Green, "center", 0, 10, function() enableDoubleTimeMod() end, true)
@@ -83,8 +83,8 @@ function Songselect:keypressed(key)
   elseif key == "down" and not isMods and not isModes then
     mapList.mapListDown()
   elseif key == "return" and not isMods and not isModes then
-    gameManager.Restart()
     stateManager.GameState = "Maingame"
+    gameManager.RestartNewMap()
   end
 end
 

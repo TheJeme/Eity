@@ -1,7 +1,7 @@
-DoubleSpeed = {}
+doubleSpeed = {}
 
-function DoubleSpeed.ApplyMod()
+function doubleSpeed.ApplyMod()
   return 1.25
 end
 
-return DoubleSpeed
+return doubleSpeed

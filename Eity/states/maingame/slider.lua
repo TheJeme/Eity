@@ -15,7 +15,7 @@ function createSlider(type, direction, speed, length)
   elseif (direction == 4) then
     slider.tempPosition = gh
   end
-  
+  slider.shouldPlayhitSound = true
   slider.speed = speed
   slider.rotation = 0
   slider.maxlength = length
@@ -48,7 +48,14 @@ function Slider:update(dt)
             v.length = v.length - v.speed * dt
             if((v.type == 1 and player.direction == "down") or (v.type == 3 and player.direction == "down") or (v.type == 2 and player.direction == "up")) then
               v.scoreLength = v.scoreLength - v.speed * dt
-              soundManager.hitSlidersrc:play()
+              if isEnabledTicksound == true then
+                soundManager.hitSlidersrc:play()
+              else
+                if (v.shouldPlayhitSound) then
+                  soundManager.playSoundEffect(soundManager.hitsrc)
+                  v.shouldPlayhitSound = false
+                end
+              end
             end
           else
             table.remove(listOfSliders, i)
@@ -101,7 +108,14 @@ function Slider:update(dt)
           v.length = v.length - v.speed * dt
         if((v.type == 1 and player.direction == "up") or (v.type == 3 and player.direction == "up") or (v.type == 2 and player.direction == "down")) then
           v.scoreLength = v.scoreLength - v.speed * dt
-          soundManager.hitSlidersrc:play()
+          if isEnabledTicksound == true then
+            soundManager.hitSlidersrc:play()
+          else
+            if (v.shouldPlayhitSound) then
+              soundManager.playSoundEffect(soundManager.hitsrc)
+              v.shouldPlayhitSound = false
+            end
+          end
         end
         else
           table.remove(listOfSliders, i)
@@ -154,7 +168,14 @@ function Slider:update(dt)
           v.length = v.length - v.speed * dt
           if((v.type == 1 and player.direction == "right") or (v.type == 3 and player.direction == "right") or (v.type == 2 and player.direction == "left")) then
             v.scoreLength = v.scoreLength - v.speed * dt
-            soundManager.hitSlidersrc:play()
+            if isEnabledTicksound == true then
+              soundManager.hitSlidersrc:play()
+            else
+              if (v.shouldPlayhitSound) then
+                soundManager.playSoundEffect(soundManager.hitsrc)
+                v.shouldPlayhitSound = false
+              end
+            end
           end
         else
           table.remove(listOfSliders, i)
@@ -207,7 +228,14 @@ function Slider:update(dt)
         v.length = v.length - v.speed * dt
         if((v.type == 1 and player.direction == "left") or (v.type == 3 and player.direction == "left") or (v.type == 2 and player.direction == "right")) then
           v.scoreLength = v.scoreLength - v.speed * dt
-          soundManager.hitSlidersrc:play()
+          if isEnabledTicksound == true then
+            soundManager.hitSlidersrc:play()
+          else
+            if (v.shouldPlayhitSound) then
+              soundManager.playSoundEffect(soundManager.hitsrc)
+              v.shouldPlayhitSound = false
+            end
+          end
         end
       else
         table.remove(listOfSliders, i)

@@ -1,7 +1,7 @@
 Mainmenu_Particles = {}
 
 function Mainmenu_Particles:load()
-  local img = love.graphics.newImage("Assets/menu-snow.png")
+  local img = love.graphics.newImage("assets/menu-snow.png")
    
   psystem = love.graphics.newParticleSystem(img, 500)
 	psystem:setParticleLifetime(20)

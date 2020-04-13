@@ -1,6 +1,6 @@
-Auto = {}
+auto = {}
 
-function Auto.ApplyMod(mapNotes)
+function auto.ApplyMod(mapNotes)
   for i, v in ipairs(mapNotes) do    
     if #mapNotes >= scoreManager.destroyedArrows + 1 and mapNotes[scoreManager.destroyedArrows+1][1] == 1 then
       if math.ceil(mapNotes[scoreManager.destroyedArrows+1][2] * 4 / 512) == 1 then player.direction = "right"
@@ -18,4 +18,4 @@ function Auto.ApplyMod(mapNotes)
   end
 end
 
-return Auto
+return auto

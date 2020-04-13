@@ -1,7 +1,7 @@
-Hidden = {}
+hidden = {}
 
 
-function Hidden.ApplyMod(dt)
+function hidden.ApplyMod(dt)
   for i, v in ipairs(listOfArrows) do
     v.alpha = v.alpha - 0.0025 * modManager.getSpeed()
   end
@@ -10,4 +10,4 @@ function Hidden.ApplyMod(dt)
   end
 end
 
-return Hidden
+return hidden

@@ -1,8 +1,8 @@
-require 'Mods/Auto'
-require 'Mods/HalfSpeed'
-require 'Mods/DoubleSpeed'
-require 'Mods/Hidden'
-require 'Mods/Flashlight'
+require 'mods/auto'
+require 'mods/halfSpeed'
+require 'mods/doubleSpeed'
+require 'mods/hidden'
+require 'mods/flashlight'
 
 modManager = {}
 

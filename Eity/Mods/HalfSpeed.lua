@@ -1,7 +1,7 @@
-HalfSpeed = {}
+halfSpeed = {}
 
-function HalfSpeed.ApplyMod()
+function halfSpeed.ApplyMod()
   return 0.75
 end
 
-return HalfSpeed
+return halfSpeed

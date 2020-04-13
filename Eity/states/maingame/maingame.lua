@@ -1,6 +1,6 @@
 require 'states/maingame/maingame_UI'
-require 'states/maingame/Arrow'
-require 'states/maingame/Slider'
+require 'states/maingame/arrow'
+require 'states/maingame/slider'
 require 'states/maingame/player'
 
 Maingame = {}
@@ -20,14 +20,14 @@ end
 function Maingame:update(dt)
   maingame_UI:update(dt)
   if modManager.isDoubleSpeed then
-    modManager.SetSpeed(DoubleSpeed.ApplyMod())
+    modManager.SetSpeed(doubleSpeed.ApplyMod())
   elseif modManager.isHalfSpeed then
-    modManager.SetSpeed(HalfSpeed.ApplyMod())
+    modManager.SetSpeed(halfSpeed.ApplyMod())
   else
     modManager.SetSpeed(1.0)
   end
   if modManager.isAuto then
-    Auto.ApplyMod(mapNotes)
+    auto.ApplyMod(mapNotes)
   end
   
   if gameManager.pause or gameManager.isFailed then
@@ -72,9 +72,9 @@ function Maingame:update(dt)
       xbar = gw * 0.35
     end
     if modManager.isHidden then
-    Hidden.ApplyMod(dt)
+    hidden.ApplyMod(dt)
     elseif modManager.isFlashlight then
-      Flashlight.ApplyMod(dt)
+      flashlight.ApplyMod(dt)
     end
   end
   

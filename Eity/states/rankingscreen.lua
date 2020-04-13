@@ -8,11 +8,11 @@ local rankingFont
 local isMouseOnBack
 
 function Rankingscreen:load()
-  rankingFont = love.graphics.newFont("Assets/roboto.ttf", 556)
-  bigFont = love.graphics.newFont("Assets/roboto.ttf", 78)
-  smallFont = love.graphics.newFont("Assets/roboto.ttf", 48)
-  titleFont = love.graphics.newFont("Assets/roboto.ttf", 36)
-  descFont = love.graphics.newFont("Assets/roboto.ttf", 24)
+  rankingFont = love.graphics.newFont("assets/roboto.ttf", 556)
+  bigFont = love.graphics.newFont("assets/roboto.ttf", 78)
+  smallFont = love.graphics.newFont("assets/roboto.ttf", 48)
+  titleFont = love.graphics.newFont("assets/roboto.ttf", 36)
+  descFont = love.graphics.newFont("assets/roboto.ttf", 24)
 end
 
 

@@ -1,5 +1,5 @@
 require 'managers/stateManager'
-require 'managers/GameManager'
+require 'managers/gameManager'
 require 'globals'
 require 'colors'
 require 'lib/simpleScale'

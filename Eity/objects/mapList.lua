@@ -9,9 +9,9 @@ local selectedMap
 local isMouseOnMap
 
 function mapList:load(listOfMaps)
-  bigFont = love.graphics.newFont("Assets/roboto.ttf", 84)
-  smallFont = love.graphics.newFont("Assets/roboto.ttf", 24)
-  smallestFont = love.graphics.newFont("Assets/roboto.ttf", 18)
+  bigFont = love.graphics.newFont("assets/roboto.ttf", 84)
+  smallFont = love.graphics.newFont("assets/roboto.ttf", 24)
+  smallestFont = love.graphics.newFont("assets/roboto.ttf", 18)
   maplist = listOfMaps
   scrollY = 0
   selectedMap = 1
