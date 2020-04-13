@@ -24,8 +24,8 @@ end
 
 function discordApplyPresence()
   if stateManager.GameState == "Maingame" then
-    detailsNow = "Shelter"
-    stateNow = "By Porter Robinson & Madeon"
+    detailsNow = mapManager.getTitleOfIndex(mapList.getSelectedMapIndex())
+    stateNow = "By " .. mapManager.getPorterOfIndex(mapList.getSelectedMapIndex())
   else
     detailsNow = "In Mainmenu"
     stateNow = ""

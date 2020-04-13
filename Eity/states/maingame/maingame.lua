@@ -6,7 +6,6 @@ require 'states/maingame/player'
 Maingame = {}
 
 local scaleX, scaleY
-
 local joysticks = love.joystick.getJoysticks()
 joystick = joysticks[1]
 
@@ -14,6 +13,7 @@ function Maingame:load()
   maingame_UI:load()
   nextNote = 1
   endTime = 0
+  mapNotes = mapManager.getNotesOfIndex(mapList.getSelectedMapIndex())
   scaleX, scaleY = gameManager:getImageScaleForNewDimensions(img, gw, gh)
 end
 
@@ -27,7 +27,7 @@ function Maingame:update(dt)
     modManager.SetSpeed(1.0)
   end
   if modManager.isAuto then
-    Auto.ApplyMod()
+    Auto.ApplyMod(mapNotes)
   end
   
   if gameManager.pause or gameManager.isFailed then
@@ -41,8 +41,6 @@ function Maingame:update(dt)
     mapSongs[mapList.getSelectedMapIndex()]:setPitch(modManager.getSpeed())
     mapSongs[mapList.getSelectedMapIndex()]:play()
     gameManager.gametime = gameManager.gametime + dt * modManager.getSpeed()----------ss--ss--ssmapManager.getNotesOfIndex(1)[1][2])
-
-    local mapNotes = mapManager.getNotesOfIndex(mapList.getSelectedMapIndex())
     
     for i, v in ipairs(mapNotes) do
       if (#mapNotes >= nextNote and (mapNotes[nextNote][5] - 400) * 0.001 < gameManager.gametime) then

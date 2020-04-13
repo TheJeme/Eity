@@ -68,10 +68,10 @@ end
 
 function Mainmenu:keypressed(key)
   if menustate == "Songselect" then
-    Songselect:keypressed(key)
-    if key == "escape" then
+    if key == "escape" and not isMods and not isModes then
       menustate = "Startmenu"
     end
+    Songselect:keypressed(key)
   elseif key == "escape" and menustate == "Startmenu" then
     PressedQuit = true
   elseif key == "escape" and menustate == "Options" then

@@ -44,6 +44,7 @@ end
 function gameManager.Restart()
   soundManager:Restart()
   scoreManager.Restart()
+  mapNotes = mapManager.getNotesOfIndex(mapList.getSelectedMapIndex())
   player:resetPosition()
   gameManager.pause = false
   gameManager.isFailed = false
@@ -52,7 +53,7 @@ function gameManager.Restart()
   xbar = 20
   nextNote = 1
   endTime = 0
-  for i, v in ipairs(map) do
+  for i, v in ipairs(mapNotes) do
     listOfArrows = {}
     listOfSliders = {}
   end
