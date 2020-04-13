@@ -41,7 +41,42 @@ function gameManager.Pause()
   gameManager.pause = not gameManager.pause
 end
 
+function gameManager:setBackground()
+  return love.graphics.newImage(mapManager.getBackgroundOfIndex(mapList.getSelectedMapIndex()))
+end
+
+function gameManager:setSong()
+  return love.audio.newSource(mapManager.getSongOfIndex(mapList.getSelectedMapIndex()), "static")
+end
+
+
+function gameManager.RestartNewMap()
+  if mapSong ~= nil then
+    mapSong:stop()
+  end
+  mapSong = gameManager:setSong()
+  mapSong:setVolume(musicVolume)
+  soundManager:Restart()
+  scoreManager.Restart()
+  mapNotes = mapManager.getNotesOfIndex(mapList.getSelectedMapIndex())
+  player:resetPosition()
+  gameManager.pause = false
+  gameManager.isFailed = false
+  gameManager.gametime = 0
+  gameManager.health = 50
+  xbar = 20
+  nextNote = 1
+  endTime = 0
+  for i, v in ipairs(mapNotes) do
+    listOfArrows = {}
+    listOfSliders = {}
+  end
+end
+
 function gameManager.Restart()
+  if mapSong ~= nil then
+    mapSong:stop()
+  end
   soundManager:Restart()
   scoreManager.Restart()
   mapNotes = mapManager.getNotesOfIndex(mapList.getSelectedMapIndex())

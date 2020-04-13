@@ -45,6 +45,7 @@ end
 
 
 function love.update(dt)
+  collectgarbage() 
   mx = love.mouse.getX() / simpleScale.getScale()
   my = love.mouse.getY() / simpleScale.getScale()
   scoreManager:update(dt)

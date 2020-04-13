@@ -1,15 +1,14 @@
 soundManager = {}
 
-mapSongs = {}
+
 
 function soundManager:SetMusicVolume(volume)  
-  for i, v in ipairs(mapSongs) do
-    v:setVolume(volume)
-  end
+  musicVolume = volume
   soundManager.mainmenusrc:setVolume(volume)
 end
 
 function soundManager:SetEffectsVolume(volume)
+  effectsVolume = volume
   
   soundManager.buttonOversrc:setVolume(volume)
   soundManager.buttonHitsrc:setVolume(volume)
@@ -23,11 +22,6 @@ end
 function soundManager:load()
   musicVolume = 0.05
   effectsVolume = 0.05
-
-  for i in ipairs(mapManager.getListOfMaps()) do
-    local song = love.audio.newSource(mapManager.getSongOfIndex(i), "static")
-    table.insert(mapSongs, song)
-  end
   
   soundManager.mainmenusrc = love.audio.newSource("Assets/Verse_One_BGMusic.mp3", "static")
   
@@ -49,8 +43,8 @@ function soundManager.playSoundEffect(source)
 end
 
 function soundManager:Restart()
-  mapSongs[mapList.getSelectedMapIndex()]:stop()
-  mapSongs[mapList.getSelectedMapIndex()]:play()
+  mapSong:stop()
+  mapSong:play()
 end
 
 return soundManager

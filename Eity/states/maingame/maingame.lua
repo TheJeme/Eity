@@ -13,7 +13,7 @@ function Maingame:load()
   maingame_UI:load()
   nextNote = 1
   endTime = 0
-  mapNotes = mapManager.getNotesOfIndex(mapList.getSelectedMapIndex())
+  mapNotes = {}
   scaleX, scaleY = gameManager:getImageScaleForNewDimensions(img, gw, gh)
 end
 
@@ -31,15 +31,15 @@ function Maingame:update(dt)
   end
   
   if gameManager.pause or gameManager.isFailed then
-     mapSongs[mapList.getSelectedMapIndex()]:pause() 
+     mapSong:pause() 
      love.mouse.setVisible(true) 
    end
   
   if not gameManager.pause and not gameManager.isFailed then
     love.mouse.setVisible(false)
     
-    mapSongs[mapList.getSelectedMapIndex()]:setPitch(modManager.getSpeed())
-    mapSongs[mapList.getSelectedMapIndex()]:play()
+    mapSong:setPitch(modManager.getSpeed())
+    mapSong:play()
     gameManager.gametime = gameManager.gametime + dt * modManager.getSpeed()----------ss--ss--ssmapManager.getNotesOfIndex(1)[1][2])
     
     for i, v in ipairs(mapNotes) do
@@ -56,7 +56,7 @@ function Maingame:update(dt)
         else
           if scoreManager.combo > scoreManager.maxCombo then scoreManager.maxCombo = scoreManager.combo end
           scoreManager.CalculateTotalNotes()
-          mapSongs[mapList.getSelectedMapIndex()]:stop()
+          mapSong:stop()
           endTime = 0
           love.mouse.setVisible(true)
           stateManager.GameState = "Rankingscreen"
