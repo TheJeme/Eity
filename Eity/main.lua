@@ -71,13 +71,13 @@ end
 function love.draw()  
 	simpleScale.set()
     stateManager:draw()
+    beloved:draw()
+    if isEnabledFPS then
+      love.graphics.setFont(defaultFont)
+      love.graphics.setColor(1, 1, 1, 1)
+      love.graphics.printf("FPS " .. love.timer.getFPS(), 0, gh - 12, gw, "right")
+    end
 	simpleScale.unSet()
-  beloved:draw()
-  if isEnabledFPS then
-    love.graphics.setFont(defaultFont)
-    love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.printf("FPS " .. love.timer.getFPS(), 0, gh - 12, gw, "right")
-  end
 end
 
 function love.quit()

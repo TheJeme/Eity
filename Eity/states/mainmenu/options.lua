@@ -10,7 +10,7 @@ local resolutionButton, vsyncButton, fpsButton, backroundDimButton
 local mainVolumeSlider, musicVolumeSlider, effectsVolumeSlider
 
 function Options:load()
-  backButton = newButton(gw * 0.54, gh / 2 + 375, gw * 0.1, 50, 15, "Back", Blue, White, White, "center", 0, 10, function() menustate = "Startmenu" end)
+  backButton = newButton(gw * 0.54, gh / 2 + 375, gw * 0.1, 50, 15, "Back", Blue, White, White, "center", 0, 10, function() menustate = "Startmenu" simpleScale.updateWindow(resolutionList[selectedResolutionIndex][1], resolutionList[selectedResolutionIndex][2]) end)
   generalButton = newButton(gw * 0.38, gh / 2 - 375, gw * 0.1, 50, 15, "General", Purple, White, White, "center", 0, 10)
   volumeButton = newButton(gw * 0.38, gh / 2, gw * 0.1, 50, 15, "Volume", Purple, White, White, "center", 0, 10)
   mainButton = newButton(gw * 0.35, gh / 2 + 75, gw * 0.3, 50, 15, "Main", GrayOpacity4, White, White, "left", 15, 10)
@@ -36,6 +36,9 @@ function Options:update(dt)
   mainVolumeSlider:update()
   musicVolumeSlider:update()
   effectsVolumeSlider:update()
+                
+  isMouseOnResolution = mx > gw * 0.51 and mx < gw * 0.51 + 200 and
+                          my > gh / 2 - 290 and my < gh / 2 - 290 + 30  
                       
   isMouseOnEnableVSync = mx > gw * 0.63 - 16 and mx < gw * 0.63 + 16 and
                           my > gh / 2 - 200 - 16 and my < gh / 2 - 200 + 16   
@@ -76,6 +79,18 @@ function Options:mousepressed(x, y,button)
     else
       isEnabledTicksound = true
     end
+  elseif isMouseOnResolution and button == 1 then
+    soundManager.playSoundEffect(soundManager.buttonHitsrc)
+    selectedResolutionIndex = selectedResolutionIndex - 1
+    if selectedResolutionIndex <= 0 then
+      selectedResolutionIndex = #resolutionList
+    end
+  elseif isMouseOnResolution and button == 2 then
+    soundManager.playSoundEffect(soundManager.buttonHitsrc)
+    selectedResolutionIndex = selectedResolutionIndex + 1
+    if selectedResolutionIndex > #resolutionList then
+      selectedResolutionIndex = 1
+    end
   end
 end
 
@@ -92,6 +107,13 @@ function DrawButtons()
   backButton:draw()
   generalButton:draw()  
   resolutionButton:draw()
+  love.graphics.setColor(Green)
+  love.graphics.rectangle("fill", gw * 0.51, gh / 2 - 290, 200, 30, 10)
+  love.graphics.setColor(White)
+  love.graphics.setLineWidth(5)
+  love.graphics.rectangle("line", gw * 0.51, gh / 2 - 290, 200, 30, 10)
+  love.graphics.printf(resolutionList[selectedResolutionIndex][1] .. " x " .. resolutionList[selectedResolutionIndex][2], gw * 0.51, gh / 2 - 290, 200, "center")
+  
   vsyncButton:draw()
   love.graphics.circle('line', gw * 0.63, gh / 2 - 200, 16, 4)
   if isEnabledVSync then

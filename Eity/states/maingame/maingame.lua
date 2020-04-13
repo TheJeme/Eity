@@ -35,12 +35,12 @@ function Maingame:update(dt)
      love.mouse.setVisible(true) 
    end
   
-  if not gameManager.pause and not gameManager.isFailed then
+  if not gameManager.pause and not gameManager.isFailed then -------------ADD HERE
     love.mouse.setVisible(false)
     
     mapSong:setPitch(modManager.getSpeed())
     mapSong:play()
-    gameManager.gametime = gameManager.gametime + dt * modManager.getSpeed()----------ss--ss--ssmapManager.getNotesOfIndex(1)[1][2])
+    gameManager.gametime = gameManager.gametime + dt * modManager.getSpeed()
     
     for i, v in ipairs(mapNotes) do
       if (#mapNotes >= nextNote and (mapNotes[nextNote][5] - 400) * 0.001 < gameManager.gametime) then
@@ -95,11 +95,9 @@ end
 
 
 function Maingame:draw()
-  love.graphics.push()
   love.graphics.draw(img, 0, 0, 0, scaleX, scaleY)
   love.graphics.setColor(0.3, 0.3, 0.3, gameManager.backgroundDim)
   love.graphics.rectangle('fill', 0, 0, gw, gh)
-  love.graphics.pop()
   Arrow:draw()
   Slider:draw()
   maingame_UI:draw()

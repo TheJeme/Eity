@@ -51,15 +51,16 @@ end
 
 
 function gameManager.RestartNewMap()
-  mapSong = gameManager:setSong()
-  mapSong:setVolume(musicVolume)
-  gameManager.Restart()
-end
-
-function gameManager.Restart()
   if mapSong ~= nil then
     mapSong:stop()
   end
+  mapSong = gameManager:setSong()
+  mapSong:setVolume(musicVolume)  
+  gameManager.Restart()
+  stateManager.GameState = "Maingame"
+end
+
+function gameManager.Restart()  
   soundManager:Restart()
   scoreManager.Restart()
   mapNotes = mapManager.getNotesOfIndex(mapList.getSelectedMapIndex())
