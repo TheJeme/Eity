@@ -76,6 +76,7 @@ function Mainmenu:keypressed(key)
     PressedQuit = true
   elseif key == "escape" and menustate == "Options" then
     menustate = "Startmenu"
+    simpleScale.updateWindow(resolutionList[selectedResolutionIndex][1], resolutionList[selectedResolutionIndex][2])
   end
 end
 

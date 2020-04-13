@@ -46,7 +46,7 @@ function gameManager:setBackground()
 end
 
 function gameManager:setSong()
-  return love.audio.newSource(mapManager.getSongOfIndex(mapList.getSelectedMapIndex()), "static")
+  return love.audio.newSource(mapManager.getSongOfIndex(mapList.getSelectedMapIndex()), "stream")
 end
 
 

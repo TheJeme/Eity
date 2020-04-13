@@ -65,7 +65,6 @@ function Songselect:draw()
     mapList:draw()    
     BottomBar()
     TopBar()
-    Scores()
   elseif isModes then
     Modes()
   elseif isMods then
@@ -211,10 +210,6 @@ function TopBar()
 
   love.graphics.printf(mapManager.getTitleOfIndex(mapList.getSelectedMapIndex()) .. " - " .. mapManager.getPorterOfIndex(mapList.getSelectedMapIndex()), 15, 10, 700, "left")
   love.graphics.printf(mapManager.getDifficultOfIndex(mapList.getSelectedMapIndex()), 15, 40, 700, "left")
-end
-
-function Scores()
-
 end
 
 function Mods()
