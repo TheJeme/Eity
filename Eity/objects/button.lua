@@ -24,10 +24,7 @@ function newButton(x, y, width, height, corner, text, inlineColor, normalOutline
   return setmetatable(b, button)
 end
 
-function button:update(dt)
-
-                          
-                          
+function button:update(dt)                                      
   if self.isMouseOnButton then
     if not self.isToggle then
       self.activeOutlineColor = self.highlightOutlineColor
@@ -45,10 +42,10 @@ function button:update(dt)
   
 end
 
-function button:draw()
+function button:draw()  
   self.isMouseOnButton = mx > self.x and mx < self.x + self.width and
-                          my > self.y and my < self.y + self.height
-  
+                          my > self.y and my < self.y + self.height      
+                            
   love.graphics.setColor(self.inlineColor)
   love.graphics.rectangle('fill', self.x, self.y, self.width, self.height, self.corner)
   love.graphics.setColor(self.activeOutlineColor)

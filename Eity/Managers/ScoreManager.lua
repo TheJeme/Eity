@@ -110,7 +110,7 @@ end
 function scoreManager:draw()
   love.graphics.setFont(squareButtonsmallFont)
   love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf(scoreManager.combo .. "x", 0, gh - 50, gw, "left")
+  love.graphics.printf(scoreManager.combo .. "x", 5, gh - 50, gw, "left")
   love.graphics.printf(string.format("%08d", scoreManager.score), 0, 0, gw, "right")
   love.graphics.setFont(buttonSmallFont)
   love.graphics.printf(string.format("%0.2f", scoreManager.getAccuracy()) .. "%", 0, 50, gw, "right")

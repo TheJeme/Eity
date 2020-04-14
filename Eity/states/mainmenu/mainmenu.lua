@@ -21,18 +21,23 @@ function Mainmenu:load()
   
   noButton = newSquareButton(gw / 2 - 150, gh / 2 + 200, 75, "No", Red, White, 0, -25, function() PressedQuit = false end)
   yesButton = newSquareButton(gw / 2 + 150, gh / 2 + 200, 75, "Yes", Blue, White, 0, -25, function() love.event.quit() end)
-  eityButton = newSquareButton(gw / 2 - 250, gh / 2, 220, "Eity", Blue, White, 0, -75)
+  eityButton = newSquareButton(gw / 2 - 270, gh / 2, 220, "Eity", Blue, White, 0, -75)
   playButton = newSquareButton(gw / 2 + 50, gh / 2 - 200, 120, "Play", Green, White, 0, -25, function() menustate = "Songselect" psystem:reset() end)
-  optionsButton = newSquareButton(gw / 2 + 225, gh / 2, 120, "Options", Purple, White, 0, -25, function() menustate = "Options" end)
+  optionsButton = newSquareButton(gw / 2 + 250, gh / 2, 120, "Options", Purple, White, 0, -25, function() menustate = "Options" end)
   exitButton = newSquareButton(gw / 2 + 50, gh / 2 + 200, 120, "Exit", Red, White, 0, -25, function() PressedQuit = true end)
     
   PressedQuit = false
 end
 
 function Mainmenu:update(dt)
-  if menustate == "Startmenu" then
+  noButton:update(dt)
+  yesButton:update(dt)
+  if menustate == "Startmenu" and not PressedQuit then
     soundManager.mainmenusrc:play()
     Mainmenu_Particles:update(dt)
+    playButton:update(dt)
+    optionsButton:update(dt)
+    exitButton:update(dt)
   elseif menustate == "Options" then
     Options:update(dt)
   elseif menustate == "Songselect" then

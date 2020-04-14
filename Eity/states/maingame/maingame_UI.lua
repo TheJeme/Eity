@@ -11,14 +11,18 @@ function maingame_UI:load()
   bigFont = love.graphics.newFont("assets/roboto.ttf", 92)
   xbar = 0
   
-  failedButton = newSquareButton(gw / 2 - 250, gh / 2, 220, "Failed", Blue, White, 0, -50)
-  pausedButton = newSquareButton(gw / 2 - 250, gh / 2, 220, "Paused", Blue, White, 0, -50)
-  restartButton = newSquareButton(gw / 2 + 225, gh / 2, 120, "Restart", Purple, White, 0, -25, function() gameManager.Restart() end)
+  failedButton = newSquareButton(gw / 2 - 270, gh / 2, 220, "Failed", Blue, White, 0, -50)
+  pausedButton = newSquareButton(gw / 2 - 270, gh / 2, 220, "Paused", Blue, White, 0, -50)
+  
+  restartButton = newSquareButton(gw / 2 + 250, gh / 2, 120, "Restart", Purple, White, 0, -25, function() gameManager.Restart() end)
   quitButton = newSquareButton(gw / 2 + 50, gh / 2 + 200, 120, "Quit", Red, White, 0, -25, function() stateManager.GameState = "Mainmenu" end)  
   continueButton = newSquareButton(gw / 2 + 50, gh / 2 - 200, 120, "Continue", Green, White, 0, -25, function() gameManager.Pause() end)
 end
 
 function maingame_UI:update(dt)
+  restartButton:update(dt)
+  quitButton:update(dt)
+  continueButton:update(dt)
   
   if gameManager.health > 0 then
     xScale = gw * 0.35 * gameManager.health / 100
