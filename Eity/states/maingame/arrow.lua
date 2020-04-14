@@ -45,6 +45,7 @@ function Arrow:update(dt)
             scoreManager.collectedBlueArrows = scoreManager.collectedBlueArrows + 1
             soundManager.playSoundEffect(soundManager.hitsrc)
             scoreManager.AddScore("perfect")
+            player:blink(dt)
           else
             soundManager.playSoundEffect(soundManager.misssrc)
             scoreManager.AddScore("miss")
@@ -54,6 +55,7 @@ function Arrow:update(dt)
             scoreManager.collectedYellowArrows = scoreManager.collectedYellowArrows + 1
             soundManager.playSoundEffect(soundManager.hitsrc)
             scoreManager.AddScore("perfect")
+            player:blink(dt)
           else
             soundManager.playSoundEffect(soundManager.misssrc)
             scoreManager.AddScore("miss")
@@ -85,6 +87,7 @@ function Arrow:update(dt)
           scoreManager.collectedBlueArrows = scoreManager.collectedBlueArrows + 1
           soundManager.playSoundEffect(soundManager.hitsrc)
           scoreManager.AddScore("perfect")
+          player:blink(dt)
         else
           soundManager.playSoundEffect(soundManager.misssrc)
           scoreManager.AddScore("miss")
@@ -94,6 +97,7 @@ function Arrow:update(dt)
           scoreManager.collectedYellowArrows = scoreManager.collectedYellowArrows + 1
           soundManager.playSoundEffect(soundManager.hitsrc)
           scoreManager.AddScore("perfect")
+          player:blink(dt)
         else
           soundManager.playSoundEffect(soundManager.misssrc)
           scoreManager.AddScore("miss")
@@ -125,6 +129,7 @@ function Arrow:update(dt)
           scoreManager.collectedBlueArrows = scoreManager.collectedBlueArrows + 1
           soundManager.playSoundEffect(soundManager.hitsrc)
           scoreManager.AddScore("perfect")
+          player:blink(dt)
         else
           soundManager.playSoundEffect(soundManager.misssrc)
           scoreManager.AddScore("miss")
@@ -134,6 +139,7 @@ function Arrow:update(dt)
           scoreManager.collectedYellowArrows = scoreManager.collectedYellowArrows + 1
           soundManager.playSoundEffect(soundManager.hitsrc)
           scoreManager.AddScore("perfect")
+          player:blink(dt)
         else
           soundManager.playSoundEffect(soundManager.misssrc)
           scoreManager.AddScore("miss")
@@ -165,6 +171,7 @@ function Arrow:update(dt)
           scoreManager.collectedBlueArrows = scoreManager.collectedBlueArrows + 1
           soundManager.playSoundEffect(soundManager.hitsrc)
           scoreManager.AddScore("perfect")
+          player:blink(dt)
         else
           soundManager.playSoundEffect(soundManager.misssrc)
           scoreManager.AddScore("miss")
@@ -174,6 +181,7 @@ function Arrow:update(dt)
           scoreManager.collectedYellowArrows = scoreManager.collectedYellowArrows + 1
           soundManager.playSoundEffect(soundManager.hitsrc)
           scoreManager.AddScore("perfect")
+          player:blink(dt)
         else
           soundManager.playSoundEffect(soundManager.misssrc)
           scoreManager.AddScore("miss")

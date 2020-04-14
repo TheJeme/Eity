@@ -19,6 +19,7 @@ end
 
 function Maingame:update(dt)
   maingame_UI:update(dt)
+  player:update(dt)
   if modManager.isDoubleSpeed then
     modManager.SetSpeed(doubleSpeed.ApplyMod())
   elseif modManager.isHalfSpeed then

@@ -48,6 +48,7 @@ function Slider:update(dt)
             v.length = v.length - v.speed * dt
             if((v.type == 1 and player.direction == "down") or (v.type == 3 and player.direction == "down") or (v.type == 2 and player.direction == "up")) then
               v.scoreLength = v.scoreLength - v.speed * dt
+              player:blink(dt)
               if isEnabledTicksound == true then
                 soundManager.hitSlidersrc:play()
               else
@@ -108,6 +109,7 @@ function Slider:update(dt)
           v.length = v.length - v.speed * dt
         if((v.type == 1 and player.direction == "up") or (v.type == 3 and player.direction == "up") or (v.type == 2 and player.direction == "down")) then
           v.scoreLength = v.scoreLength - v.speed * dt
+          player:blink(dt)
           if isEnabledTicksound == true then
             soundManager.hitSlidersrc:play()
           else
@@ -168,6 +170,7 @@ function Slider:update(dt)
           v.length = v.length - v.speed * dt
           if((v.type == 1 and player.direction == "right") or (v.type == 3 and player.direction == "right") or (v.type == 2 and player.direction == "left")) then
             v.scoreLength = v.scoreLength - v.speed * dt
+            player:blink(dt)
             if isEnabledTicksound == true then
               soundManager.hitSlidersrc:play()
             else
@@ -228,6 +231,7 @@ function Slider:update(dt)
         v.length = v.length - v.speed * dt
         if((v.type == 1 and player.direction == "left") or (v.type == 3 and player.direction == "left") or (v.type == 2 and player.direction == "right")) then
           v.scoreLength = v.scoreLength - v.speed * dt
+          player:blink(dt)
           if isEnabledTicksound == true then
             soundManager.hitSlidersrc:play()
           else

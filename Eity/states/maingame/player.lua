@@ -1,12 +1,26 @@
 player = {}
 
+player.lineWidth = 2
+
 function player:resetPosition()
   player.direction = "up"
 end
 
+function player:update(dt)
+  if player.lineWidth > 2 then
+    player.lineWidth = player.lineWidth - 18 * dt
+  else
+    player.lineWidth = 2
+  end
+end 
+
+function player:blink(dt)
+  player.lineWidth = 8
+end 
+
 function player:draw()  
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.setLineWidth(2)
+  love.graphics.setColor(1, 1, 1, 1) 
+  love.graphics.setLineWidth(player.lineWidth)
   if player.direction == "up" then
     love.graphics.polygon('fill', gw / 2, gh / 2 - 34,
                           gw / 2 + 40, gh / 2 + 5,
