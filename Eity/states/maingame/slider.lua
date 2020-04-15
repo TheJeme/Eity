@@ -82,7 +82,7 @@ function Slider:update(dt)
                 scoreManager.AddScore("miss")
               end
             elseif (v.type == 2) then
-              scoreManager.collectedYellowArrowsSliders = scoreManager.collectedYellowArrowsSliders + 1
+              scoreManager.collectedYellowSliders = scoreManager.collectedYellowSliders + 1
               if (player.direction == "up") then
                 soundManager.playSoundEffect(soundManager.hitsrc)
                 scoreManager.AddScore("sliderEnd")
@@ -144,7 +144,7 @@ function Slider:update(dt)
             end
           elseif (v.type == 2) then
             if (player.direction == "down") then
-              scoreManager.collectedYellowArrowsSliders = scoreManager.collectedYellowArrowsSliders + 1
+              scoreManager.collectedYellowSliders = scoreManager.collectedYellowSliders + 1
               soundManager.playSoundEffect(soundManager.hitsrc)
               scoreManager.AddScore("sliderEnd")
             else
@@ -205,7 +205,7 @@ function Slider:update(dt)
             end
           elseif (v.type == 2) then
             if (player.direction == "left") then
-              scoreManager.collectedYellowArrowsSliders = scoreManager.collectedYellowArrowsSliders + 1
+              scoreManager.collectedYellowSliders = scoreManager.collectedYellowSliders + 1
               soundManager.playSoundEffect(soundManager.hitsrc)
               scoreManager.AddScore("sliderEnd")
             else
@@ -266,7 +266,7 @@ function Slider:update(dt)
           end
         elseif (v.type == 2) then
           if (player.direction == "right") then
-            scoreManager.collectedYellowArrowsSliders = scoreManager.collectedYellowArrowsSliders + 1
+            scoreManager.collectedYellowSliders = scoreManager.collectedYellowSliders + 1
             soundManager.playSoundEffect(soundManager.hitsrc)
             scoreManager.AddScore("sliderEnd")
           else
