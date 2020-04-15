@@ -22,6 +22,11 @@ function mapList.getSelectedMapIndex()
   return selectedMap
 end
 
+function mapList.PickRandomMapIndex()
+  selectedMap = math.random(1, #mapManager.getListOfMaps())
+  img = gameManager:setBackground()
+end
+
 function mapList:draw()
   for i, v in ipairs(maplist) do
     if (i == selectedMap) then

@@ -23,7 +23,6 @@ end
 
 function beloved:draw()
   if(isbelovedMode) then    
-    love.graphics.push()
     love.graphics.setFont(font)
     love.graphics.setLineWidth(1)
     love.graphics.setColor(1, 1, 1, 1)
@@ -45,7 +44,6 @@ function beloved:draw()
     elseif (mouse1Down == "LEFT" or mouse2Down == "RIGHT") then
       love.graphics.print("Mouse button down: " .. mouse1Down .. mouse2Down, 0, 30)
     end
-    love.graphics.pop()
   end
 end
 

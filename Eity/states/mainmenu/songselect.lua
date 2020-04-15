@@ -21,7 +21,7 @@ function Songselect:load()
   backButton = newButton(50, gh * 0.94, 150, 50, 10, "Back", GrayOpacity6, Green, Blue, "center", 0, 10, function() menustate = "Startmenu" end)
   modesButton = newButton(gw - 800, gh * 0.94, 150, 50, 10, "Modes", GrayOpacity6, Green, Blue, "center", 0, 10, function() isModes = true end)
   modsButton = newButton(gw - 600, gh * 0.94, 150, 50, 10, "Mods", GrayOpacity6, Green, Blue, "center", 0, 10, function() isMods = true end)
-  randomButton = newButton(gw - 400, gh * 0.94, 150, 50, 10, "Random", GrayOpacity6, Green, Blue, "center", 0, 10, function() end)
+  randomButton = newButton(gw - 400, gh * 0.94, 150, 50, 10, "Random", GrayOpacity6, Green, Blue, "center", 0, 10, function() mapList.PickRandomMapIndex() end)
   playButton = newButton(gw - 200, gh * 0.94, 150, 50, 10, "Play", GrayOpacity6, Green, Blue, "center", 0, 10, function() gameManager.RestartNewMap() end)
   
   modsHalfSpeedButton = newButton(gw * 0.4, gh * 0.4, 150, 50, 10, "0.75x speed", GrayOpacity6, Red, Green, "center", 0, 10, function() enableHalfTimeMod() end, true)
