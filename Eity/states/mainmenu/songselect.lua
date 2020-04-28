@@ -5,8 +5,7 @@ Songselect = {}
 
 local bigFont, smallFont, smallestFont
 
-local playButton, backButton, randomButton, modsButton, modesButton
-local modeRhombusButton, modeCatchButton, modeRushButton
+local playButton, backButton, randomButton, modsButton
 local modsHiddenButton, modsHalfSpeedButton, modsDoubleSpeedButton, modsHiddenButton, modsFlashlightButton, modsNoFailButton, modsAutoButton
 
 
@@ -19,7 +18,6 @@ function Songselect:load()
   smallestFont = love.graphics.newFont("assets/roboto.ttf", 18)
   
   backButton = newButton(50, gh * 0.94, 150, 50, 10, "Back", GrayOpacity6, Green, Blue, "center", 0, 10, function() menustate = "Startmenu" end)
-  modesButton = newButton(gw - 800, gh * 0.94, 150, 50, 10, "Modes", GrayOpacity6, Green, Blue, "center", 0, 10, function() isModes = true end)
   modsButton = newButton(gw - 600, gh * 0.94, 150, 50, 10, "Mods", GrayOpacity6, Green, Blue, "center", 0, 10, function() isMods = true end)
   randomButton = newButton(gw - 400, gh * 0.94, 150, 50, 10, "Random", GrayOpacity6, Green, Blue, "center", 0, 10, function() mapList.PickRandomMapIndex() end)
   playButton = newButton(gw - 200, gh * 0.94, 150, 50, 10, "Play", GrayOpacity6, Green, Blue, "center", 0, 10, function() gameManager.RestartNewMap() end)
@@ -32,22 +30,14 @@ function Songselect:load()
   modsAutoButton = newButton(gw * 0.52, gh * 0.6, 150, 50, 10, "Auto", GrayOpacity6, Red, Green, "center", 0, 10, function() enableAutoMod() end, true)
   modsbackButton = newButton(gw * 0.46, gh * 0.7, gw * 0.08, 50, 10, "Back", GrayOpacity6, White, White, "center", 0, 10, function() isMods = false end)
   
-  modeRhombusButton = newButton(gw * 0.46, gh * 0.4, gw * 0.08, 50, 10, "Rhombus", GrayOpacity6, Green, Blue, "center", 0, 10, function() stateManager.GameModeState = "Rhombus" isModes = false end)
-  modeCatchButton = newButton(gw * 0.46, gh * 0.5, gw * 0.08, 50, 10, "Catch", GrayOpacity6, Green, Blue, "center", 0, 10, function() stateManager.GameModeState = "Catch" isModes = false end)
-  modeRushButton = newButton(gw * 0.46, gh * 0.6, gw * 0.08, 50, 10, "Rush", GrayOpacity6, Green, Blue, "center", 0, 10, function() stateManager.GameModeState = "Rush" isModes = false end)
 end
 
 function Songselect:update(dt)
-  if not isModes and not isMods then
+  if not isMods then
     backButton:update(dt)
-    modesButton:update(dt)
     modsButton:update(dt)
     randomButton:update(dt)
     playButton:update(dt)      
-  elseif isModes then
-    modeRhombusButton:update(dt)
-    modeRushButton:update(dt)
-    modeCatchButton:update(dt) 
   elseif isMods then    
     modsHalfSpeedButton:update(dt)        
     modsDoubleSpeedButton:update(dt)   
@@ -61,43 +51,34 @@ end
 
 function Songselect:draw()
   Background()  
-  if not isModes and not isMods then
+  if not isMods then
     mapList:draw()    
     BottomBar()
     TopBar()
-  elseif isModes then
-    Modes()
   elseif isMods then
     Mods()
   end
 end
 
 function Songselect:keypressed(key)
-  if key == "escape" and isModes then
-    isModes = false
-  elseif key == "escape" and isMods then
+  if key == "escape" and isMods then
     isMods = false
-  elseif key == "up" and not isMods and not isModes then
+  elseif key == "up" and not isMods then
     mapList.mapListUp()
-  elseif key == "down" and not isMods and not isModes then
+  elseif key == "down" and not isMods then
     mapList.mapListDown()
-  elseif key == "return" and not isMods and not isModes then
+  elseif key == "return" and not isMods then
     gameManager.RestartNewMap()
   end
 end
 
 function Songselect:mousepressed(x, y, button)
-  if not isModes and not isMods then       
+  if not isMods then       
     mapList:mousepressed(x, y, button)                                                  
     backButton:mousepressed(x, y, button)
-    modesButton:mousepressed(x, y, button)
     modsButton:mousepressed(x, y, button)
     randomButton:mousepressed(x, y, button)
     playButton:mousepressed(x, y, button)    
-  elseif isModes then 
-    modeRhombusButton:mousepressed(x, y, button)
-    modeCatchButton:mousepressed(x, y, button)
-    modeRushButton:mousepressed(x, y, button)  
   elseif isMods then 
     modsHalfSpeedButton:mousepressed(x, y, button)        
     modsDoubleSpeedButton:mousepressed(x, y, button)
@@ -194,7 +175,6 @@ function BottomBar()
   love.graphics.line(0, gh * 0.92, gw, gh * 0.92)
   
   backButton:draw()
-  modesButton:draw()
   modsButton:draw()
   randomButton:draw()
   playButton:draw()
@@ -231,20 +211,6 @@ function Mods()
   modsbackButton:draw()
 end
 
-function Modes()
-  love.graphics.setColor(0, 0, 0, 0.8)
-  love.graphics.rectangle('fill', 0, 0, gw, gh)
-  
-  love.graphics.setFont(bigFont)  
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf("Modes", 0, gh * 0.25, gw, "center")
-  
-  love.graphics.setFont(smallFont)  
-  
-  modeRhombusButton:draw()
-  modeCatchButton:draw()
-  modeRushButton:draw()
-end
 
 function Background()
   love.graphics.draw(img, 0, 0, 0, scaleX, scaleY)

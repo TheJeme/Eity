@@ -19,7 +19,6 @@ end
 
 function Maingame:update(dt)
   maingame_UI:update(dt)
-  player:update(dt)
   if modManager.isDoubleSpeed then
     modManager.SetSpeed(doubleSpeed.ApplyMod())
   elseif modManager.isHalfSpeed then
@@ -36,9 +35,9 @@ function Maingame:update(dt)
      love.mouse.setVisible(true) 
    end
   
-  if not gameManager.pause and not gameManager.isFailed then -------------ADD HERE
+  if not gameManager.pause and not gameManager.isFailed then
     love.mouse.setVisible(false)
-    
+    player:update(dt) 
     mapSong:setPitch(modManager.getSpeed())
     mapSong:play()
     gameManager.gametime = gameManager.gametime + dt * modManager.getSpeed()

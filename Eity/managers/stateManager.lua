@@ -6,7 +6,7 @@ stateManager = {}
 
 function stateManager:load()
   stateManager.GameState = "Mainmenu" -- Mainmenu, Maingame, Rankingscreen
-  stateManager.GameModeState = "Rhombus" -- Rhombus, Catch, Rush
+  stateManager.GameModeState = "Rush" -- Rush, Catch
   
 
     Mainmenu:load()

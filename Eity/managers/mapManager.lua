@@ -43,7 +43,7 @@ function mapManager:load()
   table.insert(listOfMaps, shelter)
   table.insert(listOfMaps, elama)
   table.insert(listOfMaps, freedomDive)
-  table.insert(listOfMaps, yumeiroParade)
+  --table.insert(listOfMaps, yumeiroParade)
   table.insert(listOfMaps, template)
   for i, v in ipairs(mapManager.getListOfMaps()) do
     for i, v in ipairs(v) do
