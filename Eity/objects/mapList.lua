@@ -1,3 +1,5 @@
+socket = require 'socket'
+
 mapList = {}
 
 local bigFont
@@ -23,6 +25,7 @@ function mapList.getSelectedMapIndex()
 end
 
 function mapList.PickRandomMapIndex()
+  math.randomseed(socket.gettime())
   selectedMap = math.random(1, #mapManager.getListOfMaps())
   img = gameManager:setBackground()
 end

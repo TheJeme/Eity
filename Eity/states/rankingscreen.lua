@@ -68,7 +68,8 @@ function Rankingscreen.Topbar()
   
 
   love.graphics.setFont(titleFont)
-  love.graphics.printf("Shelter - Porter Robinson & Madeon [Easy]", 15, 10, gw, "left")
+  love.graphics.printf(mapManager.getTitleOfIndex(mapList.getSelectedMapIndex()) .. " - " .. mapManager.getPorterOfIndex(mapList.getSelectedMapIndex())
+                        .. " [" .. mapManager.getDifficultOfIndex(mapList.getSelectedMapIndex()) .. "]", 15, 10, gw, "left")
   love.graphics.setFont(descFont)  
   love.graphics.printf("Played on " .. os.date("%d/%m/%Y"), 18, 45, gw, "left")
 end

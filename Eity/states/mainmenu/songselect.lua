@@ -189,7 +189,7 @@ function TopBar()
   love.graphics.line(0, gh * 0.08, gw, gh * 0.08)
 
   love.graphics.printf(mapManager.getTitleOfIndex(mapList.getSelectedMapIndex()) .. " - " .. mapManager.getPorterOfIndex(mapList.getSelectedMapIndex()), 15, 10, 700, "left")
-  love.graphics.printf(mapManager.getDifficultOfIndex(mapList.getSelectedMapIndex()), 15, 40, 700, "left")
+  love.graphics.printf("[" .. mapManager.getDifficultOfIndex(mapList.getSelectedMapIndex()) .. "]", 15, 40, 700, "left")
 end
 
 function Mods()

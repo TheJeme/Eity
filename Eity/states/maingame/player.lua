@@ -15,7 +15,7 @@ function player:update(dt)
 end 
 
 function player:blink(dt)
-  player.lineWidth = 8
+  player.lineWidth = 10
 end 
 
 function player:draw()  
