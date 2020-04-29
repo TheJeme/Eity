@@ -2,6 +2,13 @@ shelter = require "maps/Shelter/map"
 elama = require "maps/Elaman koulu/map"
 freedomDive = require "maps/FREEDOM DiVE/map"
 yumeiroParade = require "maps/Yumeiro Parade/map"
+highscore = require "maps/Highscore/map"
+prayerBlue = require "maps/Prayer Blue/map"
+paradigmShift = require "maps/Paradigm Shift/map"
+pressure = require "maps/The Pressure/map"
+stellaRium = require "maps/Stella-rium/map"
+virtualParadise = require "maps/Virtual Paradise/map"
+coldGreenEyes = require "maps/Cold Green Eyes/map"
 template = require "maps/Template/map"
 
 mapManager = { }
@@ -41,10 +48,16 @@ function mapManager:load()
   -- (0 = none, 1 = normal, 2 = slider, 3 = bad), 448 = up, 64 = down, 192 = left, 320 = right, milliseconds to spawn
   -- Slider length
   table.insert(listOfMaps, shelter)
-  table.insert(listOfMaps, elama)
+  --table.insert(listOfMaps, elama)
   table.insert(listOfMaps, freedomDive)
   table.insert(listOfMaps, yumeiroParade)
-  table.insert(listOfMaps, template)
+  table.insert(listOfMaps, highscore)
+  table.insert(listOfMaps, stellaRium)
+  table.insert(listOfMaps, pressure)
+  table.insert(listOfMaps, paradigmShift)
+  table.insert(listOfMaps, prayerBlue)
+  table.insert(listOfMaps, coldGreenEyes)
+  table.insert(listOfMaps, virtualParadise)
   for i, v in ipairs(mapManager.getListOfMaps()) do
     for i, v in ipairs(v) do
       if (v[i][1] == 3) then

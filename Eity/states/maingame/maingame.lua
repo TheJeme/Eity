@@ -50,22 +50,25 @@ function Maingame:update(dt)
           createSlider(mapNotes[nextNote][1], math.ceil(mapNotes[nextNote][2] * 4 / 512), mapNotes[nextNote][3] * modManager.getSpeed(), mapNotes[nextNote][4])
         end
         nextNote = nextNote + 1
-      elseif #mapNotes < scoreManager.destroyedArrows + 1 then
-        if endTime < 5 then
-          endTime = endTime + dt
-        else
-          if scoreManager.combo > scoreManager.maxCombo then scoreManager.maxCombo = scoreManager.combo end
-          scoreManager.CalculateTotalNotes()
-          mapSong:stop()
-          endTime = 0
-          love.mouse.setVisible(true)
-          stateManager.GameState = "Rankingscreen"
-        end
       end
     end
 
     Arrow:update(dt)
     Slider:update(dt)
+    
+  if #mapNotes < scoreManager.destroyedArrows + 1 then
+    if endTime < 1 then          
+      endTime = endTime + dt * modManager.getSpeed()
+    else
+      if scoreManager.combo > scoreManager.maxCombo then scoreManager.maxCombo = scoreManager.combo end
+      scoreManager.CalculateTotalNotes()
+      mapSong:stop()
+      endTime = 0
+      love.mouse.setVisible(true)
+      stateManager.GameState = "Rankingscreen"
+    end
+  end
+    
     
     if modManager.isNoFail or modManager.isAuto then
       gameManager.health = 100
@@ -103,6 +106,7 @@ function Maingame:draw()
   maingame_UI:draw()
   love.graphics.setFont(defaultFont)
   love.graphics.print(gameManager.gametime, 0, 60)
+  love.graphics.print(endTime, 10, 10)
 end
 
 function Maingame:mousepressed(x, y,button)

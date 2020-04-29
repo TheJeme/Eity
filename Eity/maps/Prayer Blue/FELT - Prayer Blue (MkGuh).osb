@@ -1,0 +1,29 @@
+[Events]
+//Background and Video events
+//Storyboard Layer 0 (Background)
+Sprite,Background,Centre,"sanae kochiya.png",320,240
+ F,0,0,1182,0
+ S,0,0,1182,97408,0.6227369
+ F,0,1182,64012,1
+ F,0,64012,64578,1,0
+ F,0,88729,96087,1
+ F,0,96087,97408,1,0
+Sprite,Background,Centre,"Konachan.png",320,240
+ M,0,64578,76653,230,230,287,287
+ S,0,64578,76653,0.8203511
+Sprite,Background,Centre,"Kochiya.png",320,240
+ M,0,76653,88729,230,230,287,287
+ S,0,76653,88729,0.8203511
+//Storyboard Layer 1 (Fail)
+//Storyboard Layer 2 (Pass)
+//Storyboard Layer 3 (Foreground)
+Sprite,Foreground,Centre,"White.png",320,240
+ S,0,1182,,4.197754
+ F,0,1182,1748,1,0
+ F,0,7219,7785,1,0
+ F,0,37408,37974,1,0
+ F,0,49483,50049,1,0
+ F,0,64578,64861,1,0
+ F,0,76653,77219,1,0
+ F,0,88729,89672,1,0
+//Storyboard Sound Samples
