@@ -29,7 +29,7 @@ function Arrow:update(dt)
   for i, v in ipairs(listOfArrows) do
     if (v.direction == 4) then
       v.tempPosition = v.tempPosition - v.speed * dt
-      if(v.tempPosition < gh * 0.815) and v.type == 2 then
+      if(v.tempPosition < gh * 0.82) and v.type == 2 then
         if(v.rotation < math.pi) then
             v.rotation = v.rotation + v.speed * 0.05 * dt
         else
@@ -71,7 +71,7 @@ function Arrow:update(dt)
 
     elseif (v.direction == 2) then
     v.tempPosition = v.tempPosition + v.speed * dt
-    if(v.tempPosition > gh * 0.185) and v.type == 2 then
+    if(v.tempPosition > gh * 0.18) and v.type == 2 then
       if(v.rotation < math.pi) then
           v.rotation = v.rotation + v.speed * 0.05 * dt
       else
@@ -113,7 +113,7 @@ function Arrow:update(dt)
 
   elseif (v.direction == 1) then
     v.tempPosition = v.tempPosition - v.speed * dt
-    if(v.tempPosition < gw * 0.675) and v.type == 2 then
+    if(v.tempPosition < gw * 0.68) and v.type == 2 then
       if(v.rotation < math.pi) then
           v.rotation = v.rotation + v.speed * 0.05 * dt
       else
@@ -155,7 +155,7 @@ function Arrow:update(dt)
 
   elseif (v.direction == 3) then
   v.tempPosition = v.tempPosition + v.speed * dt
-  if(v.tempPosition > gw * 0.325) and v.type == 2 then
+  if(v.tempPosition > gw * 0.32) and v.type == 2 then
     if(v.rotation < math.pi) then
         v.rotation = v.rotation + v.speed * 0.05 * dt
     else
