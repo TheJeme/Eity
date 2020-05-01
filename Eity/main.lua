@@ -31,7 +31,7 @@ function discordApplyPresence()
   
   presence = {
     largeImageKey = "eity_icon",
-    largeImageText = "Eity v0.7.8",
+    largeImageText = "Eity v1.0.0",
     details = detailsNow,
     state = stateNow,
     startTimestamp = now,
@@ -78,7 +78,7 @@ function love.draw()
 end
 
 function love.quit()
-    discordRPC.shutdown()
+  discordRPC.shutdown()
 end
 
 function love.mousepressed(x, y, button)
