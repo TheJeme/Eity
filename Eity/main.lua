@@ -6,13 +6,11 @@ require 'lib/simpleScale'
 
 local discordRPC = require 'lib/discordRPC'
 local appId = require 'applicationId'
-local beloved = require 'lib/beloved'
 
 function love.load()
   simpleScale.setWindow(gw, gh, window_width, window_height)
   gameManager:load()
   stateManager:load()
-  beloved:load()
   love.graphics.setBackgroundColor(0.1, 0.1, 0.1, 1)
 
   discordRPC.initialize(appId, true)
@@ -71,7 +69,6 @@ end
 function love.draw()  
 	simpleScale.set()
     stateManager:draw()
-    beloved:draw()
     if isEnabledFPS then
       love.graphics.setFont(defaultFont)
       love.graphics.setColor(1, 1, 1, 1)
@@ -86,10 +83,8 @@ end
 
 function love.mousepressed(x, y, button)
   stateManager:mousepressed(x, y, button)
-  beloved:mousepressed(x, y, button)
 end
 
 function love.keypressed(key)
   stateManager:keypressed(key)
-  beloved:keypressed(key) 
 end

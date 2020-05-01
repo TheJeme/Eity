@@ -63,9 +63,9 @@ end
 function Songselect:keypressed(key)
   if key == "escape" and isMods then
     isMods = false
-  elseif key == "up" and not isMods then
+  elseif (key == "up" and not isMods) or (key == "left" and not isMods) then
     mapList.mapListUp()
-  elseif key == "down" and not isMods then
+  elseif (key == "down" and not isMods) or (key == "right" and not isMods) then
     mapList.mapListDown()
   elseif key == "return" and not isMods then
     gameManager.RestartNewMap()

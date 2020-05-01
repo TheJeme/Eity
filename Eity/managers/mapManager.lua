@@ -48,16 +48,18 @@ function mapManager:load()
   -- (0 = none, 1 = normal, 2 = slider, 3 = bad), 448 = up, 64 = down, 192 = left, 320 = right, milliseconds to spawn
   -- Slider length
   table.insert(listOfMaps, shelter)
-  --table.insert(listOfMaps, elama)
-  table.insert(listOfMaps, freedomDive)
-  table.insert(listOfMaps, yumeiroParade)
-  table.insert(listOfMaps, highscore)
-  table.insert(listOfMaps, stellaRium)
-  table.insert(listOfMaps, pressure)
-  table.insert(listOfMaps, paradigmShift)
   table.insert(listOfMaps, prayerBlue)
-  table.insert(listOfMaps, coldGreenEyes)
   table.insert(listOfMaps, virtualParadise)
+  table.insert(listOfMaps, coldGreenEyes)
+  table.insert(listOfMaps, paradigmShift)  
+  table.insert(listOfMaps, stellaRium)  
+  table.insert(listOfMaps, pressure)
+  table.insert(listOfMaps, freedomDive)
+  table.insert(listOfMaps, highscore)
+  table.insert(listOfMaps, yumeiroParade)  
+  
+  
+  --table.insert(listOfMaps, elama)  
   --table.insert(listOfMaps, template)
   for i, v in ipairs(mapManager.getListOfMaps()) do
     for i, v in ipairs(v) do

@@ -122,6 +122,12 @@ function Maingame:keypressed(key)
     gameManager.Restart()
   end
   
+  if(key == "g") then createArrow(1, 1, 400) end
+  if(key == "h") then createArrow(1, 2, 400) end
+  if(key == "j") then createArrow(1, 3, 400) end
+  if(key == "k") then createArrow(1, 4, 400) end
+  
+  
   
   if not gameManager.pause or not gameManager.isFailed then
     player:keypressed(key)
