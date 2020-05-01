@@ -57,7 +57,7 @@ function Maingame:update(dt)
     Slider:update(dt)
     
   if #mapNotes < scoreManager.destroyedArrows + 1 then
-    if endTime < 1 then          
+    if endTime < 2 then          
       endTime = endTime + dt * modManager.getSpeed()
     else
       if scoreManager.combo > scoreManager.maxCombo then scoreManager.maxCombo = scoreManager.combo end

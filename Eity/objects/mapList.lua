@@ -26,7 +26,9 @@ end
 
 function mapList.PickRandomMapIndex()
   math.randomseed(socket.gettime())
-  selectedMap = math.random(1, #mapManager.getListOfMaps())
+  selectedMapCheck = math.random(1, #mapManager.getListOfMaps())
+  if(selectedMapCheck == selectedMap) then selectedMapCheck = math.random(1, #mapManager.getListOfMaps()) end
+  selectedMap = selectedMapCheck
   img = gameManager:setBackground()
 end
 

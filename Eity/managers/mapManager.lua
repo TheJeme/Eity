@@ -58,6 +58,7 @@ function mapManager:load()
   table.insert(listOfMaps, prayerBlue)
   table.insert(listOfMaps, coldGreenEyes)
   table.insert(listOfMaps, virtualParadise)
+  --table.insert(listOfMaps, template)
   for i, v in ipairs(mapManager.getListOfMaps()) do
     for i, v in ipairs(v) do
       if (v[i][1] == 3) then
