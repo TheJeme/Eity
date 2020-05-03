@@ -214,7 +214,7 @@ end
 
 function Background()
   love.graphics.draw(img, 0, 0, 0, scaleX, scaleY)
-  love.graphics.setColor(0.3, 0.3, 0.3, 0.5)
+  love.graphics.setColor(0.3, 0.3, 0.3, gameManager.backgroundDim)
   love.graphics.rectangle('fill', 0, 0, gw, gh)
 end
 

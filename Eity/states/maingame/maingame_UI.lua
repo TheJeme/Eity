@@ -19,6 +19,7 @@ function maingame_UI:load()
   continueButton = newSquareButton(gw / 2 + 50, gh / 2 - 200, 120, "Continue", Green, White, 0, -25, function() gameManager.Pause() end)
 end
 
+
 function maingame_UI:update(dt)
   restartButton:update(dt)
   quitButton:update(dt)
@@ -35,6 +36,8 @@ function maingame_UI:update(dt)
     xbar = xbar - (dt * 400)
   end
 end
+
+
 
 function maingame_UI:draw()
   MaingameOverlay()

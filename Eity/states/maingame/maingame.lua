@@ -45,7 +45,7 @@ function Maingame:update(dt)
     for i, v in ipairs(mapNotes) do
       if (#mapNotes >= nextNote and (mapNotes[nextNote][5] - 400) * 0.001 < gameManager.gametime) then
         if (mapNotes[nextNote][4] == 0) then
-          createArrow(mapNotes[nextNote][1], math.ceil(mapNotes[nextNote][2] * 4 / 512), mapNotes[nextNote][3] * modManager.getSpeed())          
+          createArrow(mapNotes[nextNote][1], math.ceil(mapNotes[nextNote][2] * 4 / 512), mapNotes[nextNote][3] * modManager.getSpeed())    
         elseif (mapNotes[nextNote][4] ~= 0) then
           createSlider(mapNotes[nextNote][1], math.ceil(mapNotes[nextNote][2] * 4 / 512), mapNotes[nextNote][3] * modManager.getSpeed(), mapNotes[nextNote][4])
         end
@@ -53,6 +53,7 @@ function Maingame:update(dt)
       end
     end
 
+    
     Arrow:update(dt)
     Slider:update(dt)
     
@@ -104,6 +105,7 @@ function Maingame:draw()
   Arrow:draw()
   Slider:draw()
   maingame_UI:draw()
+  
   love.graphics.setFont(defaultFont)
   --love.graphics.print(gameManager.gametime, 0, 60)
 end
