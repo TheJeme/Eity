@@ -5,7 +5,7 @@ defaultFont = love.graphics.getFont()
 
 isEnabledFPS = true
 isEnabledVSync = false
-isEnabledTicksound = true
+isEnabledTicksound = false
 
 selectedResolutionIndex = 2
 resolutionList = {
