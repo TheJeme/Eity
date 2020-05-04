@@ -1,8 +1,8 @@
-require 'mods/auto'
 require 'mods/halfSpeed'
 require 'mods/doubleSpeed'
 require 'mods/hidden'
 require 'mods/flashlight'
+require 'mods/auto'
 
 modManager = {}
 
@@ -13,7 +13,7 @@ function modManager:load()
   modManager.isFlashlight = false
   modManager.isNoFail = false
   modManager.isAuto = false
-  
+    
   modManager.speed = 1.0
 end
 
