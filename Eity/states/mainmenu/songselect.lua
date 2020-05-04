@@ -14,6 +14,7 @@ function Songselect:load()
   img = gameManager:setBackground()
   scaleX, scaleY = gameManager:getImageScaleForNewDimensions( img, gw, gh )
   bigFont = love.graphics.newFont("assets/roboto.ttf", 84)
+  scoreFont = love.graphics.newFont("assets/roboto.ttf", 42)
   smallFont = love.graphics.newFont("assets/roboto.ttf", 24)
   smallestFont = love.graphics.newFont("assets/roboto.ttf", 18)
   
@@ -190,6 +191,8 @@ function TopBar()
 
   love.graphics.printf(mapManager.getTitleOfIndex(mapList.getSelectedMapIndex()) .. " - " .. mapManager.getPorterOfIndex(mapList.getSelectedMapIndex()), 15, 10, 700, "left")
   love.graphics.printf("[" .. mapManager.getDifficultOfIndex(mapList.getSelectedMapIndex()) .. "]", 15, 40, 700, "left")
+  love.graphics.setFont(scoreFont)
+  love.graphics.printf("Highscore " .. string.format("%08d", saveManager.highscores.mapScore[mapList.getSelectedMapIndex()]), 0, 20, gw, "center")
 end
 
 function Mods()

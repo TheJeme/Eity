@@ -88,7 +88,7 @@ function Rankingscreen.Ranking()
   love.graphics.printf(scoreManager.getGrade(), gw * 0.45 + 6, gh * 0.2 - 6, gw * 0.6, "center")
   love.graphics.printf(scoreManager.getGrade(), gw * 0.45 - 6, gh * 0.2 + 6, gw * 0.6, "center")
   love.graphics.printf(scoreManager.getGrade(), gw * 0.45 + 6, gh * 0.2 + 6, gw * 0.6, "center")
-  love.graphics.setColor(scoreManager.getGradeColor())
+  love.graphics.setColor(scoreManager.getGradeColor(scoreManager.getGrade()))
   love.graphics.printf(scoreManager.getGrade(), gw * 0.45, gh * 0.2, gw * 0.6, "center")
 end
 

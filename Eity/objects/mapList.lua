@@ -3,6 +3,7 @@ socket = require 'socket'
 mapList = {}
 
 local bigFont
+local rankingFont
 local smallFont
 local smallestFont
 local maplist
@@ -14,6 +15,7 @@ function mapList:load(listOfMaps)
   bigFont = love.graphics.newFont("assets/roboto.ttf", 84)
   smallFont = love.graphics.newFont("assets/roboto.ttf", 24)
   smallestFont = love.graphics.newFont("assets/roboto.ttf", 18)
+  rankingFont = love.graphics.newFont("assets/roboto.ttf", 58)
   maplist = listOfMaps
   scrollY = 0
   selectedMap = 1
@@ -46,6 +48,7 @@ function mapList:draw()
       love.graphics.printf(mapManager.getPorterOfIndex(i), gw - 790, scrollY + 145 + 111 * (i - 1), 700, "left")
       love.graphics.setColor(Blue)
       love.graphics.printf(mapManager.getDifficultOfIndex(i), gw - 790, scrollY + 165 + 111 * (i - 1), 700, "left")  
+      DrawGrade(i)
     else
       love.graphics.setColor(0.1, 0.1, 0.1, 0.9)
       love.graphics.rectangle('fill', gw - 780, scrollY + 100 + 111 * (i - 1), 660, 100, 10)
@@ -57,9 +60,22 @@ function mapList:draw()
       love.graphics.setColor(White)
       love.graphics.printf(mapManager.getPorterOfIndex(i), gw - 750, scrollY + 145 + 111 * (i - 1), 700, "left")
       love.graphics.setColor(Blue)
-      love.graphics.printf(mapManager.getDifficultOfIndex(i), gw - 750, scrollY + 165 + 111 * (i - 1), 700, "left") 
+      love.graphics.printf(mapManager.getDifficultOfIndex(i), gw - 750, scrollY + 165 + 111 * (i - 1), 700, "left")
+      
+      DrawGrade(i)
     end
   end
+end
+
+function DrawGrade(i)
+  love.graphics.setFont(rankingFont)
+  love.graphics.setColor(White)
+  love.graphics.printf(saveManager.highscores.mapGrade[i], gw * 0.61 - 2, scrollY + 116 + 111 * (i - 1) - 2, gw * 0.6, "center")
+  love.graphics.printf(saveManager.highscores.mapGrade[i], gw * 0.61 + 2, scrollY + 116 + 111 * (i - 1) - 2, gw * 0.6, "center")
+  love.graphics.printf(saveManager.highscores.mapGrade[i], gw * 0.61 - 2, scrollY + 116 + 111 * (i - 1) + 2, gw * 0.6, "center")
+  love.graphics.printf(saveManager.highscores.mapGrade[i], gw * 0.61 + 2, scrollY + 116 + 111 * (i - 1) + 2, gw * 0.6, "center")
+  love.graphics.setColor(scoreManager.getGradeColor(saveManager.highscores.mapGrade[i]))
+  love.graphics.printf(saveManager.highscores.mapGrade[i], gw * 0.61, scrollY + 116 + 111 * (i - 1), gw * 0.6, "center") 
 end
 
 function mapList:mousepressed(x, y, button)  

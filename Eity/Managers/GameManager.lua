@@ -58,7 +58,7 @@ function gameManager.RestartNewMap()
     mapSong:stop()
   end
   mapSong = gameManager:setSong()
-  mapSong:setVolume(musicVolume)  
+  mapSong:setVolume(saveManager.settings.musicVolume)  
   gameManager.Restart()
   stateManager.GameState = "Maingame"
 end

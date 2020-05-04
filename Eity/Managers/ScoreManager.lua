@@ -112,6 +112,13 @@ function scoreManager:update(dt)
   end
 end
 
+function scoreManager.setHighScore()
+  saveManager.highscores.mapScore[mapList.getSelectedMapIndex()] = scoreManager.score
+  saveManager.highscores.mapGrade[mapList.getSelectedMapIndex()] = scoreManager.getGrade()
+  
+  saveManager:saveHighscore()
+end
+
 function scoreManager:draw()
   love.graphics.setFont(squareButtonsmallFont)
   love.graphics.setColor(1, 1, 1, 1)
@@ -140,21 +147,23 @@ function scoreManager.getGrade()
     return "B"
   elseif scoreManager.getAccuracy() >= 85 then
     return "C"
-  else
+  elseif scoreManager.getAccuracy() >= 0 then
     return "D"
+  else
+    return ""
   end
 end
 
-function scoreManager.getGradeColor()
-  if scoreManager.getAccuracy() == 100 then
+function scoreManager.getGradeColor(grade)
+  if grade == "SS" then
     return {255 / 255, 215 / 255, 55 / 255, 1}
-  elseif scoreManager.getAccuracy() >= 98 then
+  elseif grade == "S" then
     return {255 / 255, 215 / 255, 55 / 255, 1}
-  elseif scoreManager.getAccuracy() >= 95 then
+  elseif grade == "A" then
     return {153 / 255, 199 / 255, 59 / 255, 1}
-  elseif scoreManager.getAccuracy() >= 90 then
+  elseif grade == "B" then
     return {51 / 255, 152 / 255, 220 / 255, 1}
-  elseif scoreManager.getAccuracy() >= 85 then
+  elseif grade == "C" then
     return {116 / 255, 94 / 255, 198 / 255, 1}
   else
     return {242 / 255, 75 / 255, 60 / 255, 1}

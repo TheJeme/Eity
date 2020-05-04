@@ -24,7 +24,8 @@ function saveManager:load()
   
   if not love.filesystem.getInfo("highscores.txt") then
     highscores = {}
-    highscores.map1 = ""
+    highscores.mapScore = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+    highscores.mapGrade = {"", "", "", "", "", "", "", "", "", ""}
     
     love.filesystem.write("highscores.txt", serialize(highscores))
   end
@@ -33,6 +34,9 @@ function saveManager:load()
   saveManager.highscores = chunk()
 end
 
+function saveManager:saveHighscore()
+  love.filesystem.write("highscores.txt", serialize(saveManager.highscores))
+end
 
 function saveManager:saveSettings()
   settings = {}
