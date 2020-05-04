@@ -80,8 +80,9 @@ function Mainmenu:keypressed(key)
   elseif key == "escape" and menustate == "Startmenu" then
     PressedQuit = true
   elseif key == "escape" and menustate == "Options" then
+    saveManager:saveSettings()
     menustate = "Startmenu"
-    simpleScale.updateWindow(resolutionList[selectedResolutionIndex][1], resolutionList[selectedResolutionIndex][2])
+    simpleScale.updateWindow(resolutionList[saveManager.settings.resolutionIndex][1], resolutionList[saveManager.settings.resolutionIndex][2])
   end
 end
 

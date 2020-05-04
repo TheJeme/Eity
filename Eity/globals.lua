@@ -3,11 +3,6 @@ gh = 1080
 
 defaultFont = love.graphics.getFont()
 
-isEnabledFPS = true
-isEnabledVSync = false
-isEnabledTicksound = false
-
-selectedResolutionIndex = 2
 resolutionList = {
                   {2560, 1440},
                   {1920, 1080},

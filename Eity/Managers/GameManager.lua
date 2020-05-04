@@ -1,4 +1,5 @@
 require 'managers/soundManager'
+require 'managers/saveManager'
 require 'managers/scoreManager'
 require 'managers/modManager'
 require 'managers/mapManager'
@@ -12,6 +13,7 @@ function gameManager:getImageScaleForNewDimensions( image, newWidth, newHeight )
 end
 
 function gameManager.setBackgroundDim(v)
+  saveManager.settings.bgDim = v
   gameManager.backgroundDim = v
 end
 
@@ -24,6 +26,7 @@ function gameManager:update(dt)
 end
 
 function gameManager:load()
+  saveManager:load()
   modManager:load()
   mapManager:load()
   soundManager:load() 
@@ -31,7 +34,7 @@ function gameManager:load()
   gameManager.pause = false
   gameManager.isFailed = false
   gameManager.gametime = 0
-  gameManager.backgroundDim = 0.5
+  gameManager.backgroundDim = saveManager.settings.bgDim
   gameManager.health = 50
   nextNote = 1
   endTime = 0

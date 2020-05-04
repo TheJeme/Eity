@@ -8,11 +8,10 @@ local discordRPC = require 'lib/discordRPC'
 local appId = require 'applicationId'
 
 function love.load()
-  simpleScale.setWindow(gw, gh, window_width, window_height)
   gameManager:load()
   stateManager:load()
   love.graphics.setBackgroundColor(0.1, 0.1, 0.1, 1)
-
+  simpleScale.setWindow(gw, gh, resolutionList[saveManager.settings.resolutionIndex][1], resolutionList[saveManager.settings.resolutionIndex][2])
   discordRPC.initialize(appId, true)
   now = os.time(os.date("*t"))
   detailsNow = "In Mainmenu"
@@ -50,7 +49,7 @@ function love.update(dt)
   gameManager:update(dt)
   stateManager:update(dt)
   
-  if isEnabledVSync then
+  if saveManager.settings.isEnabledVSync then
     love.window.setVSync(1)
   else
     love.window.setVSync(0)
@@ -69,7 +68,7 @@ end
 function love.draw()  
 	simpleScale.set()
     stateManager:draw()
-    if isEnabledFPS then
+    if saveManager.settings.isEnabledFPS then
       love.graphics.setFont(defaultFont)
       love.graphics.setColor(1, 1, 1, 1)
       love.graphics.printf("FPS " .. love.timer.getFPS(), 0, gh - 12, gw, "right")

@@ -10,7 +10,7 @@ local resolutionButton, vsyncButton, fpsButton, backroundDimButton
 local mainVolumeSlider, musicVolumeSlider, effectsVolumeSlider
 
 function Options:load()
-  backButton = newButton(gw * 0.54, gh / 2 + 375, gw * 0.1, 50, 15, "Back", Blue, White, White, "center", 0, 10, function() menustate = "Startmenu" simpleScale.updateWindow(resolutionList[selectedResolutionIndex][1], resolutionList[selectedResolutionIndex][2]) end)
+  backButton = newButton(gw * 0.54, gh / 2 + 375, gw * 0.1, 50, 15, "Back", Blue, White, White, "center", 0, 10, function() saveManager:saveSettings() menustate = "Startmenu" simpleScale.updateWindow(resolutionList[saveManager.settings.resolutionIndex][1], resolutionList[saveManager.settings.resolutionIndex][2]) end)
   generalButton = newButton(gw * 0.38, gh / 2 - 375, gw * 0.1, 50, 15, "General", Purple, White, White, "center", 0, 10)
   volumeButton = newButton(gw * 0.38, gh / 2, gw * 0.1, 50, 15, "Volume", Purple, White, White, "center", 0, 10)
   mainButton = newButton(gw * 0.35, gh / 2 + 75, gw * 0.3, 50, 15, "Main", GrayOpacity4, White, White, "left", 15, 10)
@@ -23,11 +23,11 @@ function Options:load()
   fpsButton = newButton(gw * 0.35, gh / 2 - 150, gw * 0.3, 50, 15, "Show FPS", GrayOpacity4, White, White, "left", 15, 10)
   backroundDimButton = newButton(gw * 0.35, gh / 2 - 75, gw * 0.3, 50, 15, "Background dim", GrayOpacity4, White, White, "left", 15, 10)
 
-  backgroundDimSlider = newSlider(gw * 0.56, gh / 2 - 50, gw * 0.15, 0.5, 0, 1, function (v) gameManager.setBackgroundDim(v) end)
+  backgroundDimSlider = newSlider(gw * 0.56, gh / 2 - 50, gw * 0.15, saveManager.settings.bgDim, 0, 1, function (v) gameManager.setBackgroundDim(v) end)
   
-  mainVolumeSlider = newSlider(gw * 0.56, gh / 2 + 100, gw * 0.15, 1, 0, 2, function (v) love.audio.setVolume(v) end)
-  musicVolumeSlider = newSlider(gw * 0.56, gh / 2 + 175, gw * 0.15, 0.05, 0, 0.1, function (v) soundManager:SetMusicVolume(v) end)
-  effectsVolumeSlider = newSlider(gw * 0.56, gh / 2 + 250, gw * 0.15, 0.05, 0, 0.1, function (v) soundManager:SetEffectsVolume(v) end)
+  mainVolumeSlider = newSlider(gw * 0.56, gh / 2 + 100, gw * 0.15, saveManager.settings.mainVolume, 0, 2, function (v) soundManager:SetMainVolume(v) end)
+  musicVolumeSlider = newSlider(gw * 0.56, gh / 2 + 175, gw * 0.15, saveManager.settings.musicVolume, 0, 0.1, function (v) soundManager:SetMusicVolume(v) end)
+  effectsVolumeSlider = newSlider(gw * 0.56, gh / 2 + 250, gw * 0.15, saveManager.settings.effectVolume, 0, 0.1, function (v) soundManager:SetEffectsVolume(v) end)
 end
 
 function Options:update(dt)
@@ -60,36 +60,36 @@ function Options:mousepressed(x, y,button)
   backButton:mousepressed(x, y, button)              
   if isMouseOnEnableFPS and button == 1 then
     soundManager.playSoundEffect(soundManager.buttonHitsrc)
-    if isEnabledFPS then
-      isEnabledFPS = false
+    if saveManager.settings.isEnabledFPS then
+      saveManager.settings.isEnabledFPS = false
     else
-      isEnabledFPS = true
+      saveManager.settings.isEnabledFPS = true
     end
   elseif isMouseOnEnableVSync and button == 1 then
     soundManager.playSoundEffect(soundManager.buttonHitsrc)
-    if isEnabledVSync then
-      isEnabledVSync = false
+    if saveManager.settings.isEnabledVSync then
+      saveManager.settings.isEnabledVSync = false
     else
-      isEnabledVSync = true
+      saveManager.settings.isEnabledVSync = true
     end
   elseif isMouseOnEnableTicksound and button == 1 then
     soundManager.playSoundEffect(soundManager.buttonHitsrc)
-    if isEnabledTicksound then
-      isEnabledTicksound = false
+    if saveManager.settings.isEnabledTicksound then
+      saveManager.settings.isEnabledTicksound = false
     else
-      isEnabledTicksound = true
+      saveManager.settings.isEnabledTicksound = true
     end
   elseif isMouseOnResolution and button == 1 then
     soundManager.playSoundEffect(soundManager.buttonHitsrc)
-    selectedResolutionIndex = selectedResolutionIndex - 1
-    if selectedResolutionIndex <= 0 then
-      selectedResolutionIndex = #resolutionList
+    saveManager.settings.resolutionIndex = saveManager.settings.resolutionIndex - 1
+    if saveManager.settings.resolutionIndex <= 0 then
+      saveManager.settings.resolutionIndex = #resolutionList
     end
   elseif isMouseOnResolution and button == 2 then
     soundManager.playSoundEffect(soundManager.buttonHitsrc)
-    selectedResolutionIndex = selectedResolutionIndex + 1
-    if selectedResolutionIndex > #resolutionList then
-      selectedResolutionIndex = 1
+    saveManager.settings.resolutionIndex = saveManager.settings.resolutionIndex + 1
+    if saveManager.settings.resolutionIndex > #resolutionList then
+      saveManager.settings.resolutionIndex = 1
     end
   end
 end
@@ -112,18 +112,18 @@ function DrawButtons()
   love.graphics.setColor(White)
   love.graphics.setLineWidth(5)
   love.graphics.rectangle("line", gw * 0.51, gh / 2 - 290, 200, 30, 10)
-  love.graphics.printf(resolutionList[selectedResolutionIndex][1] .. " x " .. resolutionList[selectedResolutionIndex][2], gw * 0.51, gh / 2 - 290, 200, "center")
+  love.graphics.printf(resolutionList[saveManager.settings.resolutionIndex][1] .. " x " .. resolutionList[saveManager.settings.resolutionIndex][2], gw * 0.51, gh / 2 - 290, 200, "center")
   
   vsyncButton:draw()
   love.graphics.circle('line', gw * 0.63, gh / 2 - 200, 16, 4)
-  if isEnabledVSync then
+  if saveManager.settings.isEnabledVSync then
     love.graphics.setColor(Green)
     love.graphics.circle('fill', gw * 0.63, gh / 2 - 200, 8, 4)
   end
       
   fpsButton:draw()
   love.graphics.circle('line', gw * 0.63, gh / 2 - 125, 16, 4)
-  if isEnabledFPS then
+  if saveManager.settings.isEnabledFPS then
     love.graphics.setColor(Green)
     love.graphics.circle('fill', gw * 0.63, gh / 2 - 125, 8, 4)
   end
@@ -135,7 +135,7 @@ function DrawButtons()
   effectButton:draw()
   slidertickButton:draw()
   love.graphics.circle('line', gw * 0.63, gh / 2 + 325, 16, 4)
-  if isEnabledTicksound then
+  if saveManager.settings.isEnabledTicksound then
     love.graphics.setColor(Green)
     love.graphics.circle('fill', gw * 0.63, gh / 2 + 325, 8, 4)
     love.graphics.setColor(1, 1, 1, 1)

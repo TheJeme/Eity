@@ -2,12 +2,18 @@ soundManager = {}
 
 
 
+function soundManager:SetMainVolume(volume)
+  saveManager.settings.mainVolume = volume
+  love.audio.setVolume(volume)
+end
+
 function soundManager:SetMusicVolume(volume)  
-  musicVolume = volume
+  saveManager.settings.musicVolume = volume
   soundManager.mainmenusrc:setVolume(volume)
 end
 
 function soundManager:SetEffectsVolume(volume)
+  saveManager.settings.effectVolume = volume
   effectsVolume = volume
   
   soundManager.buttonOversrc:setVolume(volume)
@@ -20,9 +26,6 @@ end
 
 
 function soundManager:load()
-  musicVolume = 0.05
-  effectsVolume = 0.05
-  
   soundManager.mainmenusrc = love.audio.newSource("assets/verse_one_bgmusic.mp3", "static")
   
   soundManager.buttonOversrc = love.audio.newSource("assets/ButtonOver.wav", "static")
@@ -32,8 +35,9 @@ function soundManager:load()
   soundManager.hitSlidersrc = love.audio.newSource("assets/slider.wav", "static")
   soundManager.misssrc = love.audio.newSource("assets/miss.wav", "static")
   
-  soundManager:SetMusicVolume(musicVolume)  
-  soundManager:SetEffectsVolume(effectsVolume)
+  soundManager:SetMainVolume(saveManager.settings.mainVolume)
+  soundManager:SetMusicVolume(saveManager.settings.musicVolume)  
+  soundManager:SetEffectsVolume(saveManager.settings.effectVolume)
   
 end
 

@@ -13,6 +13,11 @@ function scoreManager.AddHealth(value)
   end
 end
 
+function scoreManager.AddCombo()
+  scoreManager.combo = scoreManager.combo + 1
+  
+end
+
 function scoreManager.Restart()
   scoreManager.score = 0
   scoreManager.combo = 0
@@ -55,7 +60,7 @@ end
 
 function scoreManager.AddScore(type)
   if (type == "perfect") then
-      scoreManager.combo = scoreManager.combo + 1
+      scoreManager.AddCombo()
       scoreManager.hits = scoreManager.hits + 1
       scoreManager.AddHealth(5)
       scoreManager.score = scoreManager.score + 300 * scoreManager.combo * scoreManager.modMultiplier
@@ -63,18 +68,18 @@ function scoreManager.AddScore(type)
       scoreManager.AddHealth(2)
       scoreManager.score = scoreManager.score + 100 * scoreManager.combo * scoreManager.modMultiplier
   elseif (type == "sliderEnd") then
-      scoreManager.combo = scoreManager.combo + 1
+      scoreManager.AddCombo()
       scoreManager.hits = scoreManager.hits + 1
       scoreManager.AddHealth(2)
       scoreManager.score = scoreManager.score + 100 * scoreManager.combo * scoreManager.modMultiplier
   elseif (type == "miss") then
       if scoreManager.combo > scoreManager.maxCombo then scoreManager.maxCombo = scoreManager.combo end
-      scoreManager.combo = 0
+      scoreManager.ResetCombo()
       scoreManager.AddHealth(-20)
       scoreManager.misses = scoreManager.misses + 1
   elseif (type == "bad") then
       if scoreManager.combo > scoreManager.maxCombo then scoreManager.maxCombo = scoreManager.combo end
-      scoreManager.combo = 0
+      scoreManager.ResetCombo()
       scoreManager.AddHealth(-25)
       scoreManager.misses = scoreManager.misses + 1
       scoreManager.score = scoreManager.score - 100
