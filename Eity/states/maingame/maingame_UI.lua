@@ -70,7 +70,7 @@ end
 
 function Healthbar()
   love.graphics.setColor(0.6, 0.6, 0.6, 1)
-  love.graphics.rectangle("fill", 10, 10, gw * 0.35, 30)
+  love.graphics.rectangle("fill", 10, 10, gw * 0.35 + 1, 30)
   love.graphics.setColor(0.3, 0.3, 0.3, 1)
   love.graphics.rectangle("fill", 15, 15, gw * 0.35 - 10, 20)
   love.graphics.setColor(0.95, 0.95, 0.95, 1)

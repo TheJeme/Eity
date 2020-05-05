@@ -195,8 +195,10 @@ function TopBar()
   love.graphics.setColor(White)
   love.graphics.line(0, gh * 0.08, gw, gh * 0.08)
 
-  love.graphics.printf(mapManager.getTitleOfIndex(mapList.getSelectedMapIndex()) .. " - " .. mapManager.getPorterOfIndex(mapList.getSelectedMapIndex()), 15, 10, 700, "left")
-  love.graphics.printf("[" .. mapManager.getDifficultOfIndex(mapList.getSelectedMapIndex()) .. "]" .. " - " ..
+  love.graphics.printf(mapManager.getTitleOfIndex(mapList.getSelectedMapIndex()) .. " - " ..
+                      mapManager.getPorterOfIndex(mapList.getSelectedMapIndex()) ..
+                      " [" .. mapManager.getDifficultOfIndex(mapList.getSelectedMapIndex()) .. "]", 15, 10, 700, "left")
+  love.graphics.printf("Length: " ..
                          math.floor(mapManager.getLengthOfIndex(mapList.getSelectedMapIndex()) / modManager.getSpeed() / 60) .. ":" .. 
                          string.format("%02d", math.floor(mapManager.getLengthOfIndex(mapList.getSelectedMapIndex()) / modManager.getSpeed() % 60))
                          , 15, 40, 700, "left")

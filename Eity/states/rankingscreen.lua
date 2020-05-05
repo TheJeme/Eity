@@ -15,8 +15,6 @@ function Rankingscreen:load()
   descFont = love.graphics.newFont("assets/roboto.ttf", 24)
 end
 
-
-
 function Rankingscreen:update(dt)
   isMouseOnBack = mx > 50 and mx < 250 and
                   my > gh * 0.9 and my < gh * 0.9 + 75

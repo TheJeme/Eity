@@ -3,6 +3,8 @@ require 'objects/button'
 
 Options = {}
 
+local changedResolution
+
 local isMouseOnEnableFPS, isMouseOnEnableVSync
 
 local backButton, generalButton, volumeButton, mainButton, musicButton, effectButton, slidertickButton
@@ -10,7 +12,8 @@ local resolutionButton, vsyncButton, fpsButton, backroundDimButton
 local mainVolumeSlider, musicVolumeSlider, effectsVolumeSlider
 
 function Options:load()
-  backButton = newButton(gw * 0.54, gh / 2 + 375, gw * 0.1, 50, 15, "Back", Blue, White, White, "center", 0, 10, function() saveManager:saveSettings() menustate = "Startmenu" simpleScale.updateWindow(resolutionList[saveManager.settings.resolutionIndex][1], resolutionList[saveManager.settings.resolutionIndex][2]) end)
+  changedResolution = false
+  backButton = newButton(gw * 0.54, gh / 2 + 375, gw * 0.1, 50, 15, "Back", Blue, White, White, "center", 0, 10, function() BackToStartScreen() end)
   generalButton = newButton(gw * 0.38, gh / 2 - 375, gw * 0.1, 50, 15, "General", Purple, White, White, "center", 0, 10)
   volumeButton = newButton(gw * 0.38, gh / 2, gw * 0.1, 50, 15, "Volume", Purple, White, White, "center", 0, 10)
   mainButton = newButton(gw * 0.35, gh / 2 + 75, gw * 0.3, 50, 15, "Main", GrayOpacity4, White, White, "left", 15, 10)
@@ -80,17 +83,28 @@ function Options:mousepressed(x, y,button)
       saveManager.settings.isEnabledTicksound = true
     end
   elseif isMouseOnResolution and button == 1 then
+    changedResolution = true
     soundManager.playSoundEffect(soundManager.buttonHitsrc)
     saveManager.settings.resolutionIndex = saveManager.settings.resolutionIndex - 1
     if saveManager.settings.resolutionIndex <= 0 then
       saveManager.settings.resolutionIndex = #resolutionList
     end
   elseif isMouseOnResolution and button == 2 then
+    changedResolution = true
     soundManager.playSoundEffect(soundManager.buttonHitsrc)
     saveManager.settings.resolutionIndex = saveManager.settings.resolutionIndex + 1
     if saveManager.settings.resolutionIndex > #resolutionList then
       saveManager.settings.resolutionIndex = 1
     end
+  end
+end
+
+function BackToStartScreen()
+  saveManager:saveSettings()
+  menustate = "Startmenu"
+  if (changedResolution) then
+    changedResolution = false
+    simpleScale.updateWindow(resolutionList[saveManager.settings.resolutionIndex][1], resolutionList[saveManager.settings.resolutionIndex][2])
   end
 end
 

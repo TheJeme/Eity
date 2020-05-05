@@ -58,8 +58,8 @@ function mapManager:load()
   table.insert(listOfMaps, paradigmShift)  
   table.insert(listOfMaps, stellaRium)  
   table.insert(listOfMaps, pressure)
-  table.insert(listOfMaps, freedomDive)
   table.insert(listOfMaps, highscore)
+  table.insert(listOfMaps, freedomDive)
   table.insert(listOfMaps, yumeiroParade)  
   
   

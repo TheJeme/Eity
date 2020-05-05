@@ -9,7 +9,7 @@ function map:getTitle()
 end
 
 function map:getDifficult()
-  return "Easy"
+  return "Normal"
 end
  
 function map:getPorter()
