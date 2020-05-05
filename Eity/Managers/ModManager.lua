@@ -14,7 +14,7 @@ function modManager:load()
   modManager.isNoFail = false
   modManager.isAuto = false
     
-  modManager.speed = 1.0
+  modManager.speed = 1.00
 end
 
 function modManager.SetSpeed(speed)

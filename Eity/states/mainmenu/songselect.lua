@@ -94,13 +94,16 @@ end
 function enableHalfTimeMod()
   if modManager.isDoubleSpeed == true then
     modManager.isDoubleSpeed = false
+    modManager.SetSpeed(1.0)
     modsDoubleSpeedButton:setNormalOutlineColor()
   end
   if modManager.isHalfSpeed == false then
     modManager.isHalfSpeed = true
+    modManager.SetSpeed(halfSpeed.ApplyMod())
     modsHalfSpeedButton:setHighlightOutlineColor()
   else
     modManager.isHalfSpeed = false
+    modManager.SetSpeed(1.0)
     modsHalfSpeedButton:setNormalOutlineColor()
   end
 end
@@ -108,13 +111,16 @@ end
 function enableDoubleTimeMod()
   if modManager.isHalfSpeed == true then
     modManager.isHalfSpeed = false
+    modManager.SetSpeed(1.0)
     modsHalfSpeedButton:setNormalOutlineColor()
   end
   if modManager.isDoubleSpeed == false then
     modManager.isDoubleSpeed = true
+    modManager.SetSpeed(doubleSpeed.ApplyMod())
     modsDoubleSpeedButton:setHighlightOutlineColor()
   else
     modManager.isDoubleSpeed = false
+    modManager.SetSpeed(1.0)
     modsDoubleSpeedButton:setNormalOutlineColor()
   end
 end
@@ -190,7 +196,10 @@ function TopBar()
   love.graphics.line(0, gh * 0.08, gw, gh * 0.08)
 
   love.graphics.printf(mapManager.getTitleOfIndex(mapList.getSelectedMapIndex()) .. " - " .. mapManager.getPorterOfIndex(mapList.getSelectedMapIndex()), 15, 10, 700, "left")
-  love.graphics.printf("[" .. mapManager.getDifficultOfIndex(mapList.getSelectedMapIndex()) .. "]", 15, 40, 700, "left")
+  love.graphics.printf("[" .. mapManager.getDifficultOfIndex(mapList.getSelectedMapIndex()) .. "]" .. " - " ..
+                         math.floor(mapManager.getLengthOfIndex(mapList.getSelectedMapIndex()) / modManager.getSpeed() / 60) .. ":" .. 
+                         string.format("%02d", math.floor(mapManager.getLengthOfIndex(mapList.getSelectedMapIndex()) / modManager.getSpeed() % 60))
+                         , 15, 40, 700, "left")
   love.graphics.setFont(scoreFont)
   love.graphics.printf("Highscore " .. string.format("%08d", saveManager.highscores.mapScore[mapList.getSelectedMapIndex()]), 0, 20, gw, "center")
 end

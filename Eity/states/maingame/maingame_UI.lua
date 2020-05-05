@@ -7,10 +7,11 @@ local bigFont
 local xScale
 local pausedButton, continueButton, quitButton, restartButton, failedButton
 
+
 function maingame_UI:load()
   bigFont = love.graphics.newFont("assets/roboto.ttf", 92)
   xbar = 0
-  
+  isEnabledUI = true
   failedButton = newSquareButton(gw / 2 - 270, gh / 2, 220, "Failed", Blue, White, 0, -50)
   pausedButton = newSquareButton(gw / 2 - 270, gh / 2, 220, "Paused", Blue, White, 0, -50)
   
@@ -41,8 +42,10 @@ end
 
 function maingame_UI:draw()
   MaingameOverlay()
-  Healthbar()
-  scoreManager:draw()
+  if (isEnabledUI) then
+    Healthbar()
+    scoreManager:draw()
+  end
   player:draw()
   if gameManager.pause then
     PauseScreen()

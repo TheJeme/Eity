@@ -19,6 +19,10 @@ function mapManager.getListOfMaps()
  return listOfMaps
 end
 
+function mapManager.getLengthOfIndex(index)
+  return listOfMaps[index].getLength()
+end
+
 function mapManager.getDifficultOfIndex(index)
   return listOfMaps[index].getDifficult()
 end

@@ -19,13 +19,7 @@ end
 
 function Maingame:update(dt)
   maingame_UI:update(dt)
-  if modManager.isDoubleSpeed then
-    modManager.SetSpeed(doubleSpeed.ApplyMod())
-  elseif modManager.isHalfSpeed then
-    modManager.SetSpeed(halfSpeed.ApplyMod())
-  else
-    modManager.SetSpeed(1.0)
-  end
+  
   if modManager.isAuto then
     auto.ApplyMod(mapNotes)
   end
@@ -125,6 +119,10 @@ function Maingame:keypressed(key)
   
   if key == "r" then
     gameManager.Restart()
+  end
+  
+  if key == "tab" then
+    isEnabledUI = not isEnabledUI
   end
   
   

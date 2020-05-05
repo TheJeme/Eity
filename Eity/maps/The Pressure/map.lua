@@ -20,6 +20,10 @@ function map:getSong()
   return "maps/The Pressure/song.mp3"
 end
  
+function map:getLength()  
+  return 84
+end
+
 function map:getNotes()        
   -- (0 = none, 1 = normal, 2 = reverse, 3 = bad), (448 = up, 64 = down, 192 = left, 320 = right), speed, slider length, milliseconds to spawn
   return {
