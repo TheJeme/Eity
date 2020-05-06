@@ -6,8 +6,6 @@ require 'states/maingame/player'
 Maingame = {}
 
 local scaleX, scaleY
-local joysticks = love.joystick.getJoysticks()
-joystick = joysticks[1]
 
 function Maingame:load()
   maingame_UI:load()
@@ -78,22 +76,34 @@ function Maingame:update(dt)
       flashlight.ApplyMod(dt)
     end
   end
-  
-  if not joystick or gameManager.pause or gameManager.isFailed or modManager.isAuto then return end
-  if joystick:isGamepadDown("dpleft") or joystick:isGamepadDown('x') then
-    player.direction = "left"
-  elseif joystick:isGamepadDown("dpright") or joystick:isGamepadDown('b') then
-    player.direction = "right"
-  end
-
-  if joystick:isGamepadDown("dpup") or joystick:isGamepadDown('y') then
-    player.direction = "up"
-  elseif joystick:isGamepadDown("dpdown") or joystick:isGamepadDown('a') then
-    player.direction = "down"
-  end  
 end
 
+function Maingame:gamepadpressed(joystick, button)
+  if gameManager.pause then
+    if button == "y" then
+      gameManager.pause = false
+    elseif button == "b" then
+      gameManager.Restart()
+    elseif button == "a" then
+      stateManager.GameState = "Mainmenu"
+    end
+  else
+    if button == "dpleft" or button == "x" then
+      player.direction = "left"
+    elseif button == "dpright" or button == "b" then
+      player.direction = "right"
+    end
 
+    if button == "dpup" or button == "y" then
+      player.direction = "up"
+    elseif button == "dpdown" or button == "a" then
+      player.direction = "down"
+    end  
+  end
+  if button == "start" then
+    gameManager.Pause()
+  end
+end
 
 function Maingame:draw()
   love.graphics.draw(img, 0, 0, 0, scaleX, scaleY)

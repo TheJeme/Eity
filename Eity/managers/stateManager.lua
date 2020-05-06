@@ -10,11 +10,19 @@ function stateManager:load()
   
 
     Mainmenu:load()
-
     Maingame:load()
-
     Rankingscreen:load()
 
+end
+
+function stateManager:gamepadpressed(joystick, button)
+  if (stateManager.GameState == "Mainmenu") then
+    Mainmenu:gamepadpressed(joystick, button)
+  elseif (stateManager.GameState == "Maingame") then
+    Maingame:gamepadpressed(joystick, button)
+  elseif (stateManager.GameState == "Rankingscreen") then
+    Rankingscreen:gamepadpressed(joystick, button)
+  end
 end
 
 function stateManager:draw()

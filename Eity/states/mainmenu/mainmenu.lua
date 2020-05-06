@@ -9,7 +9,6 @@ local scaleX, scaleY
 
 local noButton, yesButton, eityButton, playButton, optionsButton, exitButton
 
-
 function Mainmenu:load()
   Songselect:load()
   Options:load()
@@ -27,6 +26,42 @@ function Mainmenu:load()
   exitButton = newSquareButton(gw / 2 + 50, gh / 2 + 200, 120, "Exit", Red, White, 0, -25, function() PressedQuit = true end)
     
   PressedQuit = false
+end
+
+
+function Mainmenu:gamepadpressed(joystick, button)
+  if menustate == "Startmenu" and not PressedQuit then
+    if button == "y" then
+      menustate = "Songselect" 
+      psystem:reset()
+    elseif button == "b" then
+      menustate = "Options"
+    elseif button == "a" then
+      PressedQuit = true
+    end
+  elseif menustate == "Startmenu" and PressedQuit then
+    if button == "a" then
+      love.event.quit()
+    else
+      PressedQuit = false
+    end
+  elseif menustate == "Options" then
+    if button == "a" then
+      menustate = "Startmenu"
+    end
+  elseif menustate == "Songselect" and not isMods then
+    if button == "a" then
+      gameManager.RestartNewMap()
+    elseif button == "x" then
+      mapList.PickRandomMapIndex()
+    elseif button == "b" then
+      menustate = "Startmenu"
+    elseif button == "dpup" or button == "dpright" then
+      mapList.mapListUp()
+    elseif button == "dpdown" or button == "dpleft" then
+      mapList.mapListDown()
+    end
+  end
 end
 
 function Mainmenu:update(dt)

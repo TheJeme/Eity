@@ -7,6 +7,9 @@ require 'lib/simpleScale'
 local discordRPC = require 'lib/discordRPC'
 local appId = require 'applicationId'
 
+local joysticks = love.joystick.getJoysticks()
+joystick = joysticks[1]
+
 function love.load()
   gameManager:load()
   stateManager:load()
@@ -39,7 +42,9 @@ function discordApplyPresence()
   return presence
 end
 
-
+function love.gamepadpressed(joystick, button)
+  stateManager:gamepadpressed(joystick, button)
+end
 
 function love.update(dt)
   collectgarbage() 
