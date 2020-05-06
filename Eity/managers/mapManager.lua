@@ -1,5 +1,4 @@
 shelter = require "maps/Shelter/map"
-elama = require "maps/Elaman koulu/map"
 freedomDive = require "maps/FREEDOM DiVE/map"
 yumeiroParade = require "maps/Yumeiro Parade/map"
 highscore = require "maps/Highscore/map"
@@ -9,7 +8,8 @@ pressure = require "maps/The Pressure/map"
 stellaRium = require "maps/Stella-rium/map"
 virtualParadise = require "maps/Virtual Paradise/map"
 coldGreenEyes = require "maps/Cold Green Eyes/map"
-template = require "maps/Template/map"
+--elama = require "maps/Elaman koulu/map"
+--template = require "maps/Template/map"
 
 mapManager = { }
  

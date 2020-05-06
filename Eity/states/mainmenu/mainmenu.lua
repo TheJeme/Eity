@@ -56,9 +56,9 @@ function Mainmenu:gamepadpressed(joystick, button)
       mapList.PickRandomMapIndex()
     elseif button == "b" then
       menustate = "Startmenu"
-    elseif button == "dpup" or button == "dpright" then
+    elseif button == "dpup" or button == "dpleft" then
       mapList.mapListUp()
-    elseif button == "dpdown" or button == "dpleft" then
+    elseif button == "dpdown" or button == "dpright" then
       mapList.mapListDown()
     end
   end
