@@ -13,7 +13,7 @@ function map:getDifficult()
 end
  
 function map:getPorter()
-  return "Robinson & Madeon"
+  return "Porter Robinson & Madeon"
 end
 
 function map:getSong()
