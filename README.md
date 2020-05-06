@@ -1,5 +1,5 @@
 # Eity
-> Eity is a minimalistic graphics rhythm game that is easy to learn but hard to master.
+> Eity is a simple rhythm game.
 
 ![](https://i.imgur.com/dVGGHXX.jpg)
 
