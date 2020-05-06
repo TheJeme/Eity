@@ -233,8 +233,8 @@ function Rankingscreen:reds()
   love.graphics.setColor(1, 1, 1, 1)
   love.graphics.printf(scoreManager.collectedRedArrows .. "x", -26 + 130 + 90, gh / 2 - gh * 0.08, 500, "left")
   
-  love.graphics.setColor(1, 1, 1, 1)
-  love.graphics.printf(scoreManager.collectedRedSliders .. "x", -26 + 600 + 90, gh / 2 - gh * 0.08, 500, "left")
+  --love.graphics.setColor(1, 1, 1, 1)
+  --love.graphics.printf(scoreManager.collectedRedSliders .. "x", -26 + 600 + 90, gh / 2 - gh * 0.08, 500, "left")
   
   
   love.graphics.setColor(219 / 255, 52 / 255, 52 / 255, 1)
@@ -252,7 +252,7 @@ function Rankingscreen:reds()
                         33 + 130, gh / 2 - 20 - gh * 0.05,
                         13 + 130, gh / 2 - 40 - gh * 0.05,
                         -26 + 130, gh / 2 - gh * 0.05)
-                        
+  --[[                 
   love.graphics.setColor(0.25, 0.25, 0.25, 1)
   love.graphics.rectangle('fill', 13 + 500, gh / 2 - 40 - gh * 0.05, 100, 80)
 
@@ -280,7 +280,7 @@ function Rankingscreen:reds()
                         13 + 500 + 100, gh / 2 - 40 - gh * 0.05,
                         13 + 500, gh / 2 - 40 - gh * 0.05,
                         -26 + 500, gh / 2 - gh * 0.05)
-
+                          ]]     
 end
 
 return Rankingscreen
