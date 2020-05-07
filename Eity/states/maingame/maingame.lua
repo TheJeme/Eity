@@ -114,7 +114,7 @@ function Maingame:draw()
   maingame_UI:draw()
   
   love.graphics.setFont(defaultFont)
-  --love.graphics.print(gameManager.gametime, 0, 60)
+  love.graphics.print(gameManager.gametime, 0, 60)
 end
 
 function Maingame:mousepressed(x, y,button)

@@ -28,7 +28,7 @@ function map:getNotes()
   -- (0 = none, 1 = normal, 2 = reverse, 3 = bad), (448 = up, 64 = down, 192 = left, 320 = right), speed, slider length, milliseconds to spawn
   return {
     {1, 323, 420, 420, 2925},
-    {1, 36, 420, 420, 8925},
+    {1, 36, 420, 420, 8825},
     {1, 192, 420, 420, 11925},
     {1, 79, 420, 420, 15925},
     {1, 378, 420, 0, 21925},

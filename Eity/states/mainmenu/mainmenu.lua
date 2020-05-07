@@ -117,7 +117,10 @@ function Mainmenu:keypressed(key)
   elseif key == "escape" and menustate == "Options" then
     saveManager:saveSettings()
     menustate = "Startmenu"
-    simpleScale.updateWindow(resolutionList[saveManager.settings.resolutionIndex][1], resolutionList[saveManager.settings.resolutionIndex][2])
+      if (changedResolution) then
+        changedResolution = false
+        simpleScale.updateWindow(resolutionList[saveManager.settings.resolutionIndex][1], resolutionList[saveManager.settings.resolutionIndex][2])
+      end
   end
 end
 

@@ -3,8 +3,6 @@ require 'objects/button'
 
 Options = {}
 
-local changedResolution
-
 local isMouseOnEnableFPS, isMouseOnEnableVSync
 
 local backButton, generalButton, volumeButton, mainButton, musicButton, effectButton, slidertickButton
