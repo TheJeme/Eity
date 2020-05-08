@@ -19,8 +19,8 @@ function newSquareButton(x, y, radius, text, inlineColor, outlineColor, ox, oy, 
 end
 
 function squareButton:update(dt)                
-  self.isMouseOnButton = mx > self.x - self.radius * 0.81 and mx < self.x + self.radius * 2 * 0.39 and
-                          my > self.y - self.radius * 0.81 and my < self.y + self.radius * 2 * 0.39
+  self.isMouseOnButton = mx > (self.x - self.radius * 0.81) and mx < (self.x + self.radius * 2 * 0.39) and
+                          my > (self.y - self.radius * 0.81) and my < (self.y + self.radius * 2 * 0.39)
                                                                 
   if self.isMouseOnButton then
     self.scale = self.scale + 220 * dt

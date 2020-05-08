@@ -87,6 +87,22 @@ function simpleScale.getScale()
 	return scale
 end
 
+function simpleScale.getHBlackBox()
+	if gAspectRatio > wAspectRatio then
+		return math.abs((gameH*scale - (windowH))/2)
+	else
+		return 0
+	end
+end
+
+function simpleScale.getWBlackBox()
+	if gAspectRatio > wAspectRatio then
+		return 0
+	else
+		return math.abs((gameW*scale - (windowW))/2)
+	end
+end
+
 -- Transforms the game's window relative to the entire window
 -- Call this at the beginning of love.draw()
 function simpleScale.set()

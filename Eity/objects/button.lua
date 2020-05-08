@@ -44,7 +44,7 @@ end
 
 function button:draw()  
   self.isMouseOnButton = mx > self.x and mx < self.x + self.width and
-                          my > self.y and my < self.y + self.height      
+                          my > self.y and my < self.y + self.height   
                             
   love.graphics.setColor(self.inlineColor)
   love.graphics.rectangle('fill', self.x, self.y, self.width, self.height, self.corner)

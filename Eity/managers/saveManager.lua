@@ -5,7 +5,7 @@ saveManager = {}
 function saveManager:load()
   if not love.filesystem.getInfo("settings.txt") then
     settings = {}
-    settings.resolutionIndex = 2
+    settings.resolutionIndex = 5
     settings.isEnabledFPS = false
     settings.isEnabledVSync = false
     settings.isEnabledTicksound = false
