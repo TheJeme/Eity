@@ -1,5 +1,5 @@
 # Eity
-> Eity is a simple rhythm game.
+> Eity is a rhythm game with cool music.
 
 ![](https://i.imgur.com/dVGGHXX.jpg)
 
